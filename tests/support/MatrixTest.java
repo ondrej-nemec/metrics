@@ -16,12 +16,12 @@ public class MatrixTest{
 		this.matrix = new Matrix<>(inte);
 	}
 	
-	/*
+	
 	@Test
 	public void matrixGetThrowsException(){
-		
+		fail("Not yet implemented");
 	}
-	*/
+	
 	@Test
 	public void matrixGetWork(){
 		assertSame(1, matrix.getCell(0, 0));
