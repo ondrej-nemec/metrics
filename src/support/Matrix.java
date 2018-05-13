@@ -37,9 +37,9 @@ public class Matrix<T> {
 	 * @throws ArrayIndexOutOfBoundsException
 	 */
 	public void setCell(final int x, final int y, final T value){
-		if(matrix.length >= x|| x < 0)
+		if(matrix.length <= x|| x < 0)
 			throw new ArrayIndexOutOfBoundsException("Row index: " + x);
-		if(matrix[x].length >= y || y < 0)
+		if(matrix[x].length <= y || y < 0)
 			throw new ArrayIndexOutOfBoundsException("Column index: " + y);
 		matrix[x][y] = value;
 	}
