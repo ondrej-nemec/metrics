@@ -7,7 +7,7 @@ package structures;
  *
  * @param <S>
  */
-public class ResultSet<S> {
+public class ResultSet<S, T> {
 	
 	private final Iterable<S> sequenceFrom;
 	private final Iterable<S> sequenceTo;
@@ -17,6 +17,7 @@ public class ResultSet<S> {
 	private final String operations;
 	private final Number distance;
 	private final Number weightDistance;
+	private final T structure;
 	
 	public ResultSet(
 			final Iterable<S> sequenceFrom,
@@ -26,7 +27,8 @@ public class ResultSet<S> {
 			final String description,
 			final String operations,
 			final Number distance,
-			final Number weightDistance
+			final Number weightDistance,
+			final T structure
 			) {
 		this.sequenceFrom = sequenceFrom;
 		this.sequenceTo = sequenceTo;
@@ -36,6 +38,7 @@ public class ResultSet<S> {
 		this.operations = operations;
 		this.distance = distance;
 		this.weightDistance = weightDistance;
+		this.structure = structure;
 	}
 	
 	
@@ -62,6 +65,9 @@ public class ResultSet<S> {
 	}
 	public Number getWeightDistance() {
 		return weightDistance;
+	}
+	public T getStructure(){
+		return structure;
 	}
 	
 	
