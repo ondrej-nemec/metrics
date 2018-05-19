@@ -63,4 +63,29 @@ public class Matrix<T> {
 		return matrix[0].length;
 	}
 	
+	public int getColumnSize(final int i){
+		if(getRowSize() > i)
+			throw new NullPointerException();
+		return matrix[i].length;
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if(!(o instanceof Matrix<?>))
+			return false;
+		Matrix<T> aux = (Matrix<T>)o;
+		if(getRowSize() != aux.getRowSize())
+			return false;
+		for(int i = 0; i < getRowSize(); i++){
+			if(getColumnSize(i) != aux.getColumnSize(i))
+				return false;
+			for(int j = 0; j < getColumnSize(i); j++){
+				if(!getCell(i, j).equals(aux.getCell(i, j)))
+					return false;
+			}
+		}
+		return super.equals(o);
+	}
+	
+	
 }

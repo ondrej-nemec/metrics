@@ -71,8 +71,37 @@ public class ResultSet<S, T> {
 	}
 	
 	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return super.toString();
+	}
 	
-	
-	
+	@Override
+	public boolean equals(Object o) {
+		if(!(o instanceof ResultSet))
+			return false;
+		@SuppressWarnings("unchecked")
+		ResultSet<S, T> aux = (ResultSet<S, T>)o;
+		if(!sequenceFrom.equals(aux.getSequenceFrom()))
+			return false;
+		if(!sequenceTo.equals(aux.getSequenceTo()))
+			return false;
+		if(!finalSequenceFrom.equals(aux.getFinalSequenceFrom()))
+			return false;
+		if(!finalSequenceTo.equals(aux.getFinalSequenceTo()))
+			return false;
+		if(!description.equals(aux.getDescription()))
+			return false;
+		if(!operations.equals(aux.getOperations()))
+			return false;
+		if(!distance.equals(aux.getDistance()))
+			return false;
+		if(!weightDistance.equals(aux.getWeightDistance()))
+			return false;
+		if(!structure.equals(aux.getStructure()))
+			return false;
+		return super.equals(o);
+	}
 
 }

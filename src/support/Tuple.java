@@ -19,6 +19,17 @@ public class Tuple<S, T> {
 		return second;
 	}
 	
-	
+	@Override
+	public boolean equals(Object o) {
+		if(!(o instanceof Tuple<?, ?>))
+			return false;
+		@SuppressWarnings("unchecked")
+		Tuple<S, T> aux = (Tuple<S, T>)o;
+		if(!first.equals(aux))
+			return false;
+		if(!second.equals(aux))
+			return false;
+		return super.equals(o);
+	}
 
 }
