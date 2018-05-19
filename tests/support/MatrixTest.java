@@ -39,7 +39,7 @@ public class MatrixTest{
 	
 	@Test
 	public void matrixGetCellWork(){
-		assertSame(1, matrix.getCell(0, 0));
+		assertEquals(new Integer(1), matrix.getCell(0, 0));
 	}
 	
 	
