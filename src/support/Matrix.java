@@ -73,6 +73,7 @@ public class Matrix<T> {
 	public boolean equals(Object o) {
 		if(!(o instanceof Matrix<?>))
 			return false;
+		@SuppressWarnings("unchecked")
 		Matrix<T> aux = (Matrix<T>)o;
 		if(getRowSize() != aux.getRowSize())
 			return false;

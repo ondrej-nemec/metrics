@@ -1,24 +1,26 @@
 package support;
 
+import java.util.List;
+
 public class Tuple3<S, R> {
 	
-	private final Iterable<S> first;
+	private final List<S> first;
 	
-	private final Iterable<S> second;
+	private final List<S> second;
 	
 	private final R result;
 	
-	public Tuple3(final Iterable<S> first, Iterable<S> second, R result) {
+	public Tuple3(final List<S> first, List<S> second, R result) {
 		this.first = first;
 		this.second = second;
 		this.result = result;
 	}
 
-	public Iterable<S> getFirst() {
+	public List<S> getFirst() {
 		return first;
 	}
 
-	public Iterable<S> getSecond() {
+	public List<S> getSecond() {
 		return second;
 	}
 

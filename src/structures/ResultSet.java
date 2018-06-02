@@ -1,5 +1,7 @@
 package structures;
 
+import java.util.List;
+
 /**
  * Result of MetricInfo calculation
  * Box for data
@@ -9,10 +11,10 @@ package structures;
  */
 public class ResultSet<S, T> {
 	
-	private final Iterable<S> sequenceFrom;
-	private final Iterable<S> sequenceTo;
-	private final Iterable<S> finalSequenceFrom;
-	private final Iterable<S> finalSequenceTo;
+	private final List<S> sequenceFrom;
+	private final List<S> sequenceTo;
+	private final List<S> finalSequenceFrom;
+	private final List<S> finalSequenceTo;
 	private final String description;
 	private final String operations;
 	private final Number distance;
@@ -20,10 +22,10 @@ public class ResultSet<S, T> {
 	private final T structure;
 	
 	public ResultSet(
-			final Iterable<S> sequenceFrom,
-			final Iterable<S> sequenceTo,
-			final Iterable<S> finalSequenceFrom,
-			final Iterable<S> finalSequenceTo,
+			final List<S> sequenceFrom,
+			final List<S> sequenceTo,
+			final List<S> finalSequenceFrom,
+			final List<S> finalSequenceTo,
 			final String description,
 			final String operations,
 			final Number distance,
@@ -42,16 +44,16 @@ public class ResultSet<S, T> {
 	}
 	
 	
-	public Iterable<S> getSequenceFrom() {
+	public List<S> getSequenceFrom() {
 		return sequenceFrom;
 	}
-	public Iterable<S> getSequenceTo() {
+	public List<S> getSequenceTo() {
 		return sequenceTo;
 	}
-	public Iterable<S> getFinalSequenceFrom() {
+	public List<S> getFinalSequenceFrom() {
 		return finalSequenceFrom;
 	}
-	public Iterable<S> getFinalSequenceTo() {
+	public List<S> getFinalSequenceTo() {
 		return finalSequenceTo;
 	}
 	public String getDescription() {

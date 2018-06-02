@@ -36,8 +36,8 @@ public class LevenshteinInfokTest {
 		return Arrays.asList(
 				new Tuple3[]{
 						new Tuple3<Character, ResultSet<Number, Matrix<Tuple<Character, Boolean>>>>(
-								null,
-								null,
+								Arrays.asList(' '),
+								Arrays.asList(' '),
 								null
 							)
 				}

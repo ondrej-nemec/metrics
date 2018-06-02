@@ -33,8 +33,8 @@ public class JaroWinklerQuickTest {
 		return Arrays.asList(
 				new Tuple3[]{
 						new Tuple3<Character, Number>(
-								null,
-								null,
+								Arrays.asList(' '),
+								Arrays.asList(' '),
 								null
 							)
 				}

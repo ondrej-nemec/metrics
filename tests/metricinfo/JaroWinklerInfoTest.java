@@ -36,8 +36,8 @@ public class JaroWinklerInfoTest {
 		return Arrays.asList(
 				new Tuple3[]{
 						new Tuple3<Character, ResultSet<Number, String>>(
-								null,
-								null,
+								Arrays.asList(' '),
+								Arrays.asList(' '),
 								null
 							)
 				}

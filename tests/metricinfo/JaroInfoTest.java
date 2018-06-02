@@ -36,8 +36,8 @@ public class JaroInfoTest {
 		return Arrays.asList(
 				new Tuple3[]{
 						new Tuple3<Character, ResultSet<Number, Matrix<JaroValues>>>(
-								null,
-								null,
+								Arrays.asList(' '),
+								Arrays.asList(' '),
 								null
 							)
 				}

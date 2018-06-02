@@ -1,9 +1,12 @@
 package metricquick;
 
+import java.util.List;
+
 public class HammingQuick<S> implements MetricQuick<S> {
 
 	@Override
-	public Number calculate(Iterable<S> sequenceFrom, Iterable<S> sequenceTo) {
+	public Number calculate(List<S> sequenceFrom, List<S> sequenceTo) {
+		
 		throw new UnsupportedOperationException();
 	}
 

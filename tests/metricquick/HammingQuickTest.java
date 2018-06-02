@@ -33,9 +33,33 @@ public class HammingQuickTest {
 		return Arrays.asList(
 				new Tuple3[]{
 						new Tuple3<Character, Number>(
-								null,
-								null,
-								null
+								Arrays.asList('s', 't', 'r', 'i', 'n', 'g'),
+								Arrays.asList('s', 't', 'r', 'i', 'n', 'g'),
+								new Integer(0)
+							),
+						new Tuple3<Character, Number>(
+								Arrays.asList('h', 'o', 'u', 's', 'k', 'a'),
+								Arrays.asList('h', 'o', 'u', 's', 'l', 'e'),
+								new Integer(2)
+							),
+						new Tuple3<Character, Number>(
+								Arrays.asList('k', 'o', 'o', 'l', 'i', 'p', 'a', 'n'),
+								Arrays.asList('k', 'o', 'p', 'l', 'l', 'i', 's', 'a'),
+								new Integer(5)
+							),
+						new Tuple3<Character, Number>(
+								Arrays.asList('k', 'o', 'p', 'l', 'i', 'n', 'n'),
+								Arrays.asList('k', 'p', 'o', 'l', 'l', 'i', 'm'),
+								new Integer(5)
+							),
+						new Tuple3<Character, Number>(
+								Arrays.asList('n', 'e', 'j', 'n', 'e', 'z', 'p', 'r', 'a', 'v', 'd',
+											  'ì', 'p', 'o', 'd', 'o', 'b', 'ò', 'o', 'v', 'á', 'v',
+											  'a', 't', 'e', 'l', 'n', 'ì', 'j', 'š', 'í', 'h', 'o'),
+								Arrays.asList('n', 'e', 'n', 'e', 's', 'p', 'r', 'a', 'v', 'd', 'j',
+											  'e', 'p', 'o', 'd', 'o', 'b', 'n', 'o', 'v', 'a', 'v',
+											  'á', 't', 'e', 'l', 'n', 'ì', 'j', 'š', 'í', 'h', 'o'),
+								new Integer(13)
 							)
 				}
 			);
