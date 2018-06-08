@@ -1,13 +1,17 @@
 package support;
 
+import java.io.Serializable;
+
 /**
  * This class represent a NxM matrix
  * @author Ondøej Nìmec
  *
  * @param <T> - content of cells
  */
-public class Matrix<T> {
+public class Matrix<T> implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private T[][] matrix;
 	
 	public Matrix(final T[][] matrix) {
@@ -88,5 +92,16 @@ public class Matrix<T> {
 		return super.equals(o);
 	}
 	
+	@Override
+	public String toString() {
+		String result= "";
+		for(int row = 0; row < matrix.length; row++){
+			for(int col = 0; col < matrix[row].length; col++){
+				result += matrix[row][col] + "\t";
+			}
+			result += "\n";
+		}
+		return result;
+	}
 	
 }
