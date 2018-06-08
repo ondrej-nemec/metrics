@@ -1,7 +1,11 @@
 package support;
 
-public class Tuple<S, T> {
+import java.io.Serializable;
+
+public class Tuple<S, T> implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
+
 	private final S first;
 	
 	private final T second;
@@ -17,6 +21,14 @@ public class Tuple<S, T> {
 
 	public T getSecond() {
 		return second;
+	}
+	
+	public Tuple<S, T> withFirst(final S value){
+		return new Tuple<>(value, second);
+	}
+	
+	public Tuple<S, T> withSecond(final T value){
+		return new Tuple<>(first, value);
 	}
 	
 	@Override
