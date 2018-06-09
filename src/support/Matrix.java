@@ -50,6 +50,24 @@ public class Matrix<T> implements Serializable {
 	
 	/**
 	 * 
+	 * @param x
+	 * @param y
+	 * @param value
+	 * @return
+	 */
+	public Matrix<T> withCell(final int x, final int y, final T value){
+		if(matrix.length <= x|| x < 0)
+			throw new ArrayIndexOutOfBoundsException("Row index: " + x);
+		if(matrix[x].length <= y || y < 0)
+			throw new ArrayIndexOutOfBoundsException("Column index: " + y);
+		matrix[x][y] = value;
+		return new Matrix<>(matrix);
+	}
+	
+	
+	
+	/**
+	 * 
 	 * @return count of rows
 	 */
 	public int getRowSize(){
