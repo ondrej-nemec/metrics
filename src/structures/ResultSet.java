@@ -1,5 +1,6 @@
 package structures;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -9,7 +10,9 @@ import java.util.List;
  *
  * @param <S>
  */
-public class ResultSet<S, T> {
+public class ResultSet<S, T> implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 	
 	private final List<S> sequenceFrom;
 	private final List<S> sequenceTo;
@@ -75,8 +78,13 @@ public class ResultSet<S, T> {
 	
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return super.toString();
+		String result = sequenceFrom + "\t" + sequenceTo + "\n";
+		result += finalSequenceFrom + "\t" + finalSequenceTo + "\n";
+		result += distance + "\t" + weightDistance + "\n";
+		result += description + "\n";
+		result += operations + "\n";
+		result += structure;		
+		return result;
 	}
 	
 	@Override
