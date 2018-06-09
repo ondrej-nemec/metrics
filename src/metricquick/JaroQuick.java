@@ -156,22 +156,32 @@ public class JaroQuick<S> implements MetricQuick<S> {
 	 * @param range
 	 * @param sequenceFrom
 	 * @param sequenceTo
-	 * @return distance or range
+	 * @return distance or sequence size
 	 */
 	private int distance(int row, int col, int direct, double range, List<S> sequenceFrom, List<S> sequenceTo){
 		if(direct == 0){ //row
-			for(int i = row; i < row + range; i++){
+			for(int i = col; i < sequenceTo.size(); i++){
+				if(i >= row + range + (row-col))
+					return -1;
 				if(sequenceFrom.get(row).equals(sequenceTo.get(i)))
 					return i - col;
 			}
-			return col + (int)range;
 		}
 		if(direct == 1){ //column
-			for(int i = col; i < col + range; i++){
-				
+			for(int i = row; i < sequenceFrom.size(); i++){
+				if(i >= col + range + (row-col))
+					return -1;
+				if(sequenceFrom.get(i).equals(sequenceTo.get(col)))
+					return i - row;
 			}
 		}
-		//diagonala
+		//diagonal
+		for(int i = 0; i < sequenceFrom.size(); i++){
+			if(i >= row + range + (row - col))
+				return -1;
+			if(sequenceFrom.get(row + i).equals(sequenceTo.get(col + i)))
+				return i;
+		}
 		return (int)range;
 	}
 	
