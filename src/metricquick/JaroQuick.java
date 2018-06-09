@@ -40,6 +40,53 @@ public class JaroQuick<S> implements MetricQuick<S> {
 	
 	
 	private Tuple<Integer, Integer> getCAndT(List<S> sequenceFrom, List<S> sequenceTo){
+		/*
+		int c = 0;
+		int t = 0;
+		int row = -1;
+		int col = -1;
+		while(row < sequenceFrom.size() && col < sequenceTo.size()){
+			//same
+			if(sequenceFrom.get(row+1).equals(sequenceTo.get(col+1)) ){
+				c++;
+				row++;
+				col++;
+				break;
+			}
+			//transposition
+			if(isTransposition(row, col, sequenceFrom, sequenceTo)){
+				c += 2;
+				t++;
+				row += 2;
+				col += 2;
+				break;
+			}
+			final int direct = look(row+1, col+1, sequenceFrom, sequenceTo);
+			//deletion
+			if(direct == 0){
+				if(row >= 0 && col >= 0)
+					if(!sequenceFrom.get(row).equals(sequenceTo.get(col))
+							&& sequenceFrom.get(row+1).equals(sequenceTo.get(col))
+							)
+						c++;
+				row++;
+				break;
+			}
+			//insertion
+			if(direct == 1){
+				if(!sequenceFrom.get(row).equals(sequenceTo.get(col))
+						&& sequenceFrom.get(row).equals(sequenceTo.get(col+1))
+						)
+					c++;
+				col++;
+				break;
+			}
+			//substitution - insertion and deletion
+			row++;
+			col++;
+		}
+		return new Tuple<Integer, Integer>(c, t);
+		*/
 		return getCAndT(sequenceFrom, sequenceTo, new Tuple<>(0, 0), -1, -1);
 	}
 	
@@ -90,7 +137,7 @@ public class JaroQuick<S> implements MetricQuick<S> {
 	 * @return
 	 */
 	private double calculateRange(List<S> sequenceFrom, List<S> sequenceTo){
-		if(Math.max(sequenceFrom.size(), sequenceTo.size())/2.0 - 1 > 2)
+		if(Math.max(sequenceFrom.size(), sequenceTo.size())/2.0 - 1 > 1)
 			return Math.max(sequenceFrom.size(), sequenceTo.size())/2.0 - 1;
 		return Math.min(sequenceFrom.size(), sequenceTo.size())/2.0;
 	}
@@ -178,6 +225,8 @@ public class JaroQuick<S> implements MetricQuick<S> {
 		//diagonal
 		for(int i = 0; i < sequenceFrom.size(); i++){
 			if(i >= row + range + (row - col))
+				return -1;
+			if(row + i >= sequenceFrom.size() || col + i >= sequenceTo.size())
 				return -1;
 			if(sequenceFrom.get(row + i).equals(sequenceTo.get(col + i)))
 				return i;
