@@ -40,95 +40,44 @@ public class JaroQuick<S> implements MetricQuick<S> {
 	
 	
 	private Tuple<Integer, Integer> getCAndT(List<S> sequenceFrom, List<S> sequenceTo){
-		/*
 		int c = 0;
 		int t = 0;
 		int row = -1;
 		int col = -1;
-		while(row < sequenceFrom.size() && col < sequenceTo.size()){
-			//same
-			if(sequenceFrom.get(row+1).equals(sequenceTo.get(col+1)) ){
+		while(row < sequenceFrom.size()-1 && col < sequenceTo.size()-1 ){
+			if(sequenceFrom.get(row+1).equals(sequenceTo.get(col+1)) ){//same
 				c++;
 				row++;
 				col++;
-				break;
-			}
-			//transposition
-			if(isTransposition(row, col, sequenceFrom, sequenceTo)){
+			}else if(isTransposition(row, col, sequenceFrom, sequenceTo)){//transposition
 				c += 2;
 				t++;
 				row += 2;
 				col += 2;
-				break;
-			}
-			final int direct = look(row+1, col+1, sequenceFrom, sequenceTo);
-			//deletion
-			if(direct == 0){
-				if(row >= 0 && col >= 0)
+			}else{
+				final int direct = look(row+1, col+1, sequenceFrom, sequenceTo);
+				if(direct == 0){//deletion
+					if(row >= 0 && col >= 0)
+						if(!sequenceFrom.get(row).equals(sequenceTo.get(col))
+								&& sequenceFrom.get(row+1).equals(sequenceTo.get(col))
+								)
+							c++;
+					row++;
+				}else if(direct == 1){//insertion
 					if(!sequenceFrom.get(row).equals(sequenceTo.get(col))
-							&& sequenceFrom.get(row+1).equals(sequenceTo.get(col))
+							&& sequenceFrom.get(row).equals(sequenceTo.get(col+1))
 							)
 						c++;
-				row++;
-				break;
+					col++;
+				}else{//substitution - insertion and deletion
+					row++;
+					col++;
+				}
 			}
-			//insertion
-			if(direct == 1){
-				if(!sequenceFrom.get(row).equals(sequenceTo.get(col))
-						&& sequenceFrom.get(row).equals(sequenceTo.get(col+1))
-						)
-					c++;
-				col++;
-				break;
-			}
-			//substitution - insertion and deletion
-			row++;
-			col++;
 		}
 		return new Tuple<Integer, Integer>(c, t);
-		*/
-		return getCAndT(sequenceFrom, sequenceTo, new Tuple<>(0, 0), -1, -1);
 	}
 	
-	private Tuple<Integer, Integer> getCAndT(
-			List<S> sequenceFrom, List<S> sequenceTo,
-			Tuple<Integer, Integer> result,
-			int row, int col){
-		//calculating's end
-		if(row+1 >= sequenceFrom.size() || col+1 >= sequenceTo.size())
-			return result;
-		//same
-		if(sequenceFrom.get(row+1).equals(sequenceTo.get(col+1)) )
-			return getCAndT(sequenceFrom, sequenceTo, result.withFirst(result.getFirst() + 1), row+1, col+1);
-		//transposition
-		if(isTransposition(row, col, sequenceFrom, sequenceTo))
-			return getCAndT(sequenceFrom, sequenceTo, 
-								result.withFirst(
-									result.getFirst()+2).withSecond(result.getSecond()+1
-								),
-							row+2, col+2);
-		final int direct = look(row+1, col+1, sequenceFrom, sequenceTo);
-		int match = 0;
-		//deletion
-		if(direct == 0){
-			if(row >= 0 && col >= 0)
-				if(!sequenceFrom.get(row).equals(sequenceTo.get(col))
-						&& sequenceFrom.get(row+1).equals(sequenceTo.get(col))
-						)
-					match++;
-			return getCAndT(sequenceFrom, sequenceTo, result.withFirst(result.getFirst() + match), row+1, col);
-		}	
-		//insertion
-		if(direct == 1){
-			if(!sequenceFrom.get(row).equals(sequenceTo.get(col))
-					&& sequenceFrom.get(row).equals(sequenceTo.get(col+1))
-					)
-				match++;
-			return getCAndT(sequenceFrom, sequenceTo, result.withFirst(result.getFirst() + match), row, col+1);
-		}	
-		//substitution - insertion and deletion
-		return getCAndT(sequenceFrom, sequenceTo, result, row+1, col+1);
-	}
 	
 	/**
 	 * calculate range of calculating
