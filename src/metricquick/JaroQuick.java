@@ -2,7 +2,7 @@ package metricquick;
 
 import java.util.List;
 
-import support.Tuple;
+import support.Tuple2;
 
 public class JaroQuick<S> implements MetricQuick<S> {
 
@@ -24,7 +24,7 @@ public class JaroQuick<S> implements MetricQuick<S> {
 	public Number calculate(List<S> sequenceFrom, List<S> sequenceTo) {
 		//TODO kontrola
 		
-		Tuple<Integer, Integer> aux = getCAndT(sequenceFrom, sequenceTo);
+		Tuple2<Integer, Integer> aux = getCAndT(sequenceFrom, sequenceTo);
 		int c = aux.getFirst();
 		int t = aux.getSecond();
 		if(sequenceFrom.size() == 0)
@@ -39,7 +39,7 @@ public class JaroQuick<S> implements MetricQuick<S> {
 	}
 	
 	
-	private Tuple<Integer, Integer> getCAndT(List<S> sequenceFrom, List<S> sequenceTo){
+	private Tuple2<Integer, Integer> getCAndT(List<S> sequenceFrom, List<S> sequenceTo){
 		int c = 0;
 		int t = 0;
 		int row = -1;
@@ -75,7 +75,7 @@ public class JaroQuick<S> implements MetricQuick<S> {
 				}
 			}
 		}
-		return new Tuple<Integer, Integer>(c, t);
+		return new Tuple2<Integer, Integer>(c, t);
 	}
 	
 	

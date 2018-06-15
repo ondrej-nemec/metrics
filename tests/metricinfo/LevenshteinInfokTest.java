@@ -15,17 +15,17 @@ import org.junit.runners.Parameterized.Parameters;
 import metricquick.LevenshteinQuick;
 import structures.ResultSet;
 import support.Matrix;
-import support.Tuple;
+import support.Tuple2;
 
 @RunWith(Parameterized.class)
 public class LevenshteinInfokTest {
 
-	private ResultSet<Integer, Matrix<Tuple<Character, Boolean>>> result;
+	private ResultSet<Integer, Matrix<Tuple2<Character, Boolean>>> result;
 	private List<Character> from;
 	private List<Character> to;
 	
 	public LevenshteinInfokTest(List<Character> from, List<Character> to,
-			ResultSet<Integer, Matrix<Tuple<Character, Boolean>>> result) {
+			ResultSet<Integer, Matrix<Tuple2<Character, Boolean>>> result) {
 		this.from = from;
 		this.to = to;
 		this.result = result;
