@@ -1,7 +1,9 @@
 package metricinfo;
 
-import support.Matrix;
 
-public interface StructureMatrix<S, T> extends MetricInfo<S, Matrix<T>>{
+import structures.MatrixResultSet;
 
+public interface StructureMatrix<S, T> extends MetricInfo<S, MatrixResultSet<S, T>>{
+	
+	
 }
