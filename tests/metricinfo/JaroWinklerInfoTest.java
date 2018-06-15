@@ -33,7 +33,7 @@ public class JaroWinklerInfoTest {
 	
 	@Test
 	public void testCalculateWork() {
-		JaroWinklerInfo<Character> dis = new JaroWinklerInfo<>();
+		JaroWinklerInfo<Character> dis = new JaroWinklerInfo<>(' ');
 		assertEquals(
 			result, 
 			dis.calculate(from, to)

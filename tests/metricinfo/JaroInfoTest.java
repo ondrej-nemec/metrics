@@ -32,7 +32,7 @@ public class JaroInfoTest {
 	
 	@Test
 	public void testCalculateWork() {
-		JaroInfo<Character> dis = new JaroInfo<>();
+		JaroInfo<Character> dis = new JaroInfo<>(' ');
 		assertEquals(
 				result, 
 				dis.calculate(from, to)
