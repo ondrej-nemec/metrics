@@ -5,7 +5,6 @@ import java.util.List;
 import structures.MatrixResultSet;
 import structures.ResultSet;
 import support.JaroValues;
-import support.Matrix;
 
 public class JaroWinklerInfo<S> implements StructureMatrix<S, JaroValues>{
 
@@ -33,7 +32,16 @@ public class JaroWinklerInfo<S> implements StructureMatrix<S, JaroValues>{
 				(getAlfa(sequenceFrom, sequenceTo) * p *
 						(1 - jaro.getDistance().doubleValue())
 						);
-		return null;
+		return new ResultSet<>(
+					sequenceFrom,
+					sequenceTo,
+					jaro.getFinalSequenceFrom(),
+					jaro.getFinalSequenceTo(), 
+					"Jaro-Winkler distance", //TODO dodat vzorec
+					jaro.getOperations(),
+					distance,
+					jaro.getStructure()
+				);
 	}
 	
 	private int getAlfa(List<S> from, List<S> to){

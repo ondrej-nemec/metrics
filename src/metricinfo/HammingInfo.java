@@ -31,7 +31,16 @@ public class HammingInfo<S> implements StructureString<S> {
 				distance += costOfSubstitution;
 			}
 		}
-		return null;
+		return new ResultSet<S, String>(
+					sequenceFrom,
+					sequenceTo,
+					sequenceFrom,
+					sequenceTo,
+					"Hamming distance",
+					operations,
+					distance,
+					operations
+				);
 	}
 
 }

@@ -38,9 +38,10 @@ public class JaroInfo<S> implements StructureMatrix<S, JaroValues>{
 		String operations = "";
 		List<S> finalSequenceFrom = new ArrayList<>();
 		List<S> finalSequenceTo = new ArrayList<>();
+		List<Tuple2<Integer, Integer>> indexes = new ArrayList<>();
 		
 		Tuple2<Integer, Integer> aux = getCAndT(
-				matrix, sequenceFrom, sequenceTo, finalSequenceFrom, finalSequenceTo, operations);
+				matrix, sequenceFrom, sequenceTo, finalSequenceFrom, finalSequenceTo, operations, indexes);
 		double distance;
 		int c = aux.getFirst();
 		int t = aux.getSecond();
@@ -54,7 +55,29 @@ public class JaroInfo<S> implements StructureMatrix<S, JaroValues>{
 			distance = (w1 * c / sequenceFrom.size())
 					+ (w2 * c / sequenceTo.size())
 					+ (wt * (c - t) / c);
-		return null;
+		return new ResultSet<>(
+					sequenceFrom,
+					sequenceTo,
+					finalSequenceFrom,
+					finalSequenceTo,
+					"Jaro distance", //TODO dodat vzorec
+					operations,
+					distance,
+					new MatrixResultSet<>(
+							matrix,
+							0,
+							(JaroValues value)->{
+									switch(value){
+										case TRUE:
+											return "1";
+										case FALSE:
+											return "0";
+										default: return "-";
+									}
+								},
+							indexes
+							)
+				);
 	}
 	
 	private Tuple2<Integer, Integer> getCAndT(
@@ -63,7 +86,8 @@ public class JaroInfo<S> implements StructureMatrix<S, JaroValues>{
 				List<S> to,
 				List<S> finalFrom,
 				List<S> finalTo,
-				String operations
+				String operations,
+				List<Tuple2<Integer, Integer>> indexes
 			){
 		int c = 0;
 		int t = 0;;
@@ -78,6 +102,7 @@ public class JaroInfo<S> implements StructureMatrix<S, JaroValues>{
 				operations += "E";
 				finalFrom.add(from.get(row+1));
 				finalTo.add(to.get(col+1));
+				indexes.add(new Tuple2<>(row+1, col+1));
 			}else if(isTransposition(row, col, matrix)){//transposition
 				c += 2;
 				t++;
@@ -88,6 +113,8 @@ public class JaroInfo<S> implements StructureMatrix<S, JaroValues>{
 				finalFrom.add(from.get(row+2));
 				finalTo.add(to.get(col+1));
 				finalTo.add(to.get(col+2));
+				indexes.add(new Tuple2<>(row+1, col+2));
+				indexes.add(new Tuple2<>(row+2, col+1));
 			}else{
 				final int direct = look(row+1, col+1, matrix);
 				if(direct == 0){//deletion
@@ -99,6 +126,7 @@ public class JaroInfo<S> implements StructureMatrix<S, JaroValues>{
 					operations += "D";
 					finalFrom.add(from.get(row+1));
 					finalTo.add(empty);
+					indexes.add(new Tuple2<>(row+1, col));
 				}else if(direct == 1){//insertion
 					if(matrix.getCell(row, col) != JaroValues.TRUE
 							&& matrix.getCell(row, col+1) == JaroValues.TRUE)
@@ -107,6 +135,7 @@ public class JaroInfo<S> implements StructureMatrix<S, JaroValues>{
 					operations += "I";
 					finalFrom.add(empty);
 					finalTo.add(to.get(col+1));
+					indexes.add(new Tuple2<>(row, col+1));
 				}else{//substitution - insertion and deletion
 					row++;
 					col++;
@@ -115,6 +144,8 @@ public class JaroInfo<S> implements StructureMatrix<S, JaroValues>{
 					finalFrom.add(from.get(row+1));
 					finalTo.add(to.get(col+1));
 					finalTo.add(empty);
+					indexes.add(new Tuple2<>(row, col+1));
+					indexes.add(new Tuple2<>(row+1, col));
 				}
 			}
 		}

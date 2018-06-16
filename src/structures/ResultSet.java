@@ -2,27 +2,35 @@ package structures;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.function.Function;
 
 /**
  * Result of MetricInfo calculation
  * Box for data
  * @author Ondøej Nìmec
  *
- * @param <S>
+ * @param <S, T>
  */
 public class ResultSet<S, T> implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
+	//TODO upravit getOpDess..... bude asi dostavat translator
+		//mozna by mohl byt schopny final vytvorit na zaklade operations...
+		//funkci pro vyznaceny operaci - dostane funkci a upravy retezce - treti dvojice retezcu, cacheovane
+		//prejmenovat operations, description opeDes...
+		
+	
 	private final List<S> sequenceFrom;
 	private final List<S> sequenceTo;
 	private final List<S> finalSequenceFrom;
 	private final List<S> finalSequenceTo;
+	private final Number distance;
+	private final T structure;
+	
 	private final String description;
 	private final String operations;
-	private final Number distance;
-	private final Number weightDistance;
-	private final T structure;
+		
 	
 	public ResultSet(
 			final List<S> sequenceFrom,
@@ -32,7 +40,6 @@ public class ResultSet<S, T> implements Serializable{
 			final String description,
 			final String operations,
 			final Number distance,
-			final Number weightDistance,
 			final T structure
 			) {
 		this.sequenceFrom = sequenceFrom;
@@ -42,7 +49,6 @@ public class ResultSet<S, T> implements Serializable{
 		this.description = description;
 		this.operations = operations;
 		this.distance = distance;
-		this.weightDistance = weightDistance;
 		this.structure = structure;
 	}
 	
@@ -68,9 +74,6 @@ public class ResultSet<S, T> implements Serializable{
 	public Number getDistance() {
 		return distance;
 	}
-	public Number getWeightDistance() {
-		return weightDistance;
-	}
 	public T getStructure(){
 		return structure;
 	}
@@ -80,7 +83,7 @@ public class ResultSet<S, T> implements Serializable{
 	public String toString() {
 		String result = sequenceFrom + "\t" + sequenceTo + "\n";
 		result += finalSequenceFrom + "\t" + finalSequenceTo + "\n";
-		result += distance + "\t" + weightDistance + "\n";
+		result += distance + "\n";
 		result += description + "\n";
 		result += operations + "\n";
 		result += structure;		
@@ -107,11 +110,64 @@ public class ResultSet<S, T> implements Serializable{
 			return false;
 		if(!distance.equals(aux.getDistance()))
 			return false;
-		if(!weightDistance.equals(aux.getWeightDistance()))
-			return false;
 		if(!structure.equals(aux.getStructure()))
 			return false;
-		return super.equals(o);
+		//return super.equals(o);
+		return true;
 	}
+	
+	
+	public String getOperationsDescription(Function<String, String> translator){
+		String result = "";
+		boolean wasTransposition = false;
+		for(int i = 0; i < operations.length(); i++){
+			switch (operations.charAt(i)) {
+			case 'S':
+				result += 
+					translator.apply("Substitution") + " '"
+					+ finalSequenceFrom.get(i) + "' "
+					+ translator.apply("to") + " '"
+					+ finalSequenceTo.get(i) + "' "
+					+ translator.apply("at position") + " "
+					+ i + "\n";					
+				break;
+			case 'I':
+				result += 
+					translator.apply("Insertion") + " '"
+					+ finalSequenceTo.get(i) + "' "
+					+ translator.apply("at position") + " "
+					+ i + "\n";
+				break;
+			case 'D':
+				result += 
+					translator.apply("Deletion") + " '"
+					+ finalSequenceFrom.get(i) + "' "
+					+ translator.apply("at position") + " "
+					+ i + "\n";
+				break;
+			case 'T':
+				if(!wasTransposition){
+					result += 
+						translator.apply("Transposition") + " '"
+						+ finalSequenceFrom.get(i) + "' "
+						+ translator.apply("and") + " '"
+						+ finalSequenceFrom.get(i+1) + "' "
+						+ translator.apply("at position") + " "
+						+ i + " "
+						+ translator.apply("and") + " "
+						+ (i+1) + "\n";
+					wasTransposition = true;
+				}else{
+					wasTransposition = false;
+				}				
+				break;
+			case 'E':
+			default:
+				break;
+			}
+		}
+		return result;
+	}
+	
 
 }

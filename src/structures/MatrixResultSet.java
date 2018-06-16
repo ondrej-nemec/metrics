@@ -6,9 +6,7 @@ import java.util.function.Function;
 import support.Matrix;
 import support.Tuple2;
 
-public class MatrixResultSet<S, R> extends ResultSet<S, Matrix<R>>{
-
-	private static final long serialVersionUID = 1L;
+public class MatrixResultSet<S, R>{
 
 	private final  int shift;
 	
@@ -16,30 +14,17 @@ public class MatrixResultSet<S, R> extends ResultSet<S, Matrix<R>>{
 	
 	private final List<Tuple2<Integer, Integer>> indexes;
 	
+	private final Matrix<R> matrix;
+	
 	public MatrixResultSet(
-			final List<S> sequenceFrom,
-			final List<S> sequenceTo,
-			final List<S> finalSequenceFrom,
-			final List<S> finalSequenceTo,
-			final String description,
-			final String operations,
-			final Number distance,
 			Matrix<R> matrix,
 			int shift,
 			Function<R, String> getValue,
 			List<Tuple2<Integer, Integer>> indexes) {
-		super(
-				sequenceFrom,
-				sequenceTo,
-				finalSequenceFrom,
-				finalSequenceTo,
-				description,
-				operations,
-				distance,
-				matrix);
 		this.shift = shift;
 		this.values = getValue;
 		this.indexes = indexes;
+		this.matrix = matrix;
 	}
 	
 	public int getShift() {
@@ -53,10 +38,14 @@ public class MatrixResultSet<S, R> extends ResultSet<S, Matrix<R>>{
 	public List<Tuple2<Integer, Integer>> getIndexes() {
 		return indexes;
 	}
+	
+	public Matrix<R> getMatrix(){
+		return matrix;
+	}
 
 	@Override
 	public String toString() {
-		String result = super.toString();
+		String result = matrix.toString() + "\n";
 		result += "shift " + shift + "\n";
 		for(int i = 0; i < indexes.size(); i++){
 			result += "\t" + indexes.get(i).getFirst() + "\t" + indexes.get(i).getSecond() + "\n";
@@ -70,11 +59,13 @@ public class MatrixResultSet<S, R> extends ResultSet<S, Matrix<R>>{
 			return false;
 		@SuppressWarnings("unchecked")
 		MatrixResultSet<S, R> aux = (MatrixResultSet<S, R>)o;
+		if(!matrix.equals(aux.getMatrix()))
+			return false;
 		if(shift != aux.getShift())
 			return false;
 		if(!indexes.equals(aux.getIndexes()))
 			return false;
-		return super.equals(o);
+		return true;
 	}
 	
 }
