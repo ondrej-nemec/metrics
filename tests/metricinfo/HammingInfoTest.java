@@ -43,32 +43,61 @@ public class HammingInfoTest {
 					new Object[]{
 							Arrays.asList('s', 't', 'r', 'i', 'n', 'g'),
 							Arrays.asList('s', 't', 'r', 'i', 'n', 'g'),
-							0
+							makeResultSet(
+									Arrays.asList('s', 't', 'r', 'i', 'n', 'g'),
+									Arrays.asList('s', 't', 'r', 'i', 'n', 'g'),
+									"EEEEEE",
+									0)
 					},
 					new Object[]{
 							Arrays.asList('h', 'o', 'u', 's', 'k', 'a'),
 							Arrays.asList('h', 'o', 'u', 's', 'l', 'e'),
-							2
+							makeResultSet(
+									Arrays.asList('h', 'o', 'u', 's', 'k', 'a'),
+									Arrays.asList('h', 'o', 'u', 's', 'l', 'e'),
+									"EEEESS",
+									2
+								)
 					},
 					new Object[]{
 							Arrays.asList('k', 'o', 'o', 'l', 'i', 'p', 'a', 'n'),
 							Arrays.asList('k', 'o', 'p', 'l', 'l', 'i', 's', 'a'),
-							5
+							makeResultSet(
+									Arrays.asList('k', 'o', 'o', 'l', 'i', 'p', 'a', 'n'),
+									Arrays.asList('k', 'o', 'p', 'l', 'l', 'i', 's', 'a'),
+									"EESESSSS",
+									5
+								)
 					},
 					new Object[]{
 							Arrays.asList('k', 'o', 'p', 'l', 'i', 'n', 'n'),
 							Arrays.asList('k', 'p', 'o', 'l', 'l', 'i', 'm'),
-							5
+							makeResultSet(
+									Arrays.asList('k', 'o', 'p', 'l', 'i', 'n', 'n'),
+									Arrays.asList('k', 'p', 'o', 'l', 'l', 'i', 'm'),
+									"ESSESSS",
+									5
+								)
 					},
 					new Object[]{
 							Arrays.asList('w', 'o', 'r', 'd'),
 							Arrays.asList('7', ';', '$', 'Ð'),
-							4
+							makeResultSet(
+									Arrays.asList('w', 'o', 'r', 'd'),
+									Arrays.asList('7', ';', '$', 'Ð'),
+									"SSSS",
+									4
+								)
 					},
 					new Object[]{
 							Arrays.asList('a', 'b', 'b', 'c', 'b'),
 							Arrays.asList('a', 'b', 'c', 'a', 'b'),
-							2
+							makeResultSet(
+									Arrays.asList('a', 'b', 'b', 'c', 'b'),
+									Arrays.asList('a', 'b', 'c', 'a', 'b'),
+									"EESSE",
+									2
+								)
 					},
 					new Object[]{
 							Arrays.asList('n', 'e', 'j', 'n', 'e', 'z', 'p', 'r', 'a', 'v', 'd',
@@ -77,9 +106,32 @@ public class HammingInfoTest {
 							Arrays.asList('n', 'e', 'n', 'e', 's', 'p', 'r', 'a', 'v', 'd', 'j',
 										  'e', 'p', 'o', 'd', 'o', 'b', 'n', 'o', 'v', 'a', 'v',
 										  'á', 't', 'e', 'l', 'n', 'ì', 'j', 'š', 'í', 'h', 'o'),
-							13
+							makeResultSet(
+									Arrays.asList('n', 'e', 'j', 'n', 'e', 'z', 'p', 'r', 'a', 'v', 'd',
+											  'ì', 'p', 'o', 'd', 'o', 'b', 'ò', 'o', 'v', 'á', 'v',
+											  'a', 't', 'e', 'l', 'n', 'ì', 'j', 'š', 'í', 'h', 'o'),
+								Arrays.asList('n', 'e', 'n', 'e', 's', 'p', 'r', 'a', 'v', 'd', 'j',
+											  'e', 'p', 'o', 'd', 'o', 'b', 'n', 'o', 'v', 'a', 'v',
+											  'á', 't', 'e', 'l', 'n', 'ì', 'j', 'š', 'í', 'h', 'o'),
+									"EESSSSSSSSSSEEEEESEESESEEEEEEEEEE",
+									13
+								)
 					}				
 				);
+	}
+
+
+	private static Object makeResultSet(List<Character> from, List<Character> to, String operations, int distance) {
+		return new ResultSet<>(
+				from,
+				to, 
+				from, 
+				to,
+				"Hamming distance",
+				operations,
+				distance,
+				operations
+			);
 	}
 
 }
