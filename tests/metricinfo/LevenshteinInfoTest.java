@@ -18,13 +18,13 @@ import support.Matrix;
 import support.Tuple2;
 
 @RunWith(Parameterized.class)
-public class LevenshteinInfokTest {
+public class LevenshteinInfoTest {
 
 	private ResultSet<Integer, Matrix<Tuple2<Character, Boolean>>> result;
 	private List<Character> from;
 	private List<Character> to;
 	
-	public LevenshteinInfokTest(List<Character> from, List<Character> to,
+	public LevenshteinInfoTest(List<Character> from, List<Character> to,
 			ResultSet<Integer, Matrix<Tuple2<Character, Boolean>>> result) {
 		this.from = from;
 		this.to = to;
@@ -35,12 +35,28 @@ public class LevenshteinInfokTest {
 	//TODO exceptions test
 	
 	@Test
-	public void testCalculateWork() {
-		LevenshteinQuick<Character> dis = new LevenshteinQuick<>();
-		assertEquals(
-				result,
-				dis.calculate(from, to)
-			);		
+	public void testCalculateFinalSequence() {
+		fail();
+	}
+	
+	@Test
+	public void testCalculateOperations(){
+		fail();
+	}
+	
+	@Test
+	public void testCalculateDistance(){
+		fail();
+	}
+	
+	@Test
+	public void testCalculateStructureMatrix(){
+		fail();
+	}
+	
+	@Test
+	public void testCalculateStructureIndexes(){
+		fail();
 	}
 
 	@Parameters

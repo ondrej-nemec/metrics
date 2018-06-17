@@ -16,25 +16,41 @@ import structures.ResultSet;
 @RunWith(Parameterized.class)
 public class HammingInfoTest {
 
-	private ResultSet<Integer, String> result;
-	private List<Character> from;
-	private List<Character> to;
+	private ResultSet<Character, String> expected;
+	private ResultSet<Character, String> actual;
 	
-	public HammingInfoTest(List<Character> from, List<Character> to, ResultSet<Integer, String> result) {
-		this.from = from;
-		this.to = to;
-		this.result = result;
+	public HammingInfoTest(List<Character> from, List<Character> to, ResultSet<Character, String> result) {
+		this.expected = result;
+		this.actual = new HammingInfo<Character>().calculate(from, to);
 	}
 	//TODO exceptions test
 	
 
 	@Test
-	public void testCalculateWork() {
-		HammingInfo<Character> dis = new HammingInfo<>();
+	public void testCalculateFinalSequence() {
 		assertEquals(
-				result,
-				dis.calculate(from, to)
+				expected.getFinalSequenceFrom(), 
+				actual.getFinalSequenceFrom()
+			);		
+		assertEquals(
+				expected.getFinalSequenceTo(),
+				actual.getFinalSequenceTo()
 			);
+	}
+	
+	@Test
+	public void testCalculateOperations(){
+		assertEquals(expected.getOperations(), actual.getOperations());
+	}
+	
+	@Test
+	public void testCalculateDistance(){
+		assertEquals(expected.getDistance(), actual.getDistance());
+	}
+	
+	@Test
+	public void testCalculateStructure(){
+		assertEquals(expected.getStructure(), actual.getStructure());
 	}
 
 	@Parameters
@@ -123,8 +139,6 @@ public class HammingInfoTest {
 
 	private static Object makeResultSet(List<Character> from, List<Character> to, String operations, int distance) {
 		return new ResultSet<>(
-				from,
-				to, 
 				from, 
 				to,
 				"Hamming distance",
