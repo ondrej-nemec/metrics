@@ -93,17 +93,19 @@ public class JaroInfo<S> implements StructureMatrix<S, JaroValues>{
 		int col = -1;
 		operations = "";
 		
+		
 		while(row < matrix.getRowSize() && col < matrix.getColumnSize()){ 
-			if(row+1 >= from.size() && col+1 >= to.size())
-				break;
-			else if(row+1 >= matrix.getRowSize()){ //insertion
+			if(row+1 >= from.size() && col+1 >= to.size()){ //end
+				row++;
+				col++;
+			}else if(row+1 >= matrix.getRowSize()){ //edge insertion
 				operations += "I";
 				finalFrom.add(empty);
 				finalTo.add(to.get(col+1));
 				indexes.add(new Tuple2<Integer, Integer>(row, col+1));
 				col++;
 				
-			}else if(col+1 >= matrix.getColumnSize()){ //deletion
+			}else if(col+1 >= matrix.getColumnSize()){ //edge deletion
 				operations += "D";
 				finalFrom.add(from.get(row+1));
 				finalTo.add(empty);

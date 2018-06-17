@@ -32,6 +32,11 @@ public class JaroInfoTest {
 	//TODO exceptions test
 	
 	@Test
+	public void testCalculateDistance(){
+		assertEquals(expected.getDistance(), actual.getDistance());
+	}
+	/*
+	@Test
 	public void testCalculateFinalSequence() {
 		assertEquals(
 				expected.getFinalSequenceFrom(), 
@@ -48,10 +53,6 @@ public class JaroInfoTest {
 		assertEquals(expected.getOperations(), actual.getOperations());
 	}
 	
-	@Test
-	public void testCalculateDistance(){
-		assertEquals(expected.getDistance(), actual.getDistance());
-	}
 	
 	@Test
 	public void testCalculateStructureMatrix(){
@@ -68,7 +69,7 @@ public class JaroInfoTest {
 				actual.getStructure().getIndexes()
 			);
 	}
-
+*/
 	@Parameters
 	public static Collection<Object[]> dataProvider() {
 		return Arrays.asList(

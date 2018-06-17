@@ -57,14 +57,15 @@ public class JaroQuick<S> implements MetricQuick<S> {
 			}else{
 				final int direct = look(row+1, col+1, sequenceFrom, sequenceTo);
 				if(direct == 0){//deletion
-					if(row >= 0 && col >= 0)
-						if(!sequenceFrom.get(row).equals(sequenceTo.get(col))
+					if(row >= 0 && col >= 0
+						&& !sequenceFrom.get(row).equals(sequenceTo.get(col))
 								&& sequenceFrom.get(row+1).equals(sequenceTo.get(col))
 								)
 							c++;
 					row++;
 				}else if(direct == 1){//insertion
-					if(!sequenceFrom.get(row).equals(sequenceTo.get(col))
+					if(row >= 0 && col >= 0
+							&& !sequenceFrom.get(row).equals(sequenceTo.get(col))
 							&& sequenceFrom.get(row).equals(sequenceTo.get(col+1))
 							)
 						c++;
