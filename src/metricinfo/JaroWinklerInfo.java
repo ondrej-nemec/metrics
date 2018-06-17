@@ -33,8 +33,6 @@ public class JaroWinklerInfo<S> implements StructureMatrix<S, JaroValues>{
 						(1 - jaro.getDistance().doubleValue())
 						);
 		return new ResultSet<>(
-					sequenceFrom,
-					sequenceTo,
 					jaro.getFinalSequenceFrom(),
 					jaro.getFinalSequenceTo(), 
 					"Jaro-Winkler distance", //TODO dodat vzorec

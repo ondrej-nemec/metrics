@@ -34,8 +34,6 @@ public class HammingInfo<S> implements StructureString<S> {
 		return new ResultSet<S, String>(
 					sequenceFrom,
 					sequenceTo,
-					sequenceFrom,
-					sequenceTo,
 					"Hamming distance",
 					operations,
 					distance,

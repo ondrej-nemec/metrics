@@ -77,11 +77,10 @@ public class Matrix<T> implements Serializable {
 	/**
 	 * 
 	 * @return count of columns in first row
-	 * @throws NullPointerException if matrix has no rows
 	 */
 	public int getColumnSize(){
 		if(matrix.length == 0)
-			throw new NullPointerException();
+			return 0;
 		return matrix[0].length;
 	}
 	

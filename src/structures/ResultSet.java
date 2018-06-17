@@ -20,21 +20,14 @@ public class ResultSet<S, T> implements Serializable{
 		//funkci pro vyznaceny operaci - dostane funkci a upravy retezce - treti dvojice retezcu, cacheovane
 		//prejmenovat operations, description opeDes...
 		
-	
-	private final List<S> sequenceFrom;
-	private final List<S> sequenceTo;
 	private final List<S> finalSequenceFrom;
 	private final List<S> finalSequenceTo;
 	private final Number distance;
 	private final T structure;
-	
 	private final String description;
 	private final String operations;
-		
 	
 	public ResultSet(
-			final List<S> sequenceFrom,
-			final List<S> sequenceTo,
 			final List<S> finalSequenceFrom,
 			final List<S> finalSequenceTo,
 			final String description,
@@ -42,8 +35,6 @@ public class ResultSet<S, T> implements Serializable{
 			final Number distance,
 			final T structure
 			) {
-		this.sequenceFrom = sequenceFrom;
-		this.sequenceTo = sequenceTo;
 		this.finalSequenceFrom = finalSequenceFrom;
 		this.finalSequenceTo = finalSequenceTo;
 		this.description = description;
@@ -53,12 +44,6 @@ public class ResultSet<S, T> implements Serializable{
 	}
 	
 	
-	public List<S> getSequenceFrom() {
-		return sequenceFrom;
-	}
-	public List<S> getSequenceTo() {
-		return sequenceTo;
-	}
 	public List<S> getFinalSequenceFrom() {
 		return finalSequenceFrom;
 	}
@@ -81,8 +66,7 @@ public class ResultSet<S, T> implements Serializable{
 	
 	@Override
 	public String toString() {
-		String result = sequenceFrom + "\t" + sequenceTo + "\n";
-		result += finalSequenceFrom + "\t" + finalSequenceTo + "\n";
+		String result = finalSequenceFrom + "\t" + finalSequenceTo + "\n";
 		result += distance + "\n";
 		result += description + "\n";
 		result += operations + "\n";
@@ -96,10 +80,6 @@ public class ResultSet<S, T> implements Serializable{
 			return false;
 		@SuppressWarnings("unchecked")
 		ResultSet<S, T> aux = (ResultSet<S, T>)o;
-		if(!sequenceFrom.equals(aux.getSequenceFrom()))
-			return false;
-		if(!sequenceTo.equals(aux.getSequenceTo()))
-			return false;
 		if(!finalSequenceFrom.equals(aux.getFinalSequenceFrom()))
 			return false;
 		if(!finalSequenceTo.equals(aux.getFinalSequenceTo()))
@@ -116,6 +96,9 @@ public class ResultSet<S, T> implements Serializable{
 		return true;
 	}
 	
+	public String getOperationsDescription(){
+		return getOperationsDescription((a)->a);
+	}
 	
 	public String getOperationsDescription(Function<String, String> translator){
 		String result = "";
