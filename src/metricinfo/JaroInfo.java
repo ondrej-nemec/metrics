@@ -234,7 +234,7 @@ public class JaroInfo<S> implements StructureMatrix<S, JaroValues>{
 		
 		if(col != -1 && check(col, dia, true) && check(col, row, true))//deletion
 			return 0;
-		if(row != -1 && check(row, dia, true) && check(row, col, false))//substution
+		if(row != -1 && check(row, dia, true) && check(row, col, false))//insertion
 			return 1;
 		return -1;
 	}
@@ -271,6 +271,7 @@ public class JaroInfo<S> implements StructureMatrix<S, JaroValues>{
 				if(matrix.getCell(row, i) == JaroValues.TRUE)
 					return i - col;
 			}
+			return -1;
 		}
 		if(direct == 1){ //column
 			for(int i = row; i < matrix.getRowSize(); i++){
@@ -279,6 +280,7 @@ public class JaroInfo<S> implements StructureMatrix<S, JaroValues>{
 				if(matrix.getCell(i, col) == JaroValues.TRUE)
 					return i - row;
 			}
+			return -1;
 		}
 		//diagonal
 		for(int i = 0; i < matrix.getRowSize(); i++){
@@ -286,10 +288,11 @@ public class JaroInfo<S> implements StructureMatrix<S, JaroValues>{
 				return -1;
 			if(matrix.getCell(row+i, col+i) == JaroValues.NULL)
 				return -1;
-			if(matrix.getCell(row+i, col+i) == JaroValues.FALSE)
+			if(matrix.getCell(row+i, col+i) == JaroValues.TRUE)
 				return i;
 		}
-		return Math.max(matrix.getRowSize(), matrix.getColumnSize());
+		//return Math.max(matrix.getRowSize(), matrix.getColumnSize());
+		return -1;
 	}
 
 }

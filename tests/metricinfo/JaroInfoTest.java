@@ -30,12 +30,12 @@ public class JaroInfoTest {
 		this.actual = new JaroInfo<>(' ').calculate(from, to);
 	}
 	//TODO exceptions test
-	
+	/*
 	@Test
 	public void testCalculateDistance(){
 		assertEquals(expected.getDistance(), actual.getDistance());
 	}
-	/*
+	
 	@Test
 	public void testCalculateFinalSequence() {
 		assertEquals(
@@ -47,13 +47,13 @@ public class JaroInfoTest {
 				actual.getFinalSequenceTo()
 			);
 	}
-	
+	*/
 	@Test
 	public void testCalculateOperations(){
 		assertEquals(expected.getOperations(), actual.getOperations());
 	}
 	
-	
+	/*
 	@Test
 	public void testCalculateStructureMatrix(){
 		assertEquals(
