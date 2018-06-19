@@ -30,7 +30,7 @@ public class JaroInfoTest {
 		this.actual = new JaroInfo<>(' ').calculate(from, to);
 	}
 	//TODO exceptions test
-	/*
+	
 	@Test
 	public void testCalculateDistance(){
 		assertEquals(expected.getDistance(), actual.getDistance());
@@ -47,7 +47,7 @@ public class JaroInfoTest {
 				actual.getFinalSequenceTo()
 			);
 	}
-	*/
+	
 	@Test
 	public void testCalculateOperations(){
 		assertEquals(expected.getOperations(), actual.getOperations());
@@ -153,8 +153,8 @@ public class JaroInfoTest {
 							Arrays.asList('s', 'l', 'o', 'v', 'o'),
 							Arrays.asList('s', 'l'),
 							new ResultSet<>(
-									null,
-									null,
+									Arrays.asList('s', 'l', 'o', 'v', 'o'),
+									Arrays.asList('s', 'l', ' ', ' ', ' '),
 									"Jaro distance",
 									"EEDDD",
 									0.8,
@@ -172,10 +172,10 @@ public class JaroInfoTest {
 							Arrays.asList('s', 'l', 'o', 'v', 'a'),
 							Arrays.asList('a'),
 							new ResultSet<>(
-									null,
-									null,
+									Arrays.asList(' ', 's', 'l', 'o', 'v', 'a'),
+									Arrays.asList('a', ' ', ' ', ' ', ' ', ' '),
 									"Jaro distance",
-									"",
+									"IDDDDD",
 									0.0,
 									new MatrixResultSet<>(
 											new Matrix<>(new JaroValues[][]{{JaroValues.NULL}}),
@@ -191,10 +191,10 @@ public class JaroInfoTest {
 							Arrays.asList('o', 'k', 'n', 'o'),
 							Arrays.asList('w', 'i', 'n', 'd', 'o', 'w'),
 							new ResultSet<>(
-									null,
-									null,
+									Arrays.asList(' ', 'o', ' ', 'k', 'n', ' ', 'o', ' '),
+									Arrays.asList('w', ' ', 'i', ' ', 'n', 'd', 'o', 'w'),
 									"Jaro distance",
-									"",
+									"IDIDEIEI",
 									0.6111111111111112,
 									new MatrixResultSet<>(
 											new Matrix<>(new JaroValues[][]{{JaroValues.NULL}}),
@@ -210,8 +210,8 @@ public class JaroInfoTest {
 							Arrays.asList('k', 'o', 'l', 'o'),
 							Arrays.asList('o', 'k', 'o'),
 							new ResultSet<>(
-									null,
-									null,
+									Arrays.asList('k', 'o', 'l', 'o'),
+									Arrays.asList('o', 'k', ' ', 'o'),
 									"Jaro distance",
 									"TTDE",
 									0.8055555555555555,
@@ -229,10 +229,10 @@ public class JaroInfoTest {
 							Arrays.asList('n', 'e', 'n', '�'),
 							Arrays.asList('n', 'i', 'e', ' ', 'j', 'e'),
 							new ResultSet<>(
-									null,
-									null,
+									Arrays.asList('n', ' ', 'e', ' ', 'n', ' ', '�', ' '),
+									Arrays.asList('n', 'i', 'e', ' ', ' ', 'j', ' ', 'e'),
 									"Jaro distance",
-									"E",
+									"EIEIDIDI",
 									0.6111111111111112,
 									new MatrixResultSet<>(
 											new Matrix<>(new JaroValues[][]{{JaroValues.NULL}}),
@@ -248,8 +248,8 @@ public class JaroInfoTest {
 							Arrays.asList('h', 'o', 'u', 's', 'k', 'a'),
 							Arrays.asList('h', 'o', 'u', 's', 'l', 'e'),
 							new ResultSet<>(
-									null,
-									null,
+									Arrays.asList('h', 'o', 'u', 's', ' ', 'k', ' ', 'a'),
+									Arrays.asList('h', 'o', 'u', 's', 'l', ' ', 'e', ' '),
 									"Jaro distance",
 									"EEEEIDID",
 									0.7777777777777777,
@@ -267,10 +267,10 @@ public class JaroInfoTest {
 							Arrays.asList('k', 'o', 'o', 'l', 'i', 'p', 'a', 'n'),
 							Arrays.asList('k', 'o', 'p', 'l', 'l', 'i', 's', 'a'),
 							new ResultSet<>(
-									null,
-									null,
+									Arrays.asList('k', 'o', ' ', 'o', 'l', ' ', 'i', ' ', 'p', 'a', 'n'),
+									Arrays.asList('k', 'o', 'p', ' ', 'l', 'l', 'i', 's', ' ', 'a', ' '),
 									"Jaro distance",
-									"",
+									"EEIDEIEIDED",
 									0.75,
 									new MatrixResultSet<>(
 											new Matrix<>(new JaroValues[][]{{JaroValues.NULL}}),
@@ -286,10 +286,10 @@ public class JaroInfoTest {
 							Arrays.asList('k', 'o', 'p', 'l', 'i', 'n', 'n'),
 							Arrays.asList('k', 'p', 'o', 'l', 'l', 'i', 'm'),
 							new ResultSet<>(
-									null,
-									null,
+									Arrays.asList('k', 'o', 'p', 'l', ' ', 'i', ' ', 'n', 'n'),
+									Arrays.asList('k', 'p', 'o', 'l', 'l', 'i', 'm', ' ', ' '),
 									"Jaro distance",
-									"",
+									"ETTEIEIDD",
 									0.7428571428571429,
 									new MatrixResultSet<>(
 											new Matrix<>(new JaroValues[][]{{JaroValues.NULL}}),
@@ -305,10 +305,10 @@ public class JaroInfoTest {
 							Arrays.asList('w', 'o', 'r', 'd'),
 							Arrays.asList('7', ';', '$', '�'),
 							new ResultSet<>(
-									null,
-									null,
+									Arrays.asList(' ', 'w', ' ', 'o', ' ', 'r', ' ', 'd'),
+									Arrays.asList('7', ' ', ';', ' ', '$', ' ', '�', ' '),
 									"Jaro distance",
-									"",
+									"IDIDIDID",
 									0.0,
 									new MatrixResultSet<>(
 											new Matrix<>(new JaroValues[][]{{JaroValues.NULL}}),
@@ -324,10 +324,10 @@ public class JaroInfoTest {
 							Arrays.asList('a', 'b', 'b', 'c', 'b'),
 							Arrays.asList('a', 'b', 'c', 'a', 'b'),
 							new ResultSet<>(
-									null,
-									null,
+									Arrays.asList('a', 'b', 'b', 'c', ' ', 'b'),
+									Arrays.asList('a', 'b', ' ', 'c', 'a', 'b'),
 									"Jaro distance",
-									"",
+									"EEDEIE",
 									0.8666666666666667,
 									new MatrixResultSet<>(
 											new Matrix<>(new JaroValues[][]{{JaroValues.NULL}}),
@@ -343,10 +343,10 @@ public class JaroInfoTest {
 							Arrays.asList('a', 'a', 'h', 'o', 'j'),
 							Arrays.asList('a', 'h', 'o', 'j', 'k', 'y'),
 							new ResultSet<>(
-									null,
-									null,
+									Arrays.asList('a', 'a', 'h', 'o', 'j', ' ', ' '),
+									Arrays.asList('a', ' ', 'h', 'o', 'j', 'k', 'y'),
 									"Jaro distance",
-									"",
+									"EDEEEII",
 									0.8222222222222222,
 									new MatrixResultSet<>(
 											new Matrix<>(new JaroValues[][]{{JaroValues.NULL}}),
@@ -366,10 +366,10 @@ public class JaroInfoTest {
 										  'e', 'p', 'o', 'd', 'o', 'b', 'n', 'o', 'v', 'a', 'v',
 										  '�', 't', 'e', 'l', 'n', '�', 'j', '�', '�', 'h', 'o'),
 							new ResultSet<>(
-									null,
-									null,
+									Arrays.asList('n', 'e', 'j', 'n', 'e', ' ', 'z', 'p', 'r', 'a', 'v', 'd', ' ', '�', ' ', 'p', 'o', 'd', 'o', 'b', ' ', '�', 'o', 'v', ' ', '�', 'v', ' ', 'a', 't', 'e', 'l', 'n', '�', 'j', '�', '�', 'h', 'o'),
+									Arrays.asList('n', 'e', ' ', 'n', 'e', 's', ' ', 'p', 'r', 'a', 'v', 'd', 'j', ' ', 'e', 'p', 'o', 'd', 'o', 'b', 'n', ' ', 'o', 'v', 'a', ' ', 'v', '�', ' ', 't', 'e', 'l', 'n', '�', 'j', '�', '�', 'h', 'o'),
 									"Jaro distance",
-									"",
+									"EEDEEIDEEEEEIIDEEEEEIDEEIDEIDEEEEEEEEEE",
 									0.8787878787878787,
 									new MatrixResultSet<>(
 											new Matrix<>(new JaroValues[][]{{JaroValues.NULL}}),
