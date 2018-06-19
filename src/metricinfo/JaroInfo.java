@@ -42,7 +42,9 @@ public class JaroInfo<S> implements StructureMatrix<S, JaroValues>{
 		List<Tuple2<Integer, Integer>> indexes = new ArrayList<>();
 		
 		Tuple2<Integer, Integer> aux = getCAndT(
-				matrix, sequenceFrom, sequenceTo, finalSequenceFrom, finalSequenceTo, indexes);
+				matrix, sequenceFrom, sequenceTo,
+				finalSequenceFrom, finalSequenceTo, indexes,
+				sequenceFrom.size(), sequenceTo.size());
 		double distance;
 		int c = aux.getFirst();
 		int t = aux.getSecond();
@@ -85,7 +87,9 @@ public class JaroInfo<S> implements StructureMatrix<S, JaroValues>{
 				List<S> to,
 				List<S> finalFrom,
 				List<S> finalTo,
-				List<Tuple2<Integer, Integer>> indexes
+				List<Tuple2<Integer, Integer>> indexes,
+				int fromSize,
+				int toSize
 			){
 		int c = 0;
 		int t = 0;;
@@ -94,7 +98,8 @@ public class JaroInfo<S> implements StructureMatrix<S, JaroValues>{
 		operations = "";
 		
 		
-		while(row < matrix.getRowSize() && col < matrix.getColumnSize()){ 
+		//	while(row < matrix.getRowSize() && col < matrix.getColumnSize()){ 
+		while(row < fromSize && col < toSize){	
 			if(row+1 >= from.size() && col+1 >= to.size()){ //end
 				row++;
 				col++;
@@ -283,7 +288,7 @@ public class JaroInfo<S> implements StructureMatrix<S, JaroValues>{
 			return -1;
 		}
 		//diagonal
-		for(int i = 0; i < matrix.getRowSize(); i++){
+		for(int i = 0; i < Math.max(matrix.getRowSize(), matrix.getColumnSize()); i++){
 			if(row + i >= matrix.getRowSize() || col + i >= matrix.getColumnSize())
 				return -1;
 			if(matrix.getCell(row+i, col+i) == JaroValues.NULL)

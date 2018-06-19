@@ -156,7 +156,7 @@ public class JaroInfoTest {
 									null,
 									null,
 									"Jaro distance",
-									"",
+									"EEDDD",
 									0.8,
 									new MatrixResultSet<>(
 											new Matrix<>(new JaroValues[][]{{JaroValues.NULL}}),
@@ -213,7 +213,7 @@ public class JaroInfoTest {
 									null,
 									null,
 									"Jaro distance",
-									"",
+									"TTDE",
 									0.8055555555555555,
 									new MatrixResultSet<>(
 											new Matrix<>(new JaroValues[][]{{JaroValues.NULL}}),
@@ -226,13 +226,13 @@ public class JaroInfoTest {
 								)
 					},
 					new Object[]{
-							Arrays.asList('n', 'e', 'n', 'í'),
+							Arrays.asList('n', 'e', 'n', 'ï¿½'),
 							Arrays.asList('n', 'i', 'e', ' ', 'j', 'e'),
 							new ResultSet<>(
 									null,
 									null,
 									"Jaro distance",
-									"",
+									"E",
 									0.6111111111111112,
 									new MatrixResultSet<>(
 											new Matrix<>(new JaroValues[][]{{JaroValues.NULL}}),
@@ -251,7 +251,7 @@ public class JaroInfoTest {
 									null,
 									null,
 									"Jaro distance",
-									"",
+									"EEEEIDID",
 									0.7777777777777777,
 									new MatrixResultSet<>(
 											new Matrix<>(new JaroValues[][]{{JaroValues.NULL}}),
@@ -303,7 +303,7 @@ public class JaroInfoTest {
 					},
 					new Object[]{
 							Arrays.asList('w', 'o', 'r', 'd'),
-							Arrays.asList('7', ';', '$', 'Ð'),
+							Arrays.asList('7', ';', '$', 'ï¿½'),
 							new ResultSet<>(
 									null,
 									null,
@@ -360,11 +360,11 @@ public class JaroInfoTest {
 					},
 					new Object[]{
 							Arrays.asList('n', 'e', 'j', 'n', 'e', 'z', 'p', 'r', 'a', 'v', 'd',
-										  'ì', 'p', 'o', 'd', 'o', 'b', 'ò', 'o', 'v', 'á', 'v',
-										  'a', 't', 'e', 'l', 'n', 'ì', 'j', 'š', 'í', 'h', 'o'),
+										  'ï¿½', 'p', 'o', 'd', 'o', 'b', 'ï¿½', 'o', 'v', 'ï¿½', 'v',
+										  'a', 't', 'e', 'l', 'n', 'ï¿½', 'j', 'ï¿½', 'ï¿½', 'h', 'o'),
 							Arrays.asList('n', 'e', 'n', 'e', 's', 'p', 'r', 'a', 'v', 'd', 'j',
 										  'e', 'p', 'o', 'd', 'o', 'b', 'n', 'o', 'v', 'a', 'v',
-										  'á', 't', 'e', 'l', 'n', 'ì', 'j', 'š', 'í', 'h', 'o'),
+										  'ï¿½', 't', 'e', 'l', 'n', 'ï¿½', 'j', 'ï¿½', 'ï¿½', 'h', 'o'),
 							new ResultSet<>(
 									null,
 									null,
