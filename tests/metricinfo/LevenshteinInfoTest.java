@@ -13,6 +13,7 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
 import metricquick.LevenshteinQuick;
+import structures.MatrixResultSet;
 import structures.ResultSet;
 import support.Matrix;
 import support.Tuple2;
@@ -20,15 +21,13 @@ import support.Tuple2;
 @RunWith(Parameterized.class)
 public class LevenshteinInfoTest {
 
-	private ResultSet<Integer, Matrix<Tuple2<Character, Boolean>>> result;
-	private List<Character> from;
-	private List<Character> to;
+	private ResultSet<Integer, Matrix<Tuple2<Character, Boolean>>> expected;
+	private ResultSet<Integer, Matrix<Tuple2<Character, Boolean>>> actual;
 	
 	public LevenshteinInfoTest(List<Character> from, List<Character> to,
 			ResultSet<Integer, Matrix<Tuple2<Character, Boolean>>> result) {
-		this.from = from;
-		this.to = to;
-		this.result = result;
+		this.expected = result;
+		this.actual = new LevenshteinInfo().calculate(from, to);
 	}
 	
 	
@@ -65,86 +64,326 @@ public class LevenshteinInfoTest {
 					new Object[]{
 							Arrays.asList('s', 't', 'r', 'i', 'n', 'g'),
 							Arrays.asList('s', 't', 'r', 'i', 'n', 'g'),
-							0
+							new ResultSet<>(
+									null,
+									null,
+									"Levenshtein distance",
+									"",
+									0,
+									new MatrixResultSet<>(
+										//	new Matrix<>(new Tuple2<Integer, Boolean>[][]{{new Tuple2<>(0, false)}}),
+											null,
+											1,
+											null,
+											Arrays.asList(
+													new Tuple2<Integer, Integer>(0, 0)
+												)
+										)
+								)
 					},
 					new Object[]{
 							Arrays.asList('s', 'l', 'o', 'v', 'o'),
 							new LinkedList<>(),
-							5
+							new ResultSet<>(
+									null,
+									null,
+									"Levenshtein distance",
+									"",
+									5,
+									new MatrixResultSet<>(
+										//	new Matrix<>(new Tuple2<Integer, Boolean>[][]{{new Tuple2<>(0, false)}}),
+											null,
+											1,
+											null,
+											Arrays.asList(
+													new Tuple2<Integer, Integer>(0, 0)
+												)
+										)
+								)
 					},
 					new Object[]{
 							new LinkedList<>(),
 							Arrays.asList('s', 'l', 'o', 'v', 'o'),
-							5
+							new ResultSet<>(
+									null,
+									null,
+									"Levenshtein distance",
+									"",
+									5,
+									new MatrixResultSet<>(
+										//	new Matrix<>(new Tuple2<Integer, Boolean>[][]{{new Tuple2<>(0, false)}}),
+											null,
+											1,
+											null,
+											Arrays.asList(
+													new Tuple2<Integer, Integer>(0, 0)
+												)
+										)
+								)
 					},
 					new Object[]{
 							Arrays.asList('s', 'l', 'o', 'v', 'o'),
 							Arrays.asList('l'),
-							4
+							new ResultSet<>(
+									null,
+									null,
+									"Levenshtein distance",
+									"",
+									4,
+									new MatrixResultSet<>(
+										//	new Matrix<>(new Tuple2<Integer, Boolean>[][]{{new Tuple2<>(0, false)}}),
+											null,
+											1,
+											null,
+											Arrays.asList(
+													new Tuple2<Integer, Integer>(0, 0)
+												)
+										)
+								)
 					},
 					new Object[]{
 							Arrays.asList('s', 'l', 'o', 'v', 'o'),
 							Arrays.asList('s', 'l'),
-							3
+							new ResultSet<>(
+									null,
+									null,
+									"Levenshtein distance",
+									"",
+									3,
+									new MatrixResultSet<>(
+										//	new Matrix<>(new Tuple2<Integer, Boolean>[][]{{new Tuple2<>(0, false)}}),
+											null,
+											1,
+											null,
+											Arrays.asList(
+													new Tuple2<Integer, Integer>(0, 0)
+												)
+										)
+								)
 					},
 					new Object[]{
 							Arrays.asList('s', 'l', 'o', 'v', 'a'),
 							Arrays.asList('a'),
-							4
+							new ResultSet<>(
+									null,
+									null,
+									"Levenshtein distance",
+									"",
+									4,
+									new MatrixResultSet<>(
+										//	new Matrix<>(new Tuple2<Integer, Boolean>[][]{{new Tuple2<>(0, false)}}),
+											null,
+											1,
+											null,
+											Arrays.asList(
+													new Tuple2<Integer, Integer>(0, 0)
+												)
+										)
+								)
 					},
 					new Object[]{
 							Arrays.asList('o', 'k', 'n', 'o'),
 							Arrays.asList('w', 'i', 'n', 'd', 'o', 'w'),
-							4
+							new ResultSet<>(
+									null,
+									null,
+									"Levenshtein distance",
+									"",
+									4,
+									new MatrixResultSet<>(
+										//	new Matrix<>(new Tuple2<Integer, Boolean>[][]{{new Tuple2<>(0, false)}}),
+											null,
+											1,
+											null,
+											Arrays.asList(
+													new Tuple2<Integer, Integer>(0, 0)
+												)
+										)
+								)
 					},
 					new Object[]{
 							Arrays.asList('k', 'o', 'l', 'o'),
 							Arrays.asList('o', 'k', 'o'),
-							2
+							new ResultSet<>(
+									null,
+									null,
+									"Levenshtein distance",
+									"",
+									2,
+									new MatrixResultSet<>(
+										//	new Matrix<>(new Tuple2<Integer, Boolean>[][]{{new Tuple2<>(0, false)}}),
+											null,
+											1,
+											null,
+											Arrays.asList(
+													new Tuple2<Integer, Integer>(0, 0)
+												)
+										)
+								)
 					},
 					new Object[]{
-							Arrays.asList('n', 'e', 'n', 'í'),
+							Arrays.asList('n', 'e', 'n', 'ï¿½'),
 							Arrays.asList('n', 'i', 'e', ' ', 'j', 'e'),
-							4
+							new ResultSet<>(
+									null,
+									null,
+									"Levenshtein distance",
+									"",
+									4,
+									new MatrixResultSet<>(
+										//	new Matrix<>(new Tuple2<Integer, Boolean>[][]{{new Tuple2<>(0, false)}}),
+											null,
+											1,
+											null,
+											Arrays.asList(
+													new Tuple2<Integer, Integer>(0, 0)
+												)
+										)
+								)
 					},
 					new Object[]{
 							Arrays.asList('h', 'o', 'u', 's', 'k', 'a'),
 							Arrays.asList('h', 'o', 'u', 's', 'l', 'e'),
-							2
+							new ResultSet<>(
+									null,
+									null,
+									"Levenshtein distance",
+									"",
+									2,
+									new MatrixResultSet<>(
+										//	new Matrix<>(new Tuple2<Integer, Boolean>[][]{{new Tuple2<>(0, false)}}),
+											null,
+											1,
+											null,
+											Arrays.asList(
+													new Tuple2<Integer, Integer>(0, 0)
+												)
+										)
+								)
 					},
 					new Object[]{
 							Arrays.asList('k', 'o', 'o', 'l', 'i', 'p', 'a', 'n'),
 							Arrays.asList('k', 'o', 'p', 'l', 'l', 'i', 's', 'a'),
-							4
+							new ResultSet<>(
+									null,
+									null,
+									"Levenshtein distance",
+									"",
+									4,
+									new MatrixResultSet<>(
+										//	new Matrix<>(new Tuple2<Integer, Boolean>[][]{{new Tuple2<>(0, false)}}),
+											null,
+											1,
+											null,
+											Arrays.asList(
+													new Tuple2<Integer, Integer>(0, 0)
+												)
+										)
+								)
 					},
 					new Object[]{
 							Arrays.asList('k', 'o', 'p', 'l', 'i', 'n', 'n'),
 							Arrays.asList('k', 'p', 'o', 'l', 'l', 'i', 'm'),
-							4
+							new ResultSet<>(
+									null,
+									null,
+									"Levenshtein distance",
+									"",
+									4,
+									new MatrixResultSet<>(
+										//	new Matrix<>(new Tuple2<Integer, Boolean>[][]{{new Tuple2<>(0, false)}}),
+											null,
+											1,
+											null,
+											Arrays.asList(
+													new Tuple2<Integer, Integer>(0, 0)
+												)
+										)
+								)
 					},
 					new Object[]{
 							Arrays.asList('w', 'o', 'r', 'd'),
-							Arrays.asList('7', ';', '$', 'Ð'),
-							4
+							Arrays.asList('7', ';', '$', 'ï¿½'),
+							new ResultSet<>(
+									null,
+									null,
+									"Levenshtein distance",
+									"",
+									4,
+									new MatrixResultSet<>(
+										//	new Matrix<>(new Tuple2<Integer, Boolean>[][]{{new Tuple2<>(0, false)}}),
+											null,
+											1,
+											null,
+											Arrays.asList(
+													new Tuple2<Integer, Integer>(0, 0)
+												)
+										)
+								)
 					},
 					new Object[]{
 							Arrays.asList('a', 'b', 'b', 'c', 'b'),
 							Arrays.asList('a', 'b', 'c', 'a', 'b'),
-							2
+							new ResultSet<>(
+									null,
+									null,
+									"Levenshtein distance",
+									"",
+									2,
+									new MatrixResultSet<>(
+										//	new Matrix<>(new Tuple2<Integer, Boolean>[][]{{new Tuple2<>(0, false)}}),
+											null,
+											1,
+											null,
+											Arrays.asList(
+													new Tuple2<Integer, Integer>(0, 0)
+												)
+										)
+								)
 					},
 					new Object[]{
 							Arrays.asList('a', 'a', 'h', 'o', 'j'),
 							Arrays.asList('a', 'h', 'o', 'j', 'k', 'y'),
-							3
+							new ResultSet<>(
+									null,
+									null,
+									"Levenshtein distance",
+									"",
+									3,
+									new MatrixResultSet<>(
+										//	new Matrix<>(new Tuple2<Integer, Boolean>[][]{{new Tuple2<>(0, false)}}),
+											null,
+											1,
+											null,
+											Arrays.asList(
+													new Tuple2<Integer, Integer>(0, 0)
+												)
+										)
+								)
 					},
 					new Object[]{
 							Arrays.asList('n', 'e', 'j', 'n', 'e', 'z', 'p', 'r', 'a', 'v', 'd',
-										  'ì', 'p', 'o', 'd', 'o', 'b', 'ò', 'o', 'v', 'á', 'v',
-										  'a', 't', 'e', 'l', 'n', 'ì', 'j', 'š', 'í', 'h', 'o'),
+										  'ï¿½', 'p', 'o', 'd', 'o', 'b', 'ï¿½', 'o', 'v', 'ï¿½', 'v',
+										  'a', 't', 'e', 'l', 'n', 'ï¿½', 'j', 'ï¿½', 'ï¿½', 'h', 'o'),
 							Arrays.asList('n', 'e', 'n', 'e', 's', 'p', 'r', 'a', 'v', 'd', 'j',
 										  'e', 'p', 'o', 'd', 'o', 'b', 'n', 'o', 'v', 'a', 'v',
-										  'á', 't', 'e', 'l', 'n', 'ì', 'j', 'š', 'í', 'h', 'o'),
-							7
+										  'ï¿½', 't', 'e', 'l', 'n', 'ï¿½', 'j', 'ï¿½', 'ï¿½', 'h', 'o'),
+							new ResultSet<>(
+									null,
+									null,
+									"Levenshtein distance",
+									"",
+									7,
+									new MatrixResultSet<>(
+										//	new Matrix<>(new Tuple2<Integer, Boolean>[][]{{new Tuple2<>(0, false)}}),
+											null,
+											1,
+											null,
+											Arrays.asList(
+													new Tuple2<Integer, Integer>(0, 0)
+												)
+										)
+								)
 					}				
 				);
 	}
