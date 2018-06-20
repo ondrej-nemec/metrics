@@ -46,7 +46,11 @@ public class ResultSetTest {
 								Arrays.asList('s', 'l', 'o', 'v', 'o'),
 								Arrays.asList('a', 'f', 'c', 'e', 't'),
 								"SSSSS"),
-						""
+						"Substitution 's' to 'a' at position 0\n"
+						+ "Substitution 'l' to 'f' at position 1\n"
+						+ "Substitution 'o' to 'c' at position 2\n"
+						+ "Substitution 'v' to 'e' at position 3\n"
+						+ "Substitution 'o' to 't' at position 4\n"
 				},
 				new Object[]{
 						getResultSet(
@@ -60,34 +64,47 @@ public class ResultSetTest {
 								Arrays.asList('s', 'l', 'o', 'v', 'o'),
 								new LinkedList<>(),
 								"DDDDD"),
-						""
+						"Deletion 's' at position 0\n"
+						+ "Deletion 'l' at position 1\n"
+						+ "Deletion 'o' at position 2\n"
+						+ "Deletion 'v' at position 3\n"
+						+ "Deletion 'o' at position 4\n"
 				},new Object[]{
 						getResultSet(
 								new LinkedList<>(),
 								Arrays.asList('s', 'l', 'o', 'v', 'o'),
 								"IIIII"),
-						""
+						"Insertion 's' at position 0\n"
+						+ "Insertion 'l' at position 1\n"
+						+ "Insertion 'o' at position 2\n"
+						+ "Insertion 'v' at position 3\n"
+						+ "Insertion 'o' at position 4\n"
 				},
 				new Object[]{
 						getResultSet(
 								Arrays.asList('k', 'o', 'l', 'o'),
 								Arrays.asList('o', 'k', 'o'),
 								"TTDE"),
-						""
+						"Transposition 'k' and 'o' at position 0 and 1\n"
+						+ "Deletion 'l' at position 2\n"
 				},
 				new Object[]{
 						getResultSet(
 								Arrays.asList('k', 'o', 'p', 'l', 'i', 'n', 'n'),
 								Arrays.asList('k', 'p', 'o', 'i', 'l', 'i', 'm'),
 								"ETTTTSS"),
-						""
+						"Transposition 'o' and 'p' at position 1 and 2\n"
+						+ "Transposition 'l' and 'i' at position 3 and 4\n"
+						+ "Substitution 'n' to 'i' at position 5\n"
+						+ "Substitution 'n' to 'm' at position 6\n"
 				},
 				new Object[]{
 						getResultSet(
 								Arrays.asList('s', 'l', 'o', 'v', 'o'),
 								Arrays.asList('s', 'l', 'v'),
 								"EEDED"),
-						""
+						"Deletion 'o' at position 2\n"
+						+ "Deletion 'o' at position 4\n"
 				}
 			);
 	}
@@ -104,5 +121,5 @@ public class ResultSetTest {
 				null
 			);
 	}
-
+	
 }
