@@ -1,13 +1,14 @@
 package structures;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
 /**
  * Result of MetricInfo calculation
  * Box for data
- * @author Ondøej Nìmec
+ * @author Ondï¿½ej Nï¿½mec
  *
  * @param <S, T>
  */
@@ -50,6 +51,24 @@ public class ResultSet<S, T> implements Serializable{
 	public List<S> getFinalSequenceTo() {
 		return finalSequenceTo;
 	}
+	
+	public List<S> getFinalSequenceFrom(
+			Function<S, S> equals,
+			Function<S, S> deletion,
+			Function<S, S> insertion,
+			Function<S, S> substitution,
+			Function<S, S> transposition) {
+		return showOperations(equals, deletion, insertion, substitution, transposition, true);
+	}
+	public List<S> getFinalSequenceTo(
+			Function<S, S> equals,
+			Function<S, S> deletion,
+			Function<S, S> insertion,
+			Function<S, S> substitution,
+			Function<S, S> transposition) {
+		return showOperations(equals, deletion, insertion, substitution, transposition, false);
+	}
+	
 	public String getDescription() {
 		return description;
 	}
@@ -92,9 +111,58 @@ public class ResultSet<S, T> implements Serializable{
 			return false;
 		if(!structure.equals(aux.getStructure()))
 			return false;
-		//return super.equals(o);
 		return true;
 	}
+	
+	public List<S> showOperations(
+			Function<S, S> equals,
+			Function<S, S> deletion,
+			Function<S, S> insertion,
+			Function<S, S> substitution,
+			Function<S, S> transposition,
+			boolean first
+			){
+		if(finalSequenceFrom.size() != finalSequenceTo.size()
+			&& finalSequenceTo.size() != operations.length())
+			throw new RuntimeException();// TODO vlastni vyjimka
+		List<S> aux = (first)?finalSequenceFrom: finalSequenceTo;
+		List<S> result = new ArrayList<>();
+		for(int i = 0; i < aux.size(); i++) {
+			switch(operations.charAt(i)) {
+			case 'I':
+				result.add(
+						insertion.apply(aux.get(i))
+						);
+				break;
+			case 'D':
+				result.add(
+						deletion.apply(aux.get(i))
+						);
+				break;
+			case 'S':
+				result.add(
+						substitution.apply(aux.get(i))
+						);
+				break;
+			case 'T':
+
+				result.add(
+						transposition.apply(aux.get(i))
+						);
+				break;
+			case 'E':
+				result.add(
+						equals.apply(aux.get(i))
+						);
+				break;
+			default:
+				break;
+			}
+		}
+		
+		return result;
+	}
+	
 	
 	public String getOperationsDescription(){
 		return getOperationsDescription((a)->a);
