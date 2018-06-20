@@ -12,22 +12,20 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
-import metricquick.LevenshteinQuick;
 import structures.MatrixResultSet;
 import structures.ResultSet;
-import support.Matrix;
 import support.Tuple2;
 
 @RunWith(Parameterized.class)
 public class LevenshteinInfoTest {
 
-	private ResultSet<Integer, Matrix<Tuple2<Character, Boolean>>> expected;
-	private ResultSet<Integer, Matrix<Tuple2<Character, Boolean>>> actual;
+	private ResultSet<Character, MatrixResultSet<Tuple2<Integer, Boolean>>> expected;
+	private ResultSet<Character, MatrixResultSet<Tuple2<Integer, Boolean>>> actual;
 	
 	public LevenshteinInfoTest(List<Character> from, List<Character> to,
-			ResultSet<Integer, Matrix<Tuple2<Character, Boolean>>> result) {
+			ResultSet<Character, MatrixResultSet<Tuple2<Integer, Boolean>>> result) {
 		this.expected = result;
-		this.actual = new LevenshteinInfo().calculate(from, to);
+		this.actual = new LevenshteinInfo<>(' ').calculate(from, to);
 	}
 	
 	
@@ -35,27 +33,34 @@ public class LevenshteinInfoTest {
 	
 	@Test
 	public void testCalculateFinalSequence() {
-		fail();
+		assertEquals(expected.getFinalSequenceFrom(), actual.getFinalSequenceFrom());
+		assertEquals(expected.getFinalSequenceTo(), actual.getFinalSequenceTo());
 	}
 	
 	@Test
 	public void testCalculateOperations(){
-		fail();
+		assertEquals(expected.getOperations(), actual.getOperations());
 	}
 	
 	@Test
 	public void testCalculateDistance(){
-		fail();
+		assertEquals(expected.getDistance(), actual.getDistance());
 	}
 	
 	@Test
 	public void testCalculateStructureMatrix(){
-		fail();
+		assertEquals(
+				expected.getStructure().getMatrix(),
+				actual.getStructure().getMatrix()
+			);
 	}
 	
 	@Test
 	public void testCalculateStructureIndexes(){
-		fail();
+		assertEquals(
+				expected.getStructure().getIndexes(),
+				actual.getStructure().getIndexes()
+			);
 	}
 
 	@Parameters
@@ -65,13 +70,13 @@ public class LevenshteinInfoTest {
 							Arrays.asList('s', 't', 'r', 'i', 'n', 'g'),
 							Arrays.asList('s', 't', 'r', 'i', 'n', 'g'),
 							new ResultSet<>(
-									null,
-									null,
+									Arrays.asList('s', 't', 'r', 'i', 'n', 'g'),
+									Arrays.asList('s', 't', 'r', 'i', 'n', 'g'),
 									"Levenshtein distance",
-									"",
+									"EEEEEE",
 									0,
 									new MatrixResultSet<>(
-										//	new Matrix<>(new Tuple2<Integer, Boolean>[][]{{new Tuple2<>(0, false)}}),
+										//	new Matrix<>(new Tuple2[][]{{new Tuple2<>(0, false)}}),
 											null,
 											1,
 											null,
@@ -85,10 +90,10 @@ public class LevenshteinInfoTest {
 							Arrays.asList('s', 'l', 'o', 'v', 'o'),
 							new LinkedList<>(),
 							new ResultSet<>(
-									null,
-									null,
+									Arrays.asList('s', 'l', 'o', 'v', 'o'),
+									Arrays.asList(' ', ' ', ' ', ' ', ' '),
 									"Levenshtein distance",
-									"",
+									"DDDDD",
 									5,
 									new MatrixResultSet<>(
 										//	new Matrix<>(new Tuple2<Integer, Boolean>[][]{{new Tuple2<>(0, false)}}),
@@ -105,10 +110,10 @@ public class LevenshteinInfoTest {
 							new LinkedList<>(),
 							Arrays.asList('s', 'l', 'o', 'v', 'o'),
 							new ResultSet<>(
-									null,
-									null,
+									Arrays.asList(' ', ' ', ' ', ' ', ' '),
+									Arrays.asList('s', 'l', 'o', 'v', 'o'),
 									"Levenshtein distance",
-									"",
+									"IIIII",
 									5,
 									new MatrixResultSet<>(
 										//	new Matrix<>(new Tuple2<Integer, Boolean>[][]{{new Tuple2<>(0, false)}}),
@@ -125,10 +130,10 @@ public class LevenshteinInfoTest {
 							Arrays.asList('s', 'l', 'o', 'v', 'o'),
 							Arrays.asList('l'),
 							new ResultSet<>(
-									null,
-									null,
+									Arrays.asList('s', 'l', 'o', 'v', 'o'),
+									Arrays.asList(' ', 'l', ' ', ' ', ' '),
 									"Levenshtein distance",
-									"",
+									"DEDDD",
 									4,
 									new MatrixResultSet<>(
 										//	new Matrix<>(new Tuple2<Integer, Boolean>[][]{{new Tuple2<>(0, false)}}),
@@ -145,10 +150,10 @@ public class LevenshteinInfoTest {
 							Arrays.asList('s', 'l', 'o', 'v', 'o'),
 							Arrays.asList('s', 'l'),
 							new ResultSet<>(
-									null,
-									null,
+									Arrays.asList('s', 'l', 'o', 'v', 'o'),
+									Arrays.asList('s', 'l', ' ', ' ', ' '),
 									"Levenshtein distance",
-									"",
+									"EEDDD",
 									3,
 									new MatrixResultSet<>(
 										//	new Matrix<>(new Tuple2<Integer, Boolean>[][]{{new Tuple2<>(0, false)}}),
@@ -165,10 +170,10 @@ public class LevenshteinInfoTest {
 							Arrays.asList('s', 'l', 'o', 'v', 'a'),
 							Arrays.asList('a'),
 							new ResultSet<>(
-									null,
-									null,
+									Arrays.asList('s', 'l', 'o', 'v', 'a'),
+									Arrays.asList(' ', ' ', ' ', ' ', 'a'),
 									"Levenshtein distance",
-									"",
+									"DDDDE",
 									4,
 									new MatrixResultSet<>(
 										//	new Matrix<>(new Tuple2<Integer, Boolean>[][]{{new Tuple2<>(0, false)}}),
@@ -185,10 +190,10 @@ public class LevenshteinInfoTest {
 							Arrays.asList('o', 'k', 'n', 'o'),
 							Arrays.asList('w', 'i', 'n', 'd', 'o', 'w'),
 							new ResultSet<>(
-									null,
-									null,
+									Arrays.asList('o', 'k', 'n', ' ', 'o', ' '),
+									Arrays.asList('w', 'i', 'n', 'd', 'o', 'w'),
 									"Levenshtein distance",
-									"",
+									"SSEIEI",
 									4,
 									new MatrixResultSet<>(
 										//	new Matrix<>(new Tuple2<Integer, Boolean>[][]{{new Tuple2<>(0, false)}}),
@@ -205,10 +210,10 @@ public class LevenshteinInfoTest {
 							Arrays.asList('k', 'o', 'l', 'o'),
 							Arrays.asList('o', 'k', 'o'),
 							new ResultSet<>(
-									null,
-									null,
+									Arrays.asList('k', 'o', 'l', 'o'),
+									Arrays.asList(' ', 'o', 'k', 'o'),
 									"Levenshtein distance",
-									"",
+									"DESE",
 									2,
 									new MatrixResultSet<>(
 										//	new Matrix<>(new Tuple2<Integer, Boolean>[][]{{new Tuple2<>(0, false)}}),
@@ -225,10 +230,10 @@ public class LevenshteinInfoTest {
 							Arrays.asList('n', 'e', 'n', '�'),
 							Arrays.asList('n', 'i', 'e', ' ', 'j', 'e'),
 							new ResultSet<>(
-									null,
-									null,
+									Arrays.asList('n', ' ', 'e', 'n', '�', ' '),
+									Arrays.asList('n', 'i', 'e', ' ', 'j', 'e'),
 									"Levenshtein distance",
-									"",
+									"EIESSI",
 									4,
 									new MatrixResultSet<>(
 										//	new Matrix<>(new Tuple2<Integer, Boolean>[][]{{new Tuple2<>(0, false)}}),
@@ -245,10 +250,10 @@ public class LevenshteinInfoTest {
 							Arrays.asList('h', 'o', 'u', 's', 'k', 'a'),
 							Arrays.asList('h', 'o', 'u', 's', 'l', 'e'),
 							new ResultSet<>(
-									null,
-									null,
+									Arrays.asList('h', 'o', 'u', 's', 'k', 'a'),
+									Arrays.asList('h', 'o', 'u', 's', 'l', 'e'),
 									"Levenshtein distance",
-									"",
+									"EEEESS",
 									2,
 									new MatrixResultSet<>(
 										//	new Matrix<>(new Tuple2<Integer, Boolean>[][]{{new Tuple2<>(0, false)}}),
@@ -265,10 +270,10 @@ public class LevenshteinInfoTest {
 							Arrays.asList('k', 'o', 'o', 'l', 'i', 'p', 'a', 'n'),
 							Arrays.asList('k', 'o', 'p', 'l', 'l', 'i', 's', 'a'),
 							new ResultSet<>(
-									null,
-									null,
+									Arrays.asList('k', 'o', 'o', 'l', ' ', 'i', 'p', 'a', 'n'),
+									Arrays.asList('k', 'o', 'p', 'l', 'l', 'i', 's', 'a', ' '),
 									"Levenshtein distance",
-									"",
+									"EESEIESED",
 									4,
 									new MatrixResultSet<>(
 										//	new Matrix<>(new Tuple2<Integer, Boolean>[][]{{new Tuple2<>(0, false)}}),
@@ -285,10 +290,10 @@ public class LevenshteinInfoTest {
 							Arrays.asList('k', 'o', 'p', 'l', 'i', 'n', 'n'),
 							Arrays.asList('k', 'p', 'o', 'l', 'l', 'i', 'm'),
 							new ResultSet<>(
-									null,
-									null,
+									Arrays.asList('k', 'o', 'p', ' ', 'l', ' ', 'i', 'n', 'n'),
+									Arrays.asList('k', ' ', 'p', 'o', 'l', 'l', 'i', 'm', ' '),
 									"Levenshtein distance",
-									"",
+									"EDEIEIESD",
 									4,
 									new MatrixResultSet<>(
 										//	new Matrix<>(new Tuple2<Integer, Boolean>[][]{{new Tuple2<>(0, false)}}),
@@ -305,10 +310,10 @@ public class LevenshteinInfoTest {
 							Arrays.asList('w', 'o', 'r', 'd'),
 							Arrays.asList('7', ';', '$', '�'),
 							new ResultSet<>(
-									null,
-									null,
+									Arrays.asList('w', 'o', 'r', 'd'),
+									Arrays.asList('7', ';', '$', '�'),
 									"Levenshtein distance",
-									"",
+									"SSSS",
 									4,
 									new MatrixResultSet<>(
 										//	new Matrix<>(new Tuple2<Integer, Boolean>[][]{{new Tuple2<>(0, false)}}),
@@ -325,10 +330,10 @@ public class LevenshteinInfoTest {
 							Arrays.asList('a', 'b', 'b', 'c', 'b'),
 							Arrays.asList('a', 'b', 'c', 'a', 'b'),
 							new ResultSet<>(
-									null,
-									null,
+									Arrays.asList('a', 'b', 'b', 'c', ' ', 'b'),
+									Arrays.asList('a', 'b', ' ', 'c', 'a', 'b'),
 									"Levenshtein distance",
-									"",
+									"EEDEIE",
 									2,
 									new MatrixResultSet<>(
 										//	new Matrix<>(new Tuple2<Integer, Boolean>[][]{{new Tuple2<>(0, false)}}),
@@ -345,10 +350,10 @@ public class LevenshteinInfoTest {
 							Arrays.asList('a', 'a', 'h', 'o', 'j'),
 							Arrays.asList('a', 'h', 'o', 'j', 'k', 'y'),
 							new ResultSet<>(
-									null,
-									null,
+									Arrays.asList('a', 'a', 'h', 'o', 'j', ' ', ' '),
+									Arrays.asList('a', ' ', 'h', 'o', 'j', 'k', 'y'),
 									"Levenshtein distance",
-									"",
+									"EDEEEII",
 									3,
 									new MatrixResultSet<>(
 										//	new Matrix<>(new Tuple2<Integer, Boolean>[][]{{new Tuple2<>(0, false)}}),
@@ -369,10 +374,10 @@ public class LevenshteinInfoTest {
 										  'e', 'p', 'o', 'd', 'o', 'b', 'n', 'o', 'v', 'a', 'v',
 										  '�', 't', 'e', 'l', 'n', '�', 'j', '�', '�', 'h', 'o'),
 							new ResultSet<>(
-									null,
-									null,
+									Arrays.asList('n', 'e', 'j', 'n', 'e', 'z', 'p', 'r', 'a', 'v', 'd', '�', ' ', 'p', 'o', 'd', 'o', 'b', '�', 'o', 'v', '�', 'v', 'a', 't', 'e', 'l', 'n', '�', 'j', '�', '�', 'h', 'o'),
+									Arrays.asList('n', 'e', ' ', 'n', 'e', 's', 'p', 'r', 'a', 'v', 'd', 'j', 'e', 'p', 'o', 'd', 'o', 'b', 'n', 'o', 'v', 'a', 'v', '�', 't', 'e', 'l', 'n', '�', 'j', '�', '�', 'h', 'o'),
 									"Levenshtein distance",
-									"",
+									"EEDEESEEEEESIEEEEESEESESEEEESESSEE",
 									7,
 									new MatrixResultSet<>(
 										//	new Matrix<>(new Tuple2<Integer, Boolean>[][]{{new Tuple2<>(0, false)}}),
