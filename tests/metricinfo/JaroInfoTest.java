@@ -21,11 +21,11 @@ import support.Tuple2;
 @RunWith(Parameterized.class)
 public class JaroInfoTest {
 
-	private ResultSet<Character, MatrixResultSet<Character, JaroValues>> expected;
-	private ResultSet<Character, MatrixResultSet<Character, JaroValues>> actual;
+	private ResultSet<Character, MatrixResultSet<JaroValues>> expected;
+	private ResultSet<Character, MatrixResultSet<JaroValues>> actual;
 	
 	public JaroInfoTest(
-			List<Character> from, List<Character> to, ResultSet<Character, MatrixResultSet<Character, JaroValues>> result) {
+			List<Character> from, List<Character> to, ResultSet<Character, MatrixResultSet<JaroValues>> result) {
 		this.expected = result;
 		this.actual = new JaroInfo<>(' ').calculate(from, to);
 	}
@@ -53,7 +53,7 @@ public class JaroInfoTest {
 		assertEquals(expected.getOperations(), actual.getOperations());
 	}
 	
-	/*
+	
 	@Test
 	public void testCalculateStructureMatrix(){
 		assertEquals(
@@ -69,7 +69,7 @@ public class JaroInfoTest {
 				actual.getStructure().getIndexes()
 			);
 	}
-*/
+
 	@Parameters
 	public static Collection<Object[]> dataProvider() {
 		return Arrays.asList(

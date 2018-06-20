@@ -6,7 +6,7 @@ import java.util.function.Function;
 import support.Matrix;
 import support.Tuple2;
 
-public class MatrixResultSet<S, R>{
+public class MatrixResultSet<R>{
 
 	private final  int shift;
 	
@@ -58,7 +58,7 @@ public class MatrixResultSet<S, R>{
 		if(!(o instanceof MatrixResultSet))
 			return false;
 		@SuppressWarnings("unchecked")
-		MatrixResultSet<S, R> aux = (MatrixResultSet<S, R>)o;
+		MatrixResultSet<R> aux = (MatrixResultSet<R>)o;
 		if(!matrix.equals(aux.getMatrix()))
 			return false;
 		if(shift != aux.getShift())

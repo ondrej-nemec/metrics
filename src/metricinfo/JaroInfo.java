@@ -33,7 +33,7 @@ public class JaroInfo<S> implements StructureMatrix<S, JaroValues>{
 
 	
 	@Override
-	public ResultSet<S, MatrixResultSet<S, JaroValues>> calculate(List<S> sequenceFrom, List<S> sequenceTo) {
+	public ResultSet<S, MatrixResultSet<JaroValues>> calculate(List<S> sequenceFrom, List<S> sequenceTo) {
 		//TODO kontrola
 		
 		Matrix<JaroValues> matrix = fillMatrix(sequenceFrom, sequenceTo);
