@@ -43,8 +43,7 @@ public class JaroInfo<S> implements StructureMatrix<S, JaroValues>{
 		
 		Tuple2<Integer, Integer> aux = getCAndT(
 				matrix, sequenceFrom, sequenceTo,
-				finalSequenceFrom, finalSequenceTo, indexes,
-				sequenceFrom.size(), sequenceTo.size());
+				finalSequenceFrom, finalSequenceTo, indexes);
 		double distance;
 		int c = aux.getFirst();
 		int t = aux.getSecond();
@@ -87,9 +86,7 @@ public class JaroInfo<S> implements StructureMatrix<S, JaroValues>{
 				List<S> to,
 				List<S> finalFrom,
 				List<S> finalTo,
-				List<Tuple2<Integer, Integer>> indexes,
-				int fromSize,
-				int toSize
+				List<Tuple2<Integer, Integer>> indexes
 			){
 		int c = 0;
 		int t = 0;;
@@ -99,7 +96,7 @@ public class JaroInfo<S> implements StructureMatrix<S, JaroValues>{
 		
 		
 		//	while(row < matrix.getRowSize() && col < matrix.getColumnSize()){ 
-		while(row < fromSize && col < toSize){	
+		while(row < from.size() && col < to.size()){	
 			if(row+1 >= from.size() && col+1 >= to.size()){ //end
 				row++;
 				col++;
@@ -116,7 +113,7 @@ public class JaroInfo<S> implements StructureMatrix<S, JaroValues>{
 				finalTo.add(empty);
 				row++;
 				
-			}else if(matrix.getCell(row+1, col+1) == JaroValues.TRUE){//same
+			}else if(matrix.getCell(row+1, col+1) == JaroValues.TRUE){//equals
 				operations += "E";
 				finalFrom.add(from.get(row+1));
 				finalTo.add(to.get(col+1));
