@@ -43,5 +43,10 @@ public class Tuple2<S, T> implements Serializable{
 			return false;
 		return super.equals(o);
 	}
+	
+	@Override
+	public String toString() {
+		return "{" + first + ", " + second + "}";
+	}
 
 }
