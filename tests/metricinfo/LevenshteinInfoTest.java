@@ -227,10 +227,10 @@ public class LevenshteinInfoTest {
 								)
 					},
 					new Object[]{
-							Arrays.asList('n', 'e', 'n', 'ï¿½'),
+							Arrays.asList('n', 'e', 'n', 'í'),
 							Arrays.asList('n', 'i', 'e', ' ', 'j', 'e'),
 							new ResultSet<>(
-									Arrays.asList('n', ' ', 'e', 'n', 'ï¿½', ' '),
+									Arrays.asList('n', ' ', 'e', 'n', 'í', ' '),
 									Arrays.asList('n', 'i', 'e', ' ', 'j', 'e'),
 									"Levenshtein distance",
 									"EIESSI",
@@ -308,10 +308,10 @@ public class LevenshteinInfoTest {
 					},
 					new Object[]{
 							Arrays.asList('w', 'o', 'r', 'd'),
-							Arrays.asList('7', ';', '$', 'ï¿½'),
+							Arrays.asList('7', ';', '$', 'í'),
 							new ResultSet<>(
 									Arrays.asList('w', 'o', 'r', 'd'),
-									Arrays.asList('7', ';', '$', 'ï¿½'),
+									Arrays.asList('7', ';', '$', 'í'),
 									"Levenshtein distance",
 									"SSSS",
 									4,
@@ -368,14 +368,14 @@ public class LevenshteinInfoTest {
 					},
 					new Object[]{
 							Arrays.asList('n', 'e', 'j', 'n', 'e', 'z', 'p', 'r', 'a', 'v', 'd',
-										  'ï¿½', 'p', 'o', 'd', 'o', 'b', 'ï¿½', 'o', 'v', 'ï¿½', 'v',
-										  'a', 't', 'e', 'l', 'n', 'ï¿½', 'j', 'ï¿½', 'ï¿½', 'h', 'o'),
+									  'ì', 'p', 'o', 'd', 'o', 'b', 'ò', 'o', 'v', 'á', 'v',
+									  'a', 't', 'e', 'l', 'n', 'ì', 'j', 'š', 'í', 'h', 'o'),
 							Arrays.asList('n', 'e', 'n', 'e', 's', 'p', 'r', 'a', 'v', 'd', 'j',
-										  'e', 'p', 'o', 'd', 'o', 'b', 'n', 'o', 'v', 'a', 'v',
-										  'ï¿½', 't', 'e', 'l', 'n', 'ï¿½', 'j', 'ï¿½', 'ï¿½', 'h', 'o'),
+									  'e', 'p', 'o', 'd', 'o', 'b', 'n', 'o', 'v', 'a', 'v',
+									  'á', 't', 'e', 'l', 'n', 'ì', 'j', 'š', 'í', 'h', 'o'),
 							new ResultSet<>(
-									Arrays.asList('n', 'e', 'j', 'n', 'e', 'z', 'p', 'r', 'a', 'v', 'd', 'ï¿½', ' ', 'p', 'o', 'd', 'o', 'b', 'ï¿½', 'o', 'v', 'ï¿½', 'v', 'a', 't', 'e', 'l', 'n', 'ï¿½', 'j', 'ï¿½', 'ï¿½', 'h', 'o'),
-									Arrays.asList('n', 'e', ' ', 'n', 'e', 's', 'p', 'r', 'a', 'v', 'd', 'j', 'e', 'p', 'o', 'd', 'o', 'b', 'n', 'o', 'v', 'a', 'v', 'ï¿½', 't', 'e', 'l', 'n', 'ï¿½', 'j', 'ï¿½', 'ï¿½', 'h', 'o'),
+									Arrays.asList('n', 'e', 'j', 'n', 'e', 'z', 'p', 'r', 'a', 'v', 'd', 'ì', ' ', 'p', 'o', 'd', 'o', 'b', 'ò', 'o', 'v', 'á', 'v', 'a', 't', 'e', 'l', 'n', 'ì', 'j', 'š', 'í', 'h', 'o'),
+									Arrays.asList('n', 'e', ' ', 'n', 'e', 's', 'p', 'r', 'a', 'v', 'd', 'j', 'e', 'p', 'o', 'd', 'o', 'b', 'n', 'o', 'v', 'a', 'v', 'á', 't', 'e', 'l', 'n', 'ì', 'j', 'š', 'í', 'h', 'o'),
 									"Levenshtein distance",
 									"EEDEESEEEEESIEEEEESEESESEEEESESSEE",
 									7,

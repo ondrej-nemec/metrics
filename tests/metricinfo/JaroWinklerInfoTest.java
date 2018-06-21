@@ -76,7 +76,7 @@ public class JaroWinklerInfoTest {
 							0.8055555555555555,
 					},
 					new Object[]{
-							Arrays.asList('n', 'e', 'n', 'ï¿½'),
+							Arrays.asList('n', 'e', 'n', 'í'),
 							Arrays.asList('n', 'i', 'e', ' ', 'j', 'e'),
 							0.65,
 					},
@@ -97,7 +97,7 @@ public class JaroWinklerInfoTest {
 					},
 					new Object[]{
 							Arrays.asList('w', 'o', 'r', 'd'),
-							Arrays.asList('7', ';', '$', 'ï¿½'),
+							Arrays.asList('7', ';', '$', 'í'),
 							0.0,
 					},
 					new Object[]{
@@ -112,11 +112,11 @@ public class JaroWinklerInfoTest {
 					},
 					new Object[]{
 							Arrays.asList('n', 'e', 'j', 'n', 'e', 'z', 'p', 'r', 'a', 'v', 'd',
-										  'ï¿½', 'p', 'o', 'd', 'o', 'b', 'ï¿½', 'o', 'v', 'ï¿½', 'v',
-										  'a', 't', 'e', 'l', 'n', 'ï¿½', 'j', 'ï¿½', 'ï¿½', 'h', 'o'),
+									  'ì', 'p', 'o', 'd', 'o', 'b', 'ò', 'o', 'v', 'á', 'v',
+									  'a', 't', 'e', 'l', 'n', 'ì', 'j', 'š', 'í', 'h', 'o'),
 							Arrays.asList('n', 'e', 'n', 'e', 's', 'p', 'r', 'a', 'v', 'd', 'j',
-										  'e', 'p', 'o', 'd', 'o', 'b', 'n', 'o', 'v', 'a', 'v',
-										  'ï¿½', 't', 'e', 'l', 'n', 'ï¿½', 'j', 'ï¿½', 'ï¿½', 'h', 'o'),
+									  'e', 'p', 'o', 'd', 'o', 'b', 'n', 'o', 'v', 'a', 'v',
+									  'á', 't', 'e', 'l', 'n', 'ì', 'j', 'š', 'í', 'h', 'o'),
 							0.903030303030303,
 					}				
 				);

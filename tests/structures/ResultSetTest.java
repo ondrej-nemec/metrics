@@ -42,12 +42,24 @@ public class ResultSetTest {
 	public void testShowOperationsWorks() {
 		assertEquals(
 				showFrom,
-				resultSet.getFinalSequenceFrom(
-						null,
-						null,
-						null,
-						null,
-						null
+				resultSet.showOperations(
+						(a)->a,
+						(a)->a,
+						(a)->'-',
+						(a)->(a+"").toUpperCase().charAt(0),
+						(a)->(a+"").toUpperCase().charAt(0),
+						true
+					)
+				);
+		assertEquals(
+				showTo,
+				resultSet.showOperations(
+						(a)->a,
+						(a)->'-',
+						(a)->a,
+						(a)->(a+"").toUpperCase().charAt(0),
+						(a)->(a+"").toUpperCase().charAt(0),
+						false
 					)
 				);
 	}
@@ -60,7 +72,9 @@ public class ResultSetTest {
 								new ArrayList<>(),
 								new ArrayList<>(),
 								""),
-						""
+						"",
+						new ArrayList<>(),
+						new ArrayList<>(),
 				},
 				new Object[]{
 						getResultSet(
@@ -72,14 +86,14 @@ public class ResultSetTest {
 						+ "Substitution 'o' to 'c' at position 2\n"
 						+ "Substitution 'v' to 'e' at position 3\n"
 						+ "Substitution 'o' to 't' at position 4\n",
-						Arrays.asList('s', 'l', 'o', 'v', 'o'),
-						Arrays.asList('a', 'f', 'c', 'e', 't')
+						Arrays.asList('S', 'L', 'O', 'V', 'O'),
+						Arrays.asList('A', 'F', 'C', 'E', 'T')
 				},
 				new Object[]{
 						getResultSet(
 								Arrays.asList('s', 't', 'r', 'i', 'n', 'g'),
 								Arrays.asList('s', 't', 'r', 'i', 'n', 'g'),
-								"EEEEE"),
+								"EEEEEE"),
 						"",
 						Arrays.asList('s', 't', 'r', 'i', 'n', 'g'),
 						Arrays.asList('s', 't', 'r', 'i', 'n', 'g'),
@@ -95,7 +109,7 @@ public class ResultSetTest {
 						+ "Deletion 'v' at position 3\n"
 						+ "Deletion 'o' at position 4\n",
 						Arrays.asList('s', 'l', 'o', 'v', 'o'),
-						Arrays.asList(' ', ' ', ' ', ' ', ' '),
+						Arrays.asList('-', '-', '-', '-', '-'),
 				},new Object[]{
 						getResultSet(
 								Arrays.asList(' ', ' ', ' ', ' ', ' '),
@@ -106,7 +120,7 @@ public class ResultSetTest {
 						+ "Insertion 'o' at position 2\n"
 						+ "Insertion 'v' at position 3\n"
 						+ "Insertion 'o' at position 4\n",
-						Arrays.asList(' ', ' ', ' ', ' ', ' '),
+						Arrays.asList('-', '-', '-', '-', '-'),
 						Arrays.asList('s', 'l', 'o', 'v', 'o'),
 				},
 				new Object[]{
@@ -116,20 +130,21 @@ public class ResultSetTest {
 								"TTDE"),
 						"Transposition 'k' and 'o' at position 0 and 1\n"
 						+ "Deletion 'l' at position 2\n",
-						Arrays.asList('k', 'o', 'l', 'o'),
-						Arrays.asList('o', 'k', ' ', 'o'),
+						Arrays.asList('K', 'O', 'l', 'o'),
+						Arrays.asList('O', 'K', '-', 'o'),
 				},
 				new Object[]{
 						getResultSet(
-								Arrays.asList('k', 'o', 'k', 'l', 'i', 'n', 'n'),
-								Arrays.asList('k', 'p', 'o', 'i', 'l', 'i', 'm'),
-								"ETTTTSS"),
-						"Transposition 'o' and 'k' at position 1 and 2\n"
-						+ "Transposition 'l' and 'i' at position 3 and 4\n"
-						+ "Substitution 'n' to 'i' at position 5\n"
-						+ "Substitution 'n' to 'm' at position 6\n",
-						Arrays.asList('k', 'o', 'k', 'l', 'i', 'n', 'n'),
-						Arrays.asList('k', 'p', 'o', 'i', 'l', 'i', 'm'),
+								Arrays.asList('k', ' ', 'o', 'k', 'l', 'i', 'n', 'n'),
+								Arrays.asList('k', 'p', 'o', ' ', 'i', 'l', 'i', 'm'),
+								"EIEDTTSS"),
+						"Insertion 'p' at position 1\n"
+						+ "Deletion 'k' at position 3\n"
+						+ "Transposition 'l' and 'i' at position 4 and 5\n"
+						+ "Substitution 'n' to 'i' at position 6\n"
+						+ "Substitution 'n' to 'm' at position 7\n",
+						Arrays.asList('k', '-', 'o', 'k', 'L', 'I', 'N', 'N'),
+						Arrays.asList('k', 'p', 'o', '-', 'I', 'L', 'I', 'M'),
 				},
 				new Object[]{
 						getResultSet(
@@ -139,7 +154,7 @@ public class ResultSetTest {
 						"Deletion 'o' at position 2\n"
 						+ "Deletion 'o' at position 4\n",
 						Arrays.asList('s', 'l', 'o', 'v', 'o'),
-						Arrays.asList('s', 'l', ' ', 'v', ' '),
+						Arrays.asList('s', 'l', '-', 'v', '-'),
 				}
 			);
 	}
