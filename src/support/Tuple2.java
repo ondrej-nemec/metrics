@@ -37,11 +37,15 @@ public class Tuple2<S, T> implements Serializable{
 			return false;
 		@SuppressWarnings("unchecked")
 		Tuple2<S, T> aux = (Tuple2<S, T>)o;
+		//TODO HOTFIX
+		if(toString().equals(aux.toString()))
+			return true;
+		
 		if(!first.equals(aux))
 			return false;
 		if(!second.equals(aux))
 			return false;
-		return super.equals(o);
+		return true;
 	}
 	
 	@Override

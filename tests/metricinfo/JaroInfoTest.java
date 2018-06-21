@@ -64,10 +64,25 @@ public class JaroInfoTest {
 	
 	@Test
 	public void testCalculateStructureIndexes(){
+		//*
+		assertEquals(
+				expected.getStructure().getIndexes().size(),
+				actual.getStructure().getIndexes().size()
+			);
+		
+		for(int i = 0; i < expected.getStructure().getIndexes().size(); i++){
+			assertEquals(
+				expected.getStructure().getIndexes().get(i),
+				actual.getStructure().getIndexes().get(i)
+			);
+		}
+		/*/
 		assertEquals(
 				expected.getStructure().getIndexes(),
 				actual.getStructure().getIndexes()
 			);
+		//*/
+		
 	}
 
 	@Parameters
@@ -83,11 +98,23 @@ public class JaroInfoTest {
 									"EEEEEE",
 									1.0,
 									new MatrixResultSet<>(
-												new Matrix<>(new JaroValues[][]{{JaroValues.NULL}}),
+												new Matrix<>(new JaroValues[][]{
+													{JaroValues.TRUE, JaroValues.FALSE, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL},
+													{JaroValues.FALSE, JaroValues.TRUE, JaroValues.FALSE, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL},
+													{JaroValues.NULL, JaroValues.FALSE, JaroValues.TRUE, JaroValues.FALSE, JaroValues.NULL, JaroValues.NULL},
+													{JaroValues.NULL, JaroValues.NULL, JaroValues.FALSE, JaroValues.TRUE, JaroValues.FALSE, JaroValues.NULL},
+													{JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.FALSE, JaroValues.TRUE, JaroValues.FALSE},
+													{JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.FALSE, JaroValues.TRUE},													
+												}),
 												0,
 												null,
 												Arrays.asList(
-														new Tuple2<>(0, 0)
+														new Tuple2<>(0, 0),
+														new Tuple2<>(1, 1),
+														new Tuple2<>(2, 2),
+														new Tuple2<>(3, 3),
+														new Tuple2<>(4, 4),
+														new Tuple2<>(5, 5)
 														)
 											)
 								)
@@ -102,12 +129,22 @@ public class JaroInfoTest {
 									"DDDDD",
 									0.0,
 									new MatrixResultSet<>(
-											new Matrix<>(new JaroValues[][]{{JaroValues.NULL}}),
+											new Matrix<>(new JaroValues[][]{
+												{},
+												{},
+												{},
+												{},
+												{}
+											}),
 											0,
 											null,
 											Arrays.asList(
-													new Tuple2<>(0, 0)
-													)
+													new Tuple2<>(0, -1),
+													new Tuple2<>(1, -1),
+													new Tuple2<>(2, -1),
+													new Tuple2<>(3, -1),
+													new Tuple2<>(4, -1)
+												)
 										)
 								)
 					},
@@ -121,12 +158,16 @@ public class JaroInfoTest {
 									"IIIII",
 									0.0,
 									new MatrixResultSet<>(
-											new Matrix<>(new JaroValues[][]{{JaroValues.NULL}}),
+											new Matrix<>(new JaroValues[][]{}),
 											0,
 											null,
 											Arrays.asList(
-													new Tuple2<>(0, 0)
-													)
+													new Tuple2<>(-1, 0),
+													new Tuple2<>(-1, 1),
+													new Tuple2<>(-1, 2),
+													new Tuple2<>(-1, 3),
+													new Tuple2<>(-1, 4)
+												)
 										)
 								)
 					},
@@ -140,11 +181,21 @@ public class JaroInfoTest {
 									"DEDDD",
 									0.7333333333333333,
 									new MatrixResultSet<>(
-											new Matrix<>(new JaroValues[][]{{JaroValues.NULL}}),
+											new Matrix<>(new JaroValues[][]{
+												{JaroValues.FALSE},
+												{JaroValues.TRUE},
+												{JaroValues.NULL},
+												{JaroValues.NULL},
+												{JaroValues.NULL},
+											}),
 											0,
 											null,
 											Arrays.asList(
-													new Tuple2<>(0, 0)
+													new Tuple2<>(0, -1),
+													new Tuple2<>(1, 0),
+													new Tuple2<>(2, 0),
+													new Tuple2<>(3, 0),
+													new Tuple2<>(4, 0)
 													)
 										)
 								)
@@ -159,7 +210,13 @@ public class JaroInfoTest {
 									"EEDDD",
 									0.8,
 									new MatrixResultSet<>(
-											new Matrix<>(new JaroValues[][]{{JaroValues.NULL}}),
+											new Matrix<>(new JaroValues[][]{
+												{JaroValues.TRUE, JaroValues.FALSE},
+												{JaroValues.FALSE, JaroValues.TRUE},
+												{JaroValues.NULL, JaroValues.FALSE},
+												{JaroValues.NULL, JaroValues.NULL},
+												{JaroValues.NULL, JaroValues.NULL}
+											}),
 											0,
 											null,
 											Arrays.asList(
@@ -178,7 +235,13 @@ public class JaroInfoTest {
 									"IDDDDD",
 									0.0,
 									new MatrixResultSet<>(
-											new Matrix<>(new JaroValues[][]{{JaroValues.NULL}}),
+											new Matrix<>(new JaroValues[][]{
+												{JaroValues.FALSE},
+												{JaroValues.FALSE},
+												{JaroValues.NULL},
+												{JaroValues.NULL},
+												{JaroValues.NULL},												
+											}),
 											0,
 											null,
 											Arrays.asList(
@@ -197,7 +260,12 @@ public class JaroInfoTest {
 									"IDIDEIEI",
 									0.6111111111111112,
 									new MatrixResultSet<>(
-											new Matrix<>(new JaroValues[][]{{JaroValues.NULL}}),
+											new Matrix<>(new JaroValues[][]{
+												{JaroValues.FALSE, JaroValues.FALSE, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL},
+												{JaroValues.FALSE, JaroValues.FALSE, JaroValues.FALSE, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL},
+												{JaroValues.NULL, JaroValues.FALSE, JaroValues.TRUE, JaroValues.FALSE, JaroValues.NULL, JaroValues.NULL},
+												{JaroValues.NULL, JaroValues.NULL, JaroValues.FALSE, JaroValues.FALSE, JaroValues.TRUE, JaroValues.NULL}												
+											}),
 											0,
 											null,
 											Arrays.asList(
@@ -216,7 +284,12 @@ public class JaroInfoTest {
 									"TTDE",
 									0.8055555555555555,
 									new MatrixResultSet<>(
-											new Matrix<>(new JaroValues[][]{{JaroValues.NULL}}),
+											new Matrix<>(new JaroValues[][]{
+												{JaroValues.FALSE, JaroValues.TRUE, JaroValues.NULL},
+												{JaroValues.TRUE, JaroValues.FALSE, JaroValues.TRUE},
+												{JaroValues.NULL, JaroValues.FALSE, JaroValues.FALSE},
+												{JaroValues.NULL, JaroValues.NULL, JaroValues.TRUE}												
+											}),
 											0,
 											null,
 											Arrays.asList(
@@ -235,7 +308,12 @@ public class JaroInfoTest {
 									"EIEIDIDI",
 									0.6111111111111112,
 									new MatrixResultSet<>(
-											new Matrix<>(new JaroValues[][]{{JaroValues.NULL}}),
+											new Matrix<>(new JaroValues[][]{
+												{JaroValues.TRUE, JaroValues.FALSE, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL},
+												{JaroValues.FALSE, JaroValues.FALSE, JaroValues.TRUE, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL},
+												{JaroValues.NULL, JaroValues.FALSE, JaroValues.FALSE, JaroValues.FALSE, JaroValues.NULL, JaroValues.NULL},
+												{JaroValues.NULL, JaroValues.NULL, JaroValues.FALSE, JaroValues.FALSE, JaroValues.FALSE, JaroValues.NULL},												
+											}),
 											0,
 											null,
 											Arrays.asList(
@@ -254,7 +332,14 @@ public class JaroInfoTest {
 									"EEEEIDID",
 									0.7777777777777777,
 									new MatrixResultSet<>(
-											new Matrix<>(new JaroValues[][]{{JaroValues.NULL}}),
+											new Matrix<>(new JaroValues[][]{
+												{JaroValues.TRUE, JaroValues.FALSE, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL},
+												{JaroValues.FALSE, JaroValues.TRUE, JaroValues.FALSE, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL},
+												{JaroValues.NULL, JaroValues.FALSE, JaroValues.TRUE, JaroValues.FALSE, JaroValues.NULL, JaroValues.NULL},
+												{JaroValues.NULL, JaroValues.NULL, JaroValues.FALSE, JaroValues.TRUE, JaroValues.FALSE, JaroValues.NULL},
+												{JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.FALSE, JaroValues.FALSE, JaroValues.FALSE},
+												{JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.FALSE, JaroValues.FALSE},
+											}),
 											0,
 											null,
 											Arrays.asList(
@@ -273,7 +358,16 @@ public class JaroInfoTest {
 									"EEIDEIEIDED",
 									0.75,
 									new MatrixResultSet<>(
-											new Matrix<>(new JaroValues[][]{{JaroValues.NULL}}),
+											new Matrix<>(new JaroValues[][]{
+												{JaroValues.TRUE, JaroValues.FALSE, JaroValues.FALSE, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL},
+												{JaroValues.FALSE, JaroValues.TRUE, JaroValues.FALSE, JaroValues.FALSE, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL},
+												{JaroValues.FALSE, JaroValues.TRUE, JaroValues.FALSE, JaroValues.FALSE, JaroValues.FALSE, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL},
+												{JaroValues.NULL, JaroValues.FALSE, JaroValues.FALSE, JaroValues.TRUE, JaroValues.TRUE, JaroValues.FALSE, JaroValues.NULL, JaroValues.NULL},
+												{JaroValues.NULL, JaroValues.NULL, JaroValues.FALSE, JaroValues.FALSE, JaroValues.FALSE, JaroValues.TRUE, JaroValues.FALSE, JaroValues.NULL},
+												{JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.FALSE, JaroValues.FALSE, JaroValues.FALSE, JaroValues.FALSE, JaroValues.FALSE},
+												{JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.FALSE, JaroValues.FALSE, JaroValues.FALSE, JaroValues.TRUE},
+												{JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.FALSE, JaroValues.FALSE, JaroValues.FALSE},												
+											}),
 											0,
 											null,
 											Arrays.asList(
@@ -292,7 +386,15 @@ public class JaroInfoTest {
 									"ETTEIEIDD",
 									0.7428571428571429,
 									new MatrixResultSet<>(
-											new Matrix<>(new JaroValues[][]{{JaroValues.NULL}}),
+											new Matrix<>(new JaroValues[][]{
+												{JaroValues.TRUE, JaroValues.FALSE, JaroValues.FALSE, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL},
+												{JaroValues.FALSE, JaroValues.FALSE, JaroValues.TRUE, JaroValues.FALSE, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL},
+												{JaroValues.FALSE, JaroValues.TRUE, JaroValues.FALSE, JaroValues.FALSE, JaroValues.FALSE, JaroValues.NULL, JaroValues.NULL},
+												{JaroValues.NULL, JaroValues.FALSE, JaroValues.FALSE, JaroValues.TRUE, JaroValues.TRUE, JaroValues.FALSE, JaroValues.NULL},
+												{JaroValues.NULL, JaroValues.NULL, JaroValues.FALSE, JaroValues.FALSE, JaroValues.FALSE, JaroValues.TRUE, JaroValues.FALSE},
+												{JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.FALSE, JaroValues.FALSE, JaroValues.FALSE, JaroValues.FALSE},
+												{JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.FALSE, JaroValues.FALSE, JaroValues.FALSE},												
+											}),
 											0,
 											null,
 											Arrays.asList(
@@ -311,7 +413,12 @@ public class JaroInfoTest {
 									"IDIDIDID",
 									0.0,
 									new MatrixResultSet<>(
-											new Matrix<>(new JaroValues[][]{{JaroValues.NULL}}),
+											new Matrix<>(new JaroValues[][]{
+												{JaroValues.FALSE, JaroValues.FALSE, JaroValues.NULL, JaroValues.NULL},
+												{JaroValues.FALSE, JaroValues.FALSE, JaroValues.FALSE, JaroValues.NULL},
+												{JaroValues.NULL, JaroValues.FALSE, JaroValues.FALSE, JaroValues.FALSE},
+												{JaroValues.NULL, JaroValues.NULL, JaroValues.FALSE, JaroValues.FALSE},												
+											}),
 											0,
 											null,
 											Arrays.asList(
@@ -330,7 +437,13 @@ public class JaroInfoTest {
 									"EEDEIE",
 									0.8666666666666667,
 									new MatrixResultSet<>(
-											new Matrix<>(new JaroValues[][]{{JaroValues.NULL}}),
+											new Matrix<>(new JaroValues[][]{
+												{JaroValues.TRUE, JaroValues.FALSE, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL},
+												{JaroValues.FALSE, JaroValues.TRUE, JaroValues.FALSE, JaroValues.NULL, JaroValues.NULL},
+												{JaroValues.NULL, JaroValues.TRUE, JaroValues.FALSE, JaroValues.FALSE, JaroValues.NULL},
+												{JaroValues.NULL, JaroValues.NULL, JaroValues.TRUE, JaroValues.FALSE, JaroValues.FALSE},
+												{JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.FALSE, JaroValues.TRUE},												
+											}),
 											0,
 											null,
 											Arrays.asList(
@@ -349,7 +462,13 @@ public class JaroInfoTest {
 									"EDEEEII",
 									0.8222222222222222,
 									new MatrixResultSet<>(
-											new Matrix<>(new JaroValues[][]{{JaroValues.NULL}}),
+											new Matrix<>(new JaroValues[][]{
+												{JaroValues.TRUE, JaroValues.FALSE, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL},
+												{JaroValues.TRUE, JaroValues.FALSE, JaroValues.FALSE, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL},
+												{JaroValues.NULL, JaroValues.TRUE, JaroValues.FALSE, JaroValues.FALSE, JaroValues.NULL, JaroValues.NULL},
+												{JaroValues.NULL, JaroValues.NULL, JaroValues.TRUE, JaroValues.FALSE, JaroValues.FALSE, JaroValues.NULL},
+												{JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.TRUE, JaroValues.FALSE, JaroValues.FALSE}												
+											}),
 											0,
 											null,
 											Arrays.asList(
@@ -372,7 +491,10 @@ public class JaroInfoTest {
 									"EEDEEIDEEEEEIIDEEEEEIDEEIDEIDEEEEEEEEEE",
 									0.8787878787878787,
 									new MatrixResultSet<>(
-											new Matrix<>(new JaroValues[][]{{JaroValues.NULL}}),
+											new Matrix<>(new JaroValues[][]{
+												{JaroValues.NULL}
+												
+											}),
 											0,
 											null,
 											Arrays.asList(

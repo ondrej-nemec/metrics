@@ -85,7 +85,9 @@ public class Matrix<T> implements Serializable {
 	}
 	
 	public int getColumnSize(final int i){
-		if(getRowSize() > i)
+		if(matrix.length == 0)
+			return 0;
+		if(getRowSize() < i)
 			throw new NullPointerException();
 		return matrix[i].length;
 	}
@@ -106,7 +108,7 @@ public class Matrix<T> implements Serializable {
 					return false;
 			}
 		}
-		return super.equals(o);
+		return true;
 	}
 	
 	@Override

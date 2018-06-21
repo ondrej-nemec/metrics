@@ -111,6 +111,7 @@ public class JaroInfo<S> implements StructureMatrix<S, JaroValues>{
 				operations += "D";
 				finalFrom.add(from.get(row+1));
 				finalTo.add(empty);
+				indexes.add(new Tuple2<Integer, Integer>(row+1, col));
 				row++;
 				
 			}else if(matrix.getCell(row+1, col+1) == JaroValues.TRUE){//equals
@@ -162,7 +163,7 @@ public class JaroInfo<S> implements StructureMatrix<S, JaroValues>{
 					finalTo.add(to.get(col+1));
 					finalTo.add(empty);
 					indexes.add(new Tuple2<>(row, col+1));
-					indexes.add(new Tuple2<>(row+1, col));
+					indexes.add(new Tuple2<>(row+1, col+1));
 					row++;
 					col++;
 				}
