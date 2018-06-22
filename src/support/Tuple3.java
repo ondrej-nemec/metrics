@@ -35,5 +35,27 @@ public class Tuple3<F, S, T> {
 	public void setThird(T third) {
 		this.third = third;
 	}
+
+	@Override
+	public boolean equals(Object o) {
+		if(!(o instanceof Tuple3<?, ?, ?>))
+			return false;
+		@SuppressWarnings("unchecked")
+		Tuple3<S, S, T> aux = (Tuple3<S, S, T>)o;
+		//TODO HOTFIX
+		if(toString().equals(aux.toString()))
+			return true;
+		
+		if(!first.equals(aux))
+			return false;
+		if(!second.equals(aux))
+			return false;
+		return true;
+	}
+	
+	@Override
+	public String toString() {
+		return "{" + first + ", " + second + ", " + third + "}";
+	}
 	
 }
