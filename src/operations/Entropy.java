@@ -10,25 +10,28 @@ public class Entropy<S> {
 	
 	private final double entropyFrom;
 	private final double entropyTo;
-	private List<Tuple2<S, Integer>> from;
-	private List<Tuple2<S, Integer>> to;
+	private List<Tuple2<S, Integer>> tupleFrom;
+	private List<Tuple2<S, Integer>> tupleTo;
 	private List<Tuple3<S, S, Integer>> twins;
 	
 	
 	public Entropy(List<List<S>> first, List<List<S>> second) {
 		if(first.size() != second.size())
 			throw new RuntimeException(); //TODO vlastni vyjimka
-		this.twins = calculateTwins(first, second);
-		this.from = calculateFonems(first);
-		this.to = calculateFonems(second);
+		
+		this.tupleFrom = new ArrayList<>();
+		this.tupleTo = new ArrayList<>();
+		this.twins = new ArrayList<>();
+		createData(first, second);
+		
 		this.entropyFrom = calculateEntropy(
 				twins,
-				from,
+				tupleFrom,
 				true
 			);
 		this.entropyTo = calculateEntropy(
 				twins,
-				to,
+				tupleTo,
 				false
 			);
 	}
@@ -43,11 +46,11 @@ public class Entropy<S> {
 
 
 	public List<Tuple2<S, Integer>> getFonemsFromWithCount() {
-		return from;
+		return tupleFrom;
 	}
 
 	public List<Tuple2<S, Integer>> getFonemsToWithCount() {
-		return to;
+		return tupleTo;
 	}
 
 	public List<Tuple3<S, S, Integer>> getFonemsTwinsWithCounts() {
@@ -81,67 +84,53 @@ public class Entropy<S> {
 		return entropy;
 	}
 
-	private List<Tuple2<S, Integer>> calculateFonems(List<List<S>> sequence) {
-		List<Tuple2<S, Integer>> result = new ArrayList<>();
-		for(int i = 0; i < sequence.size(); i++){
-			for(int j = 0; j < sequence.get(i).size(); j++){
-				partOf(sequence.get(i).get(j), result);
-					
+	/*************************************/
+	
+	private void createData(List<List<S>> from, List<List<S>> to){
+		for(int i = 0; i < from.size(); i++){
+			if(from.size() != to.size())
+				throw new RuntimeException(); //TODO vlastni vyjimka
+			for(int j = 0; j < from.get(i).size(); j++){
+				S f = from.get(i).get(j);
+				S t = to.get(i).get(j);
+				int indexFrom = getIndex(tupleFrom, f);
+				int indexTo = getIndex(tupleTo, t);
+				int indexTwins = getIndex(twins, f, t);
+				//from
+				if(indexFrom == -1){
+					tupleFrom.add(new Tuple2<>(f, 1));
+				}else{
+					tupleFrom.get(indexFrom).setSecond(
+							tupleFrom.get(indexFrom).getSecond()+1
+						);
+				}
+				//to
+				if(indexTo == -1){
+					tupleTo.add(new Tuple2<>(t, 1));
+				}else{
+					tupleTo.get(indexTo).setSecond(
+							tupleTo.get(indexTo).getSecond()+1
+						);
+				}
+				//twins
+				if(indexTwins == -1){
+					twins.add(new Tuple3<>(f, t, 1));
+				}else{
+					twins.get(indexTwins).setThird(
+							twins.get(indexTwins).getThird()+1
+						);
+				}
 			}
 		}
-		return result;
 	}
-
-	private List<Tuple3<S, S, Integer>> calculateTwins(List<List<S>> first, List<List<S>> second) {
-		List<Tuple3<S, S, Integer>> result = new ArrayList<>();
-		for(int i = 0; i < first.size(); i++){
-			for(int j = 0; j < first.get(i).size(); j++){
-				partOf(result, first.get(i).get(j), second.get(i).get(j));
-			}
-		}
-		return result;
-	}
-
-	private void partOf(List<Tuple3<S, S, Integer>> aux, S a, S b) {
-		if(aux.size() < 1){
-			aux.add(new Tuple3<>(a, b, 1));
-			return;
-		}
-		int index = getIndex(aux, a, b);
-		for(int i = 0; i < aux.size(); i++){
-			if(i == index){
-				aux.get(i).setThird(aux.get(i).getThird() + 1);
-				return;
-			}
-			if(i == -1)
-				aux.add(new Tuple3<>(a, b, 1));
-		}
-	}
-			private int getIndex(List<Tuple3<S, S, Integer>> aux, S a, S b) {
+	
+	private int getIndex(List<Tuple3<S, S, Integer>> aux, S a, S b) {
 		for(int i = 0; i < aux.size(); i++){
 			if(aux.get(i).getFirst().equals(a) && aux.get(i).getSecond().equals(b))
 				return i;
 		}
 		return -1;
 	}
-
-
-	private void partOf(S s, List<Tuple2<S, Integer>> aux) {
-		if(aux.size() < 1){
-			aux.add(new Tuple2<>(s, 1));
-			return;
-		}
-		int index = getIndex(aux, s);
-		for(int i = 0; i < aux.size(); i++){
-			if(i == index){
-				aux.get(i).setSecond(aux.get(i).getSecond() + 1);
-				return;
-			}
-			if(i == -1)
-				aux.add(new Tuple2<>(s, 1));
-		}
-	}
-
 	private int getIndex(List<Tuple2<S, Integer>> aux, S s) {
 		for(int i = 0; i < aux.size(); i++){
 			if(aux.get(i).getFirst().equals(s))
