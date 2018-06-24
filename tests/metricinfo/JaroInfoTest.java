@@ -64,7 +64,7 @@ public class JaroInfoTest {
 	
 	@Test
 	public void testCalculateStructureIndexes(){
-		//*
+		/*
 		assertEquals(
 				expected.getStructure().getIndexes().size(),
 				actual.getStructure().getIndexes().size()
@@ -280,16 +280,16 @@ public class JaroInfoTest {
 											Arrays.asList(
 													new Tuple2<>(-1, 0),
 													new Tuple2<>(0, 0),
-													new Tuple2<>(1, 0),
+													new Tuple2<>(0, 1),
 													new Tuple2<>(1, 1),
 													new Tuple2<>(2, 2),
 													new Tuple2<>(2, 3),
-													new Tuple2<>(3, 3),
-													new Tuple2<>(3, 4)
+													new Tuple2<>(3, 4),
+													new Tuple2<>(3, 5)
 													)
 										)
 								)
-					},
+					}, //TODO
 					new Object[]{
 							Arrays.asList('k', 'o', 'l', 'o'),
 							Arrays.asList('o', 'k', 'o'),
@@ -339,9 +339,9 @@ public class JaroInfoTest {
 													new Tuple2<>(0, 0),
 													new Tuple2<>(0, 1),
 													new Tuple2<>(1, 2),
-													new Tuple2<>(2, 2),
+													new Tuple2<>(1, 3),
 													new Tuple2<>(2, 3),
-													new Tuple2<>(3, 3),
+													new Tuple2<>(2, 4),
 													new Tuple2<>(3, 4),
 													new Tuple2<>(3, 5)
 													)
@@ -373,9 +373,9 @@ public class JaroInfoTest {
 													new Tuple2<>(1, 1),
 													new Tuple2<>(2, 2),
 													new Tuple2<>(3, 3),
-													new Tuple2<>(4, 3),
+													new Tuple2<>(3, 4),
 													new Tuple2<>(4, 4),
-													new Tuple2<>(5, 4),
+													new Tuple2<>(4, 5),
 													new Tuple2<>(5, 5)
 													)
 										)
@@ -406,16 +406,15 @@ public class JaroInfoTest {
 											Arrays.asList(
 													new Tuple2<>(0, 0),
 													new Tuple2<>(1, 1),
-													new Tuple2<>(2, 1),
+													new Tuple2<>(1, 2),
 													new Tuple2<>(2, 2),
 													new Tuple2<>(3, 3),
 													new Tuple2<>(3, 4),
-													new Tuple2<>(4, 4),
-													new Tuple2<>(5, 5),
-													new Tuple2<>(6, 5),
-													new Tuple2<>(6, 6),
-													new Tuple2<>(7, 7),
-													new Tuple2<>(8, 7)
+													new Tuple2<>(4, 5),
+													new Tuple2<>(4, 6),
+													new Tuple2<>(5, 6),
+													new Tuple2<>(6, 7),
+													new Tuple2<>(7, 7)
 													)
 										)
 								)
@@ -443,14 +442,14 @@ public class JaroInfoTest {
 											null,
 											Arrays.asList(
 													new Tuple2<>(0, 0),
-													new Tuple2<>(0, 1),
-													new Tuple2<>(1, 0),
+													new Tuple2<>(1, 2),
+													new Tuple2<>(2, 1),
 													new Tuple2<>(3, 3),
 													new Tuple2<>(3, 4),
-													new Tuple2<>(4, 4),
-													new Tuple2<>(5, 4),
-													new Tuple2<>(5, 5),
-													new Tuple2<>(6, 5)
+													new Tuple2<>(4, 5),
+													new Tuple2<>(4, 6),
+													new Tuple2<>(5, 6),
+													new Tuple2<>(6, 6)
 													)
 										)
 								)
@@ -474,12 +473,13 @@ public class JaroInfoTest {
 											0,
 											null,
 											Arrays.asList(
+													new Tuple2<>(-1, 0),
 													new Tuple2<>(0, 0),
-													new Tuple2<>(1, 0),
+													new Tuple2<>(0, 1),
 													new Tuple2<>(1, 1),
-													new Tuple2<>(2, 1),
+													new Tuple2<>(1, 2),
 													new Tuple2<>(2, 2),
-													new Tuple2<>(3, 2),
+													new Tuple2<>(2, 3),
 													new Tuple2<>(3, 3)
 													)
 										)
@@ -508,9 +508,9 @@ public class JaroInfoTest {
 													new Tuple2<>(0, 0),
 													new Tuple2<>(1, 1),
 													new Tuple2<>(2, 1),
-													new Tuple2<>(2, 2),
-													new Tuple2<>(2, 3),
-													new Tuple2<>(3, 3)
+													new Tuple2<>(3, 2),
+													new Tuple2<>(3, 3),
+													new Tuple2<>(4, 4)
 													)
 										)
 								)
