@@ -14,6 +14,7 @@ import org.junit.runners.Parameterized.Parameters;
 
 import structures.MatrixResultSet;
 import structures.ResultSet;
+import support.Matrix;
 import support.Tuple2;
 
 @RunWith(Parameterized.class)
@@ -76,12 +77,27 @@ public class LevenshteinInfoTest {
 									"EEEEEE",
 									0,
 									new MatrixResultSet<>(
-										//	new Matrix<>(new Tuple2[][]{{new Tuple2<>(0, false)}}),
-											null,
+											new Matrix<>(new Tuple2[][]{
+													{t(0, false), t(1, false), t(2, false), t(3, false), t(4, false), t(5, false), t(6, false)},
+													{t(1, false), t(0, true), t(1, false), t(2, false), t(3, false), t(4, false), t(5, false)},
+													{t(2, false), t(1, false), t(0, true), t(1, false), t(2, false), t(3, false), t(4, false),},
+													{t(3, false), t(2, false), t(1, false), t(0, true), t(1, false), t(2, false), t(3, false),},
+													{t(4, false), t(3, false), t(2, false), t(1, false), t(0, true), t(1, false), t(2, false),},
+													{t(5, false), t(4, false), t(3, false), t(2, false), t(1, false), t(0, true), t(1, false),},
+													{t(6, false),t(5, false), t(4, false), t(3, false), t(2, false), t(1, false), t(0, true),},
+												}
+											),
+										//	null,
 											1,
 											null,
 											Arrays.asList(
-													new Tuple2<Integer, Integer>(0, 0)
+													new Tuple2<Integer, Integer>(0, 0),
+													new Tuple2<Integer, Integer>(1, 1),
+													new Tuple2<Integer, Integer>(2, 2),
+													new Tuple2<Integer, Integer>(3, 3),
+													new Tuple2<Integer, Integer>(4, 4),
+													new Tuple2<Integer, Integer>(5, 5),
+													new Tuple2<Integer, Integer>(6, 6)
 												)
 										)
 								)
@@ -96,12 +112,23 @@ public class LevenshteinInfoTest {
 									"DDDDD",
 									5,
 									new MatrixResultSet<>(
-										//	new Matrix<>(new Tuple2<Integer, Boolean>[][]{{new Tuple2<>(0, false)}}),
-											null,
+											new Matrix<>(new Tuple2[][]{
+													{t(0, false)},
+													{t(1, false)},
+													{t(2, false)},
+													{t(3, false)},
+													{t(4, false)},
+													{t(5, false)},
+												}),
 											1,
 											null,
 											Arrays.asList(
-													new Tuple2<Integer, Integer>(0, 0)
+													new Tuple2<Integer, Integer>(0, 0),
+													new Tuple2<Integer, Integer>(1, 0),
+													new Tuple2<Integer, Integer>(2, 0),
+													new Tuple2<Integer, Integer>(3, 0),
+													new Tuple2<Integer, Integer>(4, 0),
+													new Tuple2<Integer, Integer>(5, 0)
 												)
 										)
 								)
@@ -116,12 +143,18 @@ public class LevenshteinInfoTest {
 									"IIIII",
 									5,
 									new MatrixResultSet<>(
-										//	new Matrix<>(new Tuple2<Integer, Boolean>[][]{{new Tuple2<>(0, false)}}),
-											null,
+											new Matrix<>(new Tuple2[][]{
+													{t(0, false), t(1, false), t(2, false), t(3, false), t(4, false), t(5, false)}
+												}),
 											1,
 											null,
 											Arrays.asList(
-													new Tuple2<Integer, Integer>(0, 0)
+													new Tuple2<Integer, Integer>(0, 0),
+													new Tuple2<Integer, Integer>(0, 1),
+													new Tuple2<Integer, Integer>(0, 2),
+													new Tuple2<Integer, Integer>(0, 3),
+													new Tuple2<Integer, Integer>(0, 4),
+													new Tuple2<Integer, Integer>(0, 5)
 												)
 										)
 								)
@@ -136,12 +169,23 @@ public class LevenshteinInfoTest {
 									"DEDDD",
 									4,
 									new MatrixResultSet<>(
-										//	new Matrix<>(new Tuple2<Integer, Boolean>[][]{{new Tuple2<>(0, false)}}),
-											null,
+											new Matrix<>(new Tuple2[][]{
+													{t(0, false), t(1, false)},
+													{t(1, false), t(1, false)},
+													{t(2, false), t(1, true)},
+													{t(3, false), t(2, false)},
+													{t(4, false), t(3, false)},
+													{t(5, false), t(4, false)},
+												}),
 											1,
 											null,
 											Arrays.asList(
-													new Tuple2<Integer, Integer>(0, 0)
+													new Tuple2<Integer, Integer>(0, 0),
+													new Tuple2<Integer, Integer>(1, 0),
+													new Tuple2<Integer, Integer>(2, 1),
+													new Tuple2<Integer, Integer>(3, 1),
+													new Tuple2<Integer, Integer>(4, 1),
+													new Tuple2<Integer, Integer>(5, 1)
 												)
 										)
 								)
@@ -156,12 +200,23 @@ public class LevenshteinInfoTest {
 									"EEDDD",
 									3,
 									new MatrixResultSet<>(
-										//	new Matrix<>(new Tuple2<Integer, Boolean>[][]{{new Tuple2<>(0, false)}}),
-											null,
+											new Matrix<>(new Tuple2[][]{
+													{t(0, false), t(1, false), t(2, false)},
+													{t(1, false), t(0, true), t(1, false)},
+													{t(2, false), t(1, false), t(0, true)},
+													{t(3, false), t(2, false), t(1, false)},
+													{t(4, false), t(3, false), t(2, false)},
+													{t(5, false), t(4, false), t(3, false)},
+												}),
 											1,
 											null,
 											Arrays.asList(
-													new Tuple2<Integer, Integer>(0, 0)
+													new Tuple2<Integer, Integer>(0, 0),
+													new Tuple2<Integer, Integer>(1, 1),
+													new Tuple2<Integer, Integer>(2, 2),
+													new Tuple2<Integer, Integer>(3, 2),
+													new Tuple2<Integer, Integer>(4, 2),
+													new Tuple2<Integer, Integer>(5, 2)
 												)
 										)
 								)
@@ -176,12 +231,23 @@ public class LevenshteinInfoTest {
 									"DDDDE",
 									4,
 									new MatrixResultSet<>(
-										//	new Matrix<>(new Tuple2<Integer, Boolean>[][]{{new Tuple2<>(0, false)}}),
-											null,
+											new Matrix<>(new Tuple2[][]{
+													{t(0, false), t(1, false)},
+													{t(1, false), t(1, false)},
+													{t(2, false), t(2, false)},
+													{t(3, false), t(3, false)},
+													{t(4, false), t(4, false)},
+													{t(5, false), t(4, true)}
+												}),
 											1,
 											null,
 											Arrays.asList(
-													new Tuple2<Integer, Integer>(0, 0)
+													new Tuple2<Integer, Integer>(0, 0),
+													new Tuple2<Integer, Integer>(1, 0),
+													new Tuple2<Integer, Integer>(2, 0),
+													new Tuple2<Integer, Integer>(3, 0),
+													new Tuple2<Integer, Integer>(4, 0),
+													new Tuple2<Integer, Integer>(5, 1)
 												)
 										)
 								)
@@ -196,12 +262,23 @@ public class LevenshteinInfoTest {
 									"SSEIEI",
 									4,
 									new MatrixResultSet<>(
-										//	new Matrix<>(new Tuple2<Integer, Boolean>[][]{{new Tuple2<>(0, false)}}),
-											null,
+											new Matrix<>(new Tuple2[][]{
+													{t(0, false), t(1, false), t(2, false), t(3, false), t(4, false), t(5, false), t(6, false)},
+													{t(1, false), t(1, false), t(2, false), t(3, false), t(4, false), t(4, true), t(5, false)},
+													{t(2, false), t(2, false), t(2, false), t(3, false), t(4, false), t(5, false), t(5, false)},
+													{t(3, false), t(3, false), t(3, false), t(2, true), t(3, false), t(4, false), t(5, false)},
+													{t(4, false), t(4, false), t(4, false), t(3, false), t(3, false), t(3, true), t(4, false)}
+												}),
 											1,
 											null,
 											Arrays.asList(
-													new Tuple2<Integer, Integer>(0, 0)
+													new Tuple2<Integer, Integer>(0, 0),
+													new Tuple2<Integer, Integer>(1, 1),
+													new Tuple2<Integer, Integer>(2, 2),
+													new Tuple2<Integer, Integer>(3, 3),
+													new Tuple2<Integer, Integer>(3, 4),
+													new Tuple2<Integer, Integer>(4, 5),
+													new Tuple2<Integer, Integer>(4, 6)
 												)
 										)
 								)
@@ -216,12 +293,21 @@ public class LevenshteinInfoTest {
 									"DESE",
 									2,
 									new MatrixResultSet<>(
-										//	new Matrix<>(new Tuple2<Integer, Boolean>[][]{{new Tuple2<>(0, false)}}),
-											null,
+											new Matrix<>(new Tuple2[][]{
+													{t(0, false), t(1, false), t(2, false), t(3, false)},
+													{t(1, false), t(1, false), t(1, true), t(2, false)},
+													{t(2, false), t(1, true), t(2, false), t(1, true)},
+													{t(3, false), t(2, false), t(2, false), t(2, false)},
+													{t(4, false), t(3, true), t(3, false), t(2, true)}
+												}),
 											1,
 											null,
 											Arrays.asList(
-													new Tuple2<Integer, Integer>(0, 0)
+													new Tuple2<Integer, Integer>(0, 0),
+													new Tuple2<Integer, Integer>(1, 0),
+													new Tuple2<Integer, Integer>(2, 1),
+													new Tuple2<Integer, Integer>(3, 2),
+													new Tuple2<Integer, Integer>(4, 3)
 												)
 										)
 								)
@@ -236,12 +322,23 @@ public class LevenshteinInfoTest {
 									"EIESSI",
 									4,
 									new MatrixResultSet<>(
-										//	new Matrix<>(new Tuple2<Integer, Boolean>[][]{{new Tuple2<>(0, false)}}),
-											null,
+											new Matrix<>(new Tuple2[][]{
+													{t(0, false), t(1, false), t(2, false), t(3, false), t(4, false), t(5, false), t(6, false)},
+													{t(1, false), t(0, true), t(1, false), t(2, false), t(3, false), t(4, false), t(5, false)},
+													{t(2, false), t(1, false), t(1, false), t(1, true), t(2, false), t(3, false), t(4, true)},
+													{t(3, false), t(2, true), t(2, false), t(2, false), t(2, false), t(3, false), t(4, false)},
+													{t(4, false), t(3, false), t(3, false), t(3, false), t(3, false), t(3, false), t(4, false)},
+												}),
 											1,
 											null,
 											Arrays.asList(
-													new Tuple2<Integer, Integer>(0, 0)
+													new Tuple2<Integer, Integer>(0, 0),
+													new Tuple2<Integer, Integer>(1, 1),
+													new Tuple2<Integer, Integer>(1, 2),
+													new Tuple2<Integer, Integer>(2, 3),
+													new Tuple2<Integer, Integer>(3, 4),
+													new Tuple2<Integer, Integer>(4, 5),
+													new Tuple2<Integer, Integer>(4, 6)
 												)
 										)
 								)
@@ -256,12 +353,25 @@ public class LevenshteinInfoTest {
 									"EEEESS",
 									2,
 									new MatrixResultSet<>(
-										//	new Matrix<>(new Tuple2<Integer, Boolean>[][]{{new Tuple2<>(0, false)}}),
-											null,
+											new Matrix<>(new Tuple2[][]{
+													{t(0, false), t(1, false), t(2, false), t(3, false), t(4, false), t(5, false), t(6, false)},
+													{t(1, false), t(0, true), t(1, false), t(2, false), t(3, false), t(4, false), t(5, false)},
+													{t(2, false), t(1, false), t(0, true), t(1, false), t(2, false), t(3, false), t(4, false)},
+													{t(3, false), t(2, false), t(1, false), t(0, true), t(1, false), t(2, false), t(3, false)},
+													{t(4, false), t(3, false), t(2, false), t(1, false), t(0, true), t(1, false), t(2, false)},
+													{t(5, false), t(4, false), t(3, false), t(2, false), t(1, false), t(1, false), t(2, false)},
+													{t(6, false), t(5, false), t(4, false), t(3, false), t(2, false), t(2, false), t(2, false)}
+												}),
 											1,
 											null,
 											Arrays.asList(
-													new Tuple2<Integer, Integer>(0, 0)
+													new Tuple2<Integer, Integer>(0, 0),
+													new Tuple2<Integer, Integer>(1, 1),
+													new Tuple2<Integer, Integer>(2, 2),
+													new Tuple2<Integer, Integer>(3, 3),
+													new Tuple2<Integer, Integer>(4, 4),
+													new Tuple2<Integer, Integer>(5, 5),
+													new Tuple2<Integer, Integer>(6, 6)
 												)
 										)
 								)
@@ -276,12 +386,30 @@ public class LevenshteinInfoTest {
 									"EESEIESED",
 									4,
 									new MatrixResultSet<>(
-										//	new Matrix<>(new Tuple2<Integer, Boolean>[][]{{new Tuple2<>(0, false)}}),
-											null,
+											new Matrix<>(new Tuple2[][]{
+													{t(0, false), t(1, false), t(2, false), t(3, false), t(4, false), t(5, false), t(6, false), t(7, false), t(8, false)},
+													{t(1, false), t(0, true), t(1, false), t(2, false), t(3, false), t(4, false), t(5, false), t(6, false), t(7, false)},
+													{t(2, false), t(1, false), t(0, true), t(1, false), t(2, false), t(3, false), t(4, false), t(5, false), t(6, false)},
+													{t(3, false), t(2, false), t(1, true), t(1, false), t(2, false), t(3, false), t(4, false), t(5, false), t(6, false)},
+													{t(4, false), t(3, false), t(2, false), t(2, false), t(1, true), t(2, true), t(3, false), t(4, false), t(5, false)},
+													{t(5, false), t(4, false), t(3, false), t(3, false), t(2, false), t(2, false), t(2, true), t(3, false), t(4, false)},
+													{t(6, false), t(5, false), t(4, false), t(3, true), t(3, false), t(3, false), t(3, false), t(3, false), t(4, false)},
+													{t(7, false), t(6, false), t(5, false), t(4, false), t(4, false), t(4, false), t(4, false), t(4, false), t(3, true)},
+													{t(8, false), t(7, false), t(6, false), t(5, false), t(5, false), t(5, false), t(5, false), t(5, false), t(4, false)},
+												}),
 											1,
 											null,
 											Arrays.asList(
-													new Tuple2<Integer, Integer>(0, 0)
+													new Tuple2<Integer, Integer>(0, 0),
+													new Tuple2<Integer, Integer>(1, 1),
+													new Tuple2<Integer, Integer>(2, 2),
+													new Tuple2<Integer, Integer>(3, 3),
+													new Tuple2<Integer, Integer>(4, 4),
+													new Tuple2<Integer, Integer>(4, 5),
+													new Tuple2<Integer, Integer>(5, 6),
+													new Tuple2<Integer, Integer>(6, 7),
+													new Tuple2<Integer, Integer>(7, 8),
+													new Tuple2<Integer, Integer>(8, 8)
 												)
 										)
 								)
@@ -296,12 +424,29 @@ public class LevenshteinInfoTest {
 									"EDEIEIESD",
 									4,
 									new MatrixResultSet<>(
-										//	new Matrix<>(new Tuple2<Integer, Boolean>[][]{{new Tuple2<>(0, false)}}),
-											null,
+											new Matrix<>(new Tuple2[][]{
+													{t(0, false), t(1, false), t(2, false), t(3, false), t(4, false), t(5, false), t(6, false), t(7, false)},
+													{t(1, false), t(0, true), t(1, false), t(2, false), t(3, false), t(4, false), t(5, false), t(6, false)},
+													{t(2, false), t(1, false), t(1, false), t(1, true), t(2, false), t(3, false), t(4, false), t(5, false)},
+													{t(3, false), t(2, false), t(1, true), t(2, false), t(2, false), t(3, false), t(4, false), t(5, false)},
+													{t(4, false), t(3, false), t(2, false), t(2, false), t(2, true), t(2, true), t(3, false), t(4, false)},
+													{t(5, false), t(4, false), t(3, false), t(3, false), t(3, false), t(3, false), t(2, true), t(3, false)},
+													{t(6, false), t(5, false), t(4, false), t(4, false), t(4, false), t(4, false), t(3, false), t(3, false)},
+													{t(7, false), t(6, false), t(5, false), t(5, false), t(5, false), t(5, false), t(4, false), t(4, false)}
+												}),
 											1,
 											null,
 											Arrays.asList(
-													new Tuple2<Integer, Integer>(0, 0)
+													new Tuple2<Integer, Integer>(0, 0),
+													new Tuple2<Integer, Integer>(1, 1),
+													new Tuple2<Integer, Integer>(2, 1),
+													new Tuple2<Integer, Integer>(3, 2),
+													new Tuple2<Integer, Integer>(3, 3),
+													new Tuple2<Integer, Integer>(4, 4),
+													new Tuple2<Integer, Integer>(4, 5),
+													new Tuple2<Integer, Integer>(5, 6),
+													new Tuple2<Integer, Integer>(6, 7),
+													new Tuple2<Integer, Integer>(7, 7)
 												)
 										)
 								)
@@ -316,12 +461,21 @@ public class LevenshteinInfoTest {
 									"SSSS",
 									4,
 									new MatrixResultSet<>(
-										//	new Matrix<>(new Tuple2<Integer, Boolean>[][]{{new Tuple2<>(0, false)}}),
-											null,
+											new Matrix<>(new Tuple2[][]{
+													{t(0, false), t(1, false), t(2, false), t(3, false), t(4, false)},
+													{t(1, false), t(1, false), t(2, false), t(3, false), t(4, false)},
+													{t(2, false), t(2, false), t(2, false), t(3, false), t(4, false)},
+													{t(3, false), t(3, false), t(3, false), t(3, false), t(4, false)},
+													{t(4, false), t(4, false), t(4, false), t(4, false), t(4, false)}
+												}),
 											1,
 											null,
 											Arrays.asList(
-													new Tuple2<Integer, Integer>(0, 0)
+													new Tuple2<Integer, Integer>(0, 0),
+													new Tuple2<Integer, Integer>(1, 1),
+													new Tuple2<Integer, Integer>(2, 2),
+													new Tuple2<Integer, Integer>(3, 3),
+													new Tuple2<Integer, Integer>(4, 4)
 												)
 										)
 								)
@@ -336,12 +490,24 @@ public class LevenshteinInfoTest {
 									"EEDEIE",
 									2,
 									new MatrixResultSet<>(
-										//	new Matrix<>(new Tuple2<Integer, Boolean>[][]{{new Tuple2<>(0, false)}}),
-											null,
+											new Matrix<>(new Tuple2[][]{
+													{t(0, false), t(1, false), t(2, false), t(3, false), t(4, false), t(5, false)},
+													{t(1, false), t(0, true), t(1, false), t(2, false), t(3, true), t(4, false)},
+													{t(2, false), t(1, false), t(0, true), t(1, false), t(2, false), t(3, true)},
+													{t(3, false), t(2, false), t(1, true), t(1, false), t(2, false), t(2, true)},
+													{t(4, false), t(3, false), t(2, false), t(1, true), t(2, false), t(3, false)},
+													{t(5, false), t(4, false), t(3, true), t(2, false), t(2, false), t(2, true)}
+												}),
 											1,
 											null,
 											Arrays.asList(
-													new Tuple2<Integer, Integer>(0, 0)
+													new Tuple2<Integer, Integer>(0, 0),
+													new Tuple2<Integer, Integer>(1, 1),
+													new Tuple2<Integer, Integer>(2, 2),
+													new Tuple2<Integer, Integer>(3, 2),
+													new Tuple2<Integer, Integer>(4, 3),
+													new Tuple2<Integer, Integer>(4, 4),
+													new Tuple2<Integer, Integer>(5, 5)
 												)
 										)
 								)
@@ -356,12 +522,25 @@ public class LevenshteinInfoTest {
 									"EDEEEII",
 									3,
 									new MatrixResultSet<>(
-										//	new Matrix<>(new Tuple2<Integer, Boolean>[][]{{new Tuple2<>(0, false)}}),
-											null,
+											new Matrix<>(new Tuple2[][]{
+													{t(0, false), t(1, false), t(2, false), t(3, false), t(4, false), t(5, false), t(6, false)},
+													{t(1, false), t(0, true), t(1, false), t(2, false), t(3, false), t(4, false), t(5, false)},
+													{t(2, false), t(1, true), t(1, false), t(2, false), t(3, false), t(4, false), t(5, false)},
+													{t(3, false), t(2, false), t(1, true), t(2, false), t(3, false), t(4, false), t(5, false)},
+													{t(4, false), t(3, false), t(2, false), t(1, true), t(2, false), t(3, false), t(4, false)},
+													{t(5, false), t(4, false), t(3, false), t(2, false), t(1, true), t(2, false), t(3, false)}
+												}),
 											1,
 											null,
 											Arrays.asList(
-													new Tuple2<Integer, Integer>(0, 0)
+													new Tuple2<Integer, Integer>(0, 0),
+													new Tuple2<Integer, Integer>(1, 1),
+													new Tuple2<Integer, Integer>(2, 1),
+													new Tuple2<Integer, Integer>(3, 2),
+													new Tuple2<Integer, Integer>(4, 3),
+													new Tuple2<Integer, Integer>(5, 4),
+													new Tuple2<Integer, Integer>(5, 5),
+													new Tuple2<Integer, Integer>(5, 6)
 												)
 										)
 								)
@@ -377,11 +556,10 @@ public class LevenshteinInfoTest {
 									Arrays.asList('n', 'e', 'j', 'n', 'e', 'z', 'p', 'r', 'a', 'v', 'd', 'ì', ' ', 'p', 'o', 'd', 'o', 'b', 'ò', 'o', 'v', 'á', 'v', 'a', 't', 'e', 'l', 'n', 'ì', 'j', 'š', 'í', 'h', 'o'),
 									Arrays.asList('n', 'e', ' ', 'n', 'e', 's', 'p', 'r', 'a', 'v', 'd', 'j', 'e', 'p', 'o', 'd', 'o', 'b', 'n', 'o', 'v', 'a', 'v', 'á', 't', 'e', 'l', 'n', 'ì', 'j', 'š', 'í', 'h', 'o'),
 									"Levenshtein distance",
-									"EEDEESEEEEESIEEEEESEESESEEEESESSEE",
+									"EEDEESEEEEESIEEEEESEESESEEEEEEEEEE",
 									7,
 									new MatrixResultSet<>(
-										//	new Matrix<>(new Tuple2<Integer, Boolean>[][]{{new Tuple2<>(0, false)}}),
-											null,
+											new Matrix<>(new Tuple2[][]{{t(0, false)}}),
 											1,
 											null,
 											Arrays.asList(
@@ -389,7 +567,23 @@ public class LevenshteinInfoTest {
 												)
 										)
 								)
+							
+	//	<[n, e, j, n, e, z, p, r, a, v, d, ì,  , p, o, d, o,    b, ò, o,    v, á, v, a,       t, e, l, n, ì, j, š, í, h, o]>
+	//	<[n, e, j, n, e, z, p, r, a, v, d, ì,  , p, o, d, o,  , b, ò, o,  , v, á, v, a,  ,  , t, e, l, n, ì, j, š, í, h, o]>
+					
+							
+	//	<EEDEESEEEEE[S I  EEEEESEESES    ]EEEEEEEEEE>
+	//	<EEDEESEEEEE[D I  DSSEIDDEISSEEII]EEEEEEEEEE>
+		
+
+							
 					}				
 				);
+	}
+	
+	
+	
+	private static Tuple2<Integer, Boolean> t(int i, boolean b){
+		return new Tuple2<>(i, b);
 	}
 }

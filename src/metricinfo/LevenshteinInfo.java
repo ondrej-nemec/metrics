@@ -113,6 +113,7 @@ public class LevenshteinInfo<S> implements StructureMatrix<S, Tuple2<Integer, Bo
 				operations += "D";
 				row++;
 			}else { //end
+				indexes.add(new Tuple2<>(row, col));
 				row++;
 				col++;				
 			}
