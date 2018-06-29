@@ -556,27 +556,90 @@ public class LevenshteinInfoTest {
 									Arrays.asList('n', 'e', 'j', 'n', 'e', 'z', 'p', 'r', 'a', 'v', 'd', 'ì', ' ', 'p', 'o', 'd', 'o', 'b', 'ò', 'o', 'v', 'á', 'v', 'a', 't', 'e', 'l', 'n', 'ì', 'j', 'š', 'í', 'h', 'o'),
 									Arrays.asList('n', 'e', ' ', 'n', 'e', 's', 'p', 'r', 'a', 'v', 'd', 'j', 'e', 'p', 'o', 'd', 'o', 'b', 'n', 'o', 'v', 'a', 'v', 'á', 't', 'e', 'l', 'n', 'ì', 'j', 'š', 'í', 'h', 'o'),
 									"Levenshtein distance",
-									"EEDEESEEEEESIEEEEESEESESEEEEEEEEEE",
+									"EEDEESEEEEEDIDSSEIDDEISSEEIIEEEEEEEEEE",
 									7,
 									new MatrixResultSet<>(
-											new Matrix<>(new Tuple2[][]{{t(0, false)}}),
+											new Matrix<>(new Tuple2[][]{
+												{t(0, false), t(1, false), t(2, false), t(3, false), t(4, false), t(5, false), t(6, false), t(7, false), t(8, false), t(9, false), t(10, false), t(11, false), t(12, false), t(13, false), t(14, false), t(15, false), t(16, false), t(17, false), t(18, false), t(19, false), t(20, false), t(21, false), t(22, false), t(23, false), t(24, false), t(25, false), t(26, false), t(27, false), t(28, false), t(29, false), t(30, false), t(31, false), t(32, false), t(33, false), },
+												{t(1, false), t(0, true), t(1, false), t(2, true), t(3, false), t(4, false), t(5, false), t(6, false), t(7, false), t(8, false), t(9, false), t(10, false), t(11, false), t(12, false), t(13, false), t(14, false), t(15, false), t(16, false), t(17, true), t(18, false), t(19, false), t(20, false), t(21, false), t(22, false), t(23, false), t(24, false), t(25, false), t(26, true), t(27, false), t(28, false), t(29, false), t(30, false), t(31, false), t(32, false), },
+												{t(2, false), t(1, false), t(0, true), t(1, false), t(2, true), t(3, false), t(4, false), t(5, false), t(6, false), t(7, false), t(8, false), t(9, false), t(10, true), t(11, false), t(12, false), t(13, false), t(14, false), t(15, false), t(16, false), t(17, false), t(18, false), t(19, false), t(20, false), t(21, false), t(22, false), t(23, true), t(24, false), t(25, false), t(26, false), t(27, false), t(28, false), t(29, false), t(30, false), t(31, false), },
+												{t(3, false), t(2, false), t(1, false), t(1, false), t(2, false), t(3, false), t(4, false), t(5, false), t(6, false), t(7, false), t(8, false), t(8, true), t(9, false), t(10, false), t(11, false), t(12, false), t(13, false), t(14, false), t(15, false), t(16, false), t(17, false), t(18, false), t(19, false), t(20, false), t(21, false), t(22, false), t(23, false), t(24, false), t(25, false), t(26, true), t(27, false), t(28, false), t(29, false), t(30, false), },
+												{t(4, false), t(3, true), t(2, false), t(1, true), t(2, false), t(3, false), t(4, false), t(5, false), t(6, false), t(7, false), t(8, false), t(9, false), t(9, false), t(10, false), t(11, false), t(12, false), t(13, false), t(14, false), t(14, true), t(15, false), t(16, false), t(17, false), t(18, false), t(19, false), t(20, false), t(21, false), t(22, false), t(23, true), t(24, false), t(25, false), t(26, false), t(27, false), t(28, false), t(29, false), },
+												{t(5, false), t(4, false), t(3, true), t(2, false), t(1, true), t(2, false), t(3, false), t(4, false), t(5, false), t(6, false), t(7, false), t(8, false), t(9, true), t(10, false), t(11, false), t(12, false), t(13, false), t(14, false), t(15, false), t(15, false), t(16, false), t(17, false), t(18, false), t(19, false), t(20, false), t(20, true), t(21, false), t(22, false), t(23, false), t(24, false), t(25, false), t(26, false), t(27, false), t(28, false), },
+												{t(6, false), t(5, false), t(4, false), t(3, false), t(2, false), t(2, false), t(3, false), t(4, false), t(5, false), t(6, false), t(7, false), t(8, false), t(9, false), t(10, false), t(11, false), t(12, false), t(13, false), t(14, false), t(15, false), t(16, false), t(16, false), t(17, false), t(18, false), t(19, false), t(20, false), t(21, false), t(21, false), t(22, false), t(23, false), t(24, false), t(25, false), t(26, false), t(27, false), t(28, false), },
+												{t(7, false), t(6, false), t(5, false), t(4, false), t(3, false), t(3, false), t(2, true), t(3, false), t(4, false), t(5, false), t(6, false), t(7, false), t(8, false), t(9, true), t(10, false), t(11, false), t(12, false), t(13, false), t(14, false), t(15, false), t(16, false), t(17, false), t(18, false), t(19, false), t(20, false), t(21, false), t(22, false), t(22, false), t(23, false), t(24, false), t(25, false), t(26, false), t(27, false), t(28, false), },
+												{t(8, false), t(7, false), t(6, false), t(5, false), t(4, false), t(4, false), t(3, false), t(2, true), t(3, false), t(4, false), t(5, false), t(6, false), t(7, false), t(8, false), t(9, false), t(10, false), t(11, false), t(12, false), t(13, false), t(14, false), t(15, false), t(16, false), t(17, false), t(18, false), t(19, false), t(20, false), t(21, false), t(22, false), t(23, false), t(24, false), t(25, false), t(26, false), t(27, false), t(28, false), },
+												{t(9, false), t(8, false), t(7, false), t(6, false), t(5, false), t(5, false), t(4, false), t(3, false), t(2, true), t(3, false), t(4, false), t(5, false), t(6, false), t(7, false), t(8, false), t(9, false), t(10, false), t(11, false), t(12, false), t(13, false), t(14, false), t(15, true), t(16, false), t(17, false), t(18, false), t(19, false), t(20, false), t(21, false), t(22, false), t(23, false), t(24, false), t(25, false), t(26, false), t(27, false), },
+												{t(10, false), t(9, false), t(8, false), t(7, false), t(6, false), t(6, false), t(5, false), t(4, false), t(3, false), t(2, true), t(3, false), t(4, false), t(5, false), t(6, false), t(7, false), t(8, false), t(9, false), t(10, false), t(11, false), t(12, false), t(13, true), t(14, false), t(15, true), t(16, false), t(17, false), t(18, false), t(19, false), t(20, false), t(21, false), t(22, false), t(23, false), t(24, false), t(25, false), t(26, false), },
+												{t(11, false), t(10, false), t(9, false), t(8, false), t(7, false), t(7, false), t(6, false), t(5, false), t(4, false), t(3, false), t(2, true), t(3, false), t(4, false), t(5, false), t(6, false), t(7, true), t(8, false), t(9, false), t(10, false), t(11, false), t(12, false), t(13, false), t(14, false), t(15, false), t(16, false), t(17, false), t(18, false), t(19, false), t(20, false), t(21, false), t(22, false), t(23, false), t(24, false), t(25, false), },
+												{t(12, false), t(11, false), t(10, false), t(9, false), t(8, false), t(8, false), t(7, false), t(6, false), t(5, false), t(4, false), t(3, false), t(3, false), t(4, false), t(5, false), t(6, false), t(7, false), t(8, false), t(9, false), t(10, false), t(11, false), t(12, false), t(13, false), t(14, false), t(15, false), t(16, false), t(17, false), t(18, false), t(19, false), t(19, true), t(20, false), t(21, false), t(22, false), t(23, false), t(24, false), },
+												{t(13, false), t(12, false), t(11, false), t(10, false), t(9, false), t(9, false), t(8, true), t(7, false), t(6, false), t(5, false), t(4, false), t(4, false), t(4, false), t(4, true), t(5, false), t(6, false), t(7, false), t(8, false), t(9, false), t(10, false), t(11, false), t(12, false), t(13, false), t(14, false), t(15, false), t(16, false), t(17, false), t(18, false), t(19, false), t(20, false), t(21, false), t(22, false), t(23, false), t(24, false), },
+												{t(14, false), t(13, false), t(12, false), t(11, false), t(10, false), t(10, false), t(9, false), t(8, false), t(7, false), t(6, false), t(5, false), t(5, false), t(5, false), t(5, false), t(4, true), t(5, false), t(6, true), t(7, false), t(8, false), t(9, true), t(10, false), t(11, false), t(12, false), t(13, false), t(14, false), t(15, false), t(16, false), t(17, false), t(18, false), t(19, false), t(20, false), t(21, false), t(22, false), t(23, true), },
+												{t(15, false), t(14, false), t(13, false), t(12, false), t(11, false), t(11, false), t(10, false), t(9, false), t(8, false), t(7, false), t(6, true), t(6, false), t(6, false), t(6, false), t(5, false), t(4, true), t(5, false), t(6, false), t(7, false), t(8, false), t(9, false), t(10, false), t(11, false), t(12, false), t(13, false), t(14, false), t(15, false), t(16, false), t(17, false), t(18, false), t(19, false), t(20, false), t(21, false), t(22, false), },
+												{t(16, false), t(15, false), t(14, false), t(13, false), t(12, false), t(12, false), t(11, false), t(10, false), t(9, false), t(8, false), t(7, false), t(7, false), t(7, false), t(7, false), t(6, true), t(5, false), t(4, true), t(5, false), t(6, false), t(7, true), t(8, false), t(9, false), t(10, false), t(11, false), t(12, false), t(13, false), t(14, false), t(15, false), t(16, false), t(17, false), t(18, false), t(19, false), t(20, false), t(21, true), },
+												{t(17, false), t(16, false), t(15, false), t(14, false), t(13, false), t(13, false), t(12, false), t(11, false), t(10, false), t(9, false), t(8, false), t(8, false), t(8, false), t(8, false), t(7, false), t(6, false), t(5, false), t(4, true), t(5, false), t(6, false), t(7, false), t(8, false), t(9, false), t(10, false), t(11, false), t(12, false), t(13, false), t(14, false), t(15, false), t(16, false), t(17, false), t(18, false), t(19, false), t(20, false), },
+												{t(18, false), t(17, false), t(16, false), t(15, false), t(14, false), t(14, false), t(13, false), t(12, false), t(11, false), t(10, false), t(9, false), t(9, false), t(9, false), t(9, false), t(8, false), t(7, false), t(6, false), t(5, false), t(5, false), t(6, false), t(7, false), t(8, false), t(9, false), t(10, false), t(11, false), t(12, false), t(13, false), t(14, false), t(15, false), t(16, false), t(17, false), t(18, false), t(19, false), t(20, false), },
+												{t(19, false), t(18, false), t(17, false), t(16, false), t(15, false), t(15, false), t(14, false), t(13, false), t(12, false), t(11, false), t(10, false), t(10, false), t(10, false), t(10, false), t(9, true), t(8, false), t(7, true), t(6, false), t(6, false), t(5, true), t(6, false), t(7, false), t(8, false), t(9, false), t(10, false), t(11, false), t(12, false), t(13, false), t(14, false), t(15, false), t(16, false), t(17, false), t(18, false), t(19, true), },
+												{t(20, false), t(19, false), t(18, false), t(17, false), t(16, false), t(16, false), t(15, false), t(14, false), t(13, false), t(12, true), t(11, false), t(11, false), t(11, false), t(11, false), t(10, false), t(9, false), t(8, false), t(7, false), t(7, false), t(6, false), t(5, true), t(6, false), t(7, true), t(8, false), t(9, false), t(10, false), t(11, false), t(12, false), t(13, false), t(14, false), t(15, false), t(16, false), t(17, false), t(18, false), },
+												{t(21, false), t(20, false), t(19, false), t(18, false), t(17, false), t(17, false), t(16, false), t(15, false), t(14, false), t(13, false), t(12, false), t(12, false), t(12, false), t(12, false), t(11, false), t(10, false), t(9, false), t(8, false), t(8, false), t(7, false), t(6, false), t(6, false), t(7, false), t(7, true), t(8, false), t(9, false), t(10, false), t(11, false), t(12, false), t(13, false), t(14, false), t(15, false), t(16, false), t(17, false), },
+												{t(22, false), t(21, false), t(20, false), t(19, false), t(18, false), t(18, false), t(17, false), t(16, false), t(15, false), t(14, true), t(13, false), t(13, false), t(13, false), t(13, false), t(12, false), t(11, false), t(10, false), t(9, false), t(9, false), t(8, false), t(7, true), t(7, false), t(6, true), t(7, false), t(8, false), t(9, false), t(10, false), t(11, false), t(12, false), t(13, false), t(14, false), t(15, false), t(16, false), t(17, false), },
+												{t(23, false), t(22, false), t(21, false), t(20, false), t(19, false), t(19, false), t(18, false), t(17, false), t(16, true), t(15, false), t(14, false), t(14, false), t(14, false), t(14, false), t(13, false), t(12, false), t(11, false), t(10, false), t(10, false), t(9, false), t(8, false), t(7, true), t(7, false), t(7, false), t(8, false), t(9, false), t(10, false), t(11, false), t(12, false), t(13, false), t(14, false), t(15, false), t(16, false), t(17, false), },
+												{t(24, false), t(23, false), t(22, false), t(21, false), t(20, false), t(20, false), t(19, false), t(18, false), t(17, false), t(16, false), t(15, false), t(15, false), t(15, false), t(15, false), t(14, false), t(13, false), t(12, false), t(11, false), t(11, false), t(10, false), t(9, false), t(8, false), t(8, false), t(8, false), t(7, true), t(8, false), t(9, false), t(10, false), t(11, false), t(12, false), t(13, false), t(14, false), t(15, false), t(16, false), },
+												{t(25, false), t(24, false), t(23, true), t(22, false), t(21, true), t(21, false), t(20, false), t(19, false), t(18, false), t(17, false), t(16, false), t(16, false), t(15, true), t(16, false), t(15, false), t(14, false), t(13, false), t(12, false), t(12, false), t(11, false), t(10, false), t(9, false), t(9, false), t(9, false), t(8, false), t(7, true), t(8, false), t(9, false), t(10, false), t(11, false), t(12, false), t(13, false), t(14, false), t(15, false), },
+												{t(26, false), t(25, false), t(24, false), t(23, false), t(22, false), t(22, false), t(21, false), t(20, false), t(19, false), t(18, false), t(17, false), t(17, false), t(16, false), t(16, false), t(16, false), t(15, false), t(14, false), t(13, false), t(13, false), t(12, false), t(11, false), t(10, false), t(10, false), t(10, false), t(9, false), t(8, false), t(7, true), t(8, false), t(9, false), t(10, false), t(11, false), t(12, false), t(13, false), t(14, false), },
+												{t(27, false), t(26, true), t(25, false), t(24, true), t(23, false), t(23, false), t(22, false), t(21, false), t(20, false), t(19, false), t(18, false), t(18, false), t(17, false), t(17, false), t(17, false), t(16, false), t(15, false), t(14, false), t(13, true), t(13, false), t(12, false), t(11, false), t(11, false), t(11, false), t(10, false), t(9, false), t(8, false), t(7, true), t(8, false), t(9, false), t(10, false), t(11, false), t(12, false), t(13, false), },
+												{t(28, false), t(27, false), t(26, false), t(25, false), t(24, false), t(24, false), t(23, false), t(22, false), t(21, false), t(20, false), t(19, false), t(19, false), t(18, false), t(18, false), t(18, false), t(17, false), t(16, false), t(15, false), t(14, false), t(14, false), t(13, false), t(12, false), t(12, false), t(12, false), t(11, false), t(10, false), t(9, false), t(8, false), t(7, true), t(8, false), t(9, false), t(10, false), t(11, false), t(12, false), },
+												{t(29, false), t(28, false), t(27, false), t(26, false), t(25, false), t(25, false), t(24, false), t(23, false), t(22, false), t(21, false), t(20, false), t(19, true), t(19, false), t(19, false), t(19, false), t(18, false), t(17, false), t(16, false), t(15, false), t(15, false), t(14, false), t(13, false), t(13, false), t(13, false), t(12, false), t(11, false), t(10, false), t(9, false), t(8, false), t(7, true), t(8, false), t(9, false), t(10, false), t(11, false), },
+												{t(30, false), t(29, false), t(28, false), t(27, false), t(26, false), t(26, false), t(25, false), t(24, false), t(23, false), t(22, false), t(21, false), t(20, false), t(20, false), t(20, false), t(20, false), t(19, false), t(18, false), t(17, false), t(16, false), t(16, false), t(15, false), t(14, false), t(14, false), t(14, false), t(13, false), t(12, false), t(11, false), t(10, false), t(9, false), t(8, false), t(7, true), t(8, false), t(9, false), t(10, false), },
+												{t(31, false), t(30, false), t(29, false), t(28, false), t(27, false), t(27, false), t(26, false), t(25, false), t(24, false), t(23, false), t(22, false), t(21, false), t(21, false), t(21, false), t(21, false), t(20, false), t(19, false), t(18, false), t(17, false), t(17, false), t(16, false), t(15, false), t(15, false), t(15, false), t(14, false), t(13, false), t(12, false), t(11, false), t(10, false), t(9, false), t(8, false), t(7, true), t(8, false), t(9, false), },
+												{t(32, false), t(31, false), t(30, false), t(29, false), t(28, false), t(28, false), t(27, false), t(26, false), t(25, false), t(24, false), t(23, false), t(22, false), t(22, false), t(22, false), t(22, false), t(21, false), t(20, false), t(19, false), t(18, false), t(18, false), t(17, false), t(16, false), t(16, false), t(16, false), t(15, false), t(14, false), t(13, false), t(12, false), t(11, false), t(10, false), t(9, false), t(8, false), t(7, true), t(8, false), },
+												{t(33, false), t(32, false), t(31, false), t(30, false), t(29, false), t(29, false), t(28, false), t(27, false), t(26, false), t(25, false), t(24, false), t(23, false), t(23, false), t(23, false), t(22, true), t(22, false), t(21, true), t(20, false), t(19, false), t(18, true), t(18, false), t(17, false), t(17, false), t(17, false), t(16, false), t(15, false), t(14, false), t(13, false), t(12, false), t(11, false), t(10, false), t(9, false), t(8, false), t(7, true), },
+											}),
 											1,
 											null,
 											Arrays.asList(
-													new Tuple2<Integer, Integer>(0, 0)
+													new Tuple2<>(0, 0),
+													new Tuple2<>(1, 1),
+													new Tuple2<>(2, 2),
+													new Tuple2<>(3, 2),
+													new Tuple2<>(4, 3),
+													new Tuple2<>(5, 4),
+													new Tuple2<>(6, 5),
+													new Tuple2<>(7, 6),
+													new Tuple2<>(8, 7),
+													new Tuple2<>(9, 8),
+													new Tuple2<>(10, 9),
+													new Tuple2<>(11, 10),
+													new Tuple2<>(12, 10),
+													new Tuple2<>(12, 11),
+													new Tuple2<>(13, 11),
+													new Tuple2<>(14, 12),
+													new Tuple2<>(15, 13),
+													new Tuple2<>(16, 14),
+													new Tuple2<>(16, 15),
+													new Tuple2<>(17, 15),
+													new Tuple2<>(18, 15),
+													new Tuple2<>(19, 16),
+													new Tuple2<>(19, 17),
+													new Tuple2<>(20, 18),
+													new Tuple2<>(21, 19),
+													new Tuple2<>(22, 20),
+													new Tuple2<>(23, 21),
+													new Tuple2<>(23, 22),
+													new Tuple2<>(23, 23),
+													new Tuple2<>(24, 24),
+													new Tuple2<>(25, 25),
+													new Tuple2<>(26, 26),
+													new Tuple2<>(27, 27),
+													new Tuple2<>(28, 28),
+													new Tuple2<>(29, 29),
+													new Tuple2<>(30, 30),
+													new Tuple2<>(31, 31),
+													new Tuple2<>(32, 32),
+													new Tuple2<>(33, 33)
 												)
 										)
 								)
-							
-	//	<[n, e, j, n, e, z, p, r, a, v, d, ì,  , p, o, d, o,    b, ò, o,    v, á, v, a,       t, e, l, n, ì, j, š, í, h, o]>
-	//	<[n, e, j, n, e, z, p, r, a, v, d, ì,  , p, o, d, o,  , b, ò, o,  , v, á, v, a,  ,  , t, e, l, n, ì, j, š, í, h, o]>
-					
-							
-	//	<EEDEESEEEEE[S I  EEEEESEESES    ]EEEEEEEEEE>
-	//	<EEDEESEEEEE[D I  DSSEIDDEISSEEII]EEEEEEEEEE>
-		
-
-							
 					}				
 				);
 	}

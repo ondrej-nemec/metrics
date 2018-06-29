@@ -118,7 +118,6 @@ public class LevenshteinInfo<S> implements StructureMatrix<S, Tuple2<Integer, Bo
 				col++;				
 			}
 		}
-		
 		return operations;
 	}
 
@@ -142,7 +141,7 @@ public class LevenshteinInfo<S> implements StructureMatrix<S, Tuple2<Integer, Bo
 		return -1;
 	}
 	
-	// seaching range ??
+	//TODO seaching range ??
 		private int distance(final int row, final int col, final int mode, Matrix<Tuple2<Integer, Boolean>> matrix){
 			if(mode == 0) { //row
 				for(int i = col; i < matrix.getColumnSize(); i++) {
