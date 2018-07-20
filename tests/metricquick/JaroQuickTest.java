@@ -24,9 +24,7 @@ public class JaroQuickTest {
 		this.to = to;
 		this.distance = distance;
 	}
-	
-	//TODO exceptions test
-	
+
 	@Test
 	public void testCalculateWork() {
 		JaroQuick<Character> dis = new JaroQuick<>();

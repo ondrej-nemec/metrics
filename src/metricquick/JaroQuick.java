@@ -22,8 +22,6 @@ public class JaroQuick<S> implements MetricQuick<S> {
 	
 	@Override
 	public Number calculate(List<S> sequenceFrom, List<S> sequenceTo) {
-		//TODO kontrola
-		
 		Tuple2<Integer, Integer> aux = getCAndT(sequenceFrom, sequenceTo);
 		int c = aux.getFirst();
 		int t = aux.getSecond();

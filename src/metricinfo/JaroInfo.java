@@ -34,8 +34,6 @@ public class JaroInfo<S> implements StructureMatrix<S, JaroValues>{
 	
 	@Override
 	public ResultSet<S, MatrixResultSet<JaroValues>> calculate(List<S> sequenceFrom, List<S> sequenceTo) {
-		//TODO kontrola
-		
 		Matrix<JaroValues> matrix = fillMatrix(sequenceFrom, sequenceTo);
 		List<S> finalSequenceFrom = new ArrayList<>();
 		List<S> finalSequenceTo = new ArrayList<>();
@@ -94,8 +92,6 @@ public class JaroInfo<S> implements StructureMatrix<S, JaroValues>{
 		int col = -1;
 		operations = "";
 		
-		
-		//	while(row < matrix.getRowSize() && col < matrix.getColumnSize()){ 
 		while(row < from.size() && col < to.size()){	
 			if(row+1 >= from.size() && col+1 >= to.size()){ //end
 				row++;

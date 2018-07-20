@@ -25,10 +25,7 @@ public class LevenshteinQuickTest {
 		this.to = to;
 		this.distance = distance;
 	}
-	
-	
-	//TODO exceptions test
-	
+
 	@Test
 	public void testCalculateWork() {
 		LevenshteinQuick<Character> dis = new LevenshteinQuick<>();

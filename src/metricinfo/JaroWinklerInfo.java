@@ -25,8 +25,6 @@ public class JaroWinklerInfo<S> implements StructureMatrix<S, JaroValues>{
 		
 	@Override
 	public ResultSet<S, MatrixResultSet<JaroValues>> calculate(List<S> sequenceFrom, List<S> sequenceTo) {
-		//TODO kontrola
-		
 		ResultSet<S, MatrixResultSet<JaroValues>> jaro = new JaroInfo<S>(empty).calculate(sequenceFrom, sequenceTo);
 		double distance = jaro.getDistance().doubleValue() +
 				(getAlfa(sequenceFrom, sequenceTo) * p *

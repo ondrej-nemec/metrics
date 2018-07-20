@@ -24,9 +24,7 @@ public class JaroWinklerQuickTest {
 		this.to = to;
 		this.distance = distance;
 	}
-	
-	//TODO exceptions test
-	
+
 	@Test
 	public void testCalculateWork() {
 		JaroWinklerQuick<Character> dis = new JaroWinklerQuick<>();

@@ -2,6 +2,8 @@ package metricinfo;
 
 import java.util.List;
 
+import exception.InvalidOpeationCostException;
+import exception.SequencesMustHaveSameLengthException;
 import structures.ResultSet;
 
 public class HammingInfo<S> implements StructureString<S> {
@@ -13,14 +15,16 @@ public class HammingInfo<S> implements StructureString<S> {
 	}
 	
 	public HammingInfo(final int costOfSubstitution) {
+		if(costOfSubstitution < 1)
+			throw new InvalidOpeationCostException(costOfSubstitution, "positive");
 		this.costOfSubstitution = costOfSubstitution;
 	}
 	
 	
 	@Override
 	public ResultSet<S, String> calculate(List<S> sequenceFrom, List<S> sequenceTo) {
-		//TODO kontrola
-		
+		if(sequenceFrom.size() != sequenceTo.size())
+			throw new SequencesMustHaveSameLengthException();
 		String operations = "";
 		int distance = 0;
 		for(int i = 0; i < sequenceFrom.size(); i++){

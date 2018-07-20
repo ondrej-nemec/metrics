@@ -3,6 +3,7 @@ package metricinfo;
 import java.util.ArrayList;
 import java.util.List;
 
+import exception.InvalidOpeationCostException;
 import structures.MatrixResultSet;
 import structures.ResultSet;
 import support.Matrix;
@@ -20,19 +21,17 @@ public class LevenshteinInfo<S> implements StructureMatrix<S, Tuple2<Integer, Bo
 	}
 	
 	public LevenshteinInfo(final S empty, int deletionCost, int insertionCost, int substitutionCost) {
+		if(deletionCost < 1)
+			throw new InvalidOpeationCostException(deletionCost, "positive");
+		if(insertionCost < 1)
+			throw new InvalidOpeationCostException(insertionCost, "positive");
+		if(substitutionCost < 1)
+			throw new InvalidOpeationCostException(substitutionCost, "positive"); 
 		this.empty = empty;
-		if(deletionCost > 0)
-			this.deletionCost = deletionCost;
-		//TODO exception else
-		if(insertionCost > 0)
-			this.insertionCost = insertionCost;
-		//TODO exception else
-		if(substitutionCost > 0)
-			this.substitutionCost = substitutionCost;
-		//TODO exception else
+		this.deletionCost = deletionCost;
+		this.insertionCost = insertionCost;
+		this.substitutionCost = substitutionCost;
 	}
-	
-	//TODO  kontrola
 	
 	@Override
 	public ResultSet<S, MatrixResultSet<Tuple2<Integer, Boolean>>> calculate(List<S> sequenceFrom, List<S> sequenceTo) {
@@ -67,8 +66,7 @@ public class LevenshteinInfo<S> implements StructureMatrix<S, Tuple2<Integer, Bo
 		int row = 0;
 		int col = 0;
 		String operations = "";
-		while(row < matrix.getRowSize() && col < matrix.getColumnSize()){ 
-		//while(row < fromSize && col < toSize){	
+		while(row < matrix.getRowSize() && col < matrix.getColumnSize()){
 			if(row < matrix.getRowSize()-1 && col < matrix.getColumnSize()-1) {
 				if(matrix.getCell(row+1, col+1).getSecond()) { //equals
 					finalFrom.add(from.get(row));
@@ -122,9 +120,9 @@ public class LevenshteinInfo<S> implements StructureMatrix<S, Tuple2<Integer, Bo
 	}
 
 	private int look(final int i,final int j, Matrix<Tuple2<Integer, Boolean>> matrix){
-		final int dia = distanceDia(i, j, matrix); //distance(i, j, 2, matrix);
-		final int col = distanceCol(i, j, matrix); //distance(i, j, 1, matrix);
-		final int row = distanceRow(i, j, matrix); //distance(i, j, 0, matrix);
+		final int dia = distanceDia(i, j, matrix);
+		final int col = distanceCol(i, j, matrix);
+		final int row = distanceRow(i, j, matrix);
 		
 		if(col == -1 && row == -1)
 			return -1;
@@ -141,7 +139,6 @@ public class LevenshteinInfo<S> implements StructureMatrix<S, Tuple2<Integer, Bo
 		return -1;
 	}
 	
-	//TODO seaching range ??
 	private int distanceRow(final int row, final int col, Matrix<Tuple2<Integer, Boolean>> matrix){
 		for(int i = col; i < getBounds(matrix.getColumnSize()); i++) {
 			if(matrix.getCell(row, i).getSecond())
@@ -174,9 +171,28 @@ public class LevenshteinInfo<S> implements StructureMatrix<S, Tuple2<Integer, Bo
 	}
 	
 	private int getDistance(Matrix<Tuple2<Integer, Boolean>> matrix, String operations) {
-		if(deletionCost > 0 && insertionCost > 0 && substitutionCost > 0) {
-			//TODO
-			return 0;
+		if(deletionCost > 1 && insertionCost > 1 && substitutionCost > 1) {
+			int deletion = 0;
+			int insertion = 0;
+			int substitution = 0;
+			for(int i = 0; i < operations.length(); i++){
+				switch (operations.charAt(i)) {
+				case 'S':
+					substitution++;
+					break;
+				case 'D':
+					deletion++;
+					break;
+				case 'I':
+					insertion++;
+					break;
+				default:
+					break;
+				}
+			}
+			return deletion * deletionCost
+				 + insertion * insertionCost
+				 + substitution * substitutionCost;
 		}else{
 			return matrix.getCell(
 					matrix.getRowSize()-1,

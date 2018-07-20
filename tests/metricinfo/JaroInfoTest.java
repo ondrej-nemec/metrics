@@ -12,6 +12,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
+import exception.InvalidOpeationCostException;
 import structures.MatrixResultSet;
 import structures.ResultSet;
 import support.JaroValues;
@@ -23,14 +24,32 @@ public class JaroInfoTest {
 
 	private ResultSet<Character, MatrixResultSet<JaroValues>> expected;
 	private ResultSet<Character, MatrixResultSet<JaroValues>> actual;
+	private double weightDistance;
+	private List<Character> from, to;
 	
 	public JaroInfoTest(
-			List<Character> from, List<Character> to, ResultSet<Character, MatrixResultSet<JaroValues>> result) {
+			List<Character> from, List<Character> to, ResultSet<Character, MatrixResultSet<JaroValues>> result,
+			double weightDistance) {
 		this.expected = result;
 		this.actual = new JaroInfo<>(' ').calculate(from, to);
+		this.weightDistance = weightDistance;
+		this.from = from;
+		this.to = to;
 	}
-	//TODO exceptions test
 	
+	@Test(expected=InvalidOpeationCostException.class)
+	public void testConstructorThrowWhenCostIsNotPositive(){
+		new JaroInfo<>(' ', 0, -1, 0);
+	}
+	
+	
+	@Test
+	public void testWeightDistance(){
+		ResultSet<Character, MatrixResultSet<JaroValues>> res = 
+				new JaroInfo<>(' ', 1/5.0, 1/5.0, 1/5.0).calculate(from, to);
+		assertEquals(weightDistance, res.getDistance());
+	}
+
 	@Test
 	public void testCalculateDistance(){
 		assertEquals(expected.getDistance(), actual.getDistance());
@@ -117,7 +136,8 @@ public class JaroInfoTest {
 														new Tuple2<>(5, 5)
 														)
 											)
-								)
+								),
+							0
 					},
 					new Object[]{
 							Arrays.asList('s', 'l', 'o', 'v', 'o'),
@@ -146,7 +166,8 @@ public class JaroInfoTest {
 													new Tuple2<>(4, -1)
 												)
 										)
-								)
+								),
+							0
 					},
 					new Object[]{
 							new LinkedList<>(),
@@ -169,7 +190,8 @@ public class JaroInfoTest {
 													new Tuple2<>(-1, 4)
 												)
 										)
-								)
+								),
+							0
 					},
 					new Object[]{
 							Arrays.asList('s', 'l', 'o', 'v', 'o'),
@@ -198,7 +220,8 @@ public class JaroInfoTest {
 													new Tuple2<>(4, 0)
 													)
 										)
-								)
+								),
+							0
 					},
 					new Object[]{
 							Arrays.asList('s', 'l', 'o', 'v', 'o'),
@@ -227,7 +250,8 @@ public class JaroInfoTest {
 													new Tuple2<>(4, 1)
 													)
 										)
-								)
+								),
+							0
 					},
 					new Object[]{
 							Arrays.asList('s', 'l', 'o', 'v', 'a'),
@@ -257,7 +281,8 @@ public class JaroInfoTest {
 													new Tuple2<>(4, 0)
 													)
 										)
-								)
+								),
+							0
 					},
 					new Object[]{
 							Arrays.asList('o', 'k', 'n', 'o'),
@@ -288,8 +313,9 @@ public class JaroInfoTest {
 													new Tuple2<>(3, 5)
 													)
 										)
-								)
-					}, //TODO
+								),
+							0
+					},
 					new Object[]{
 							Arrays.asList('k', 'o', 'l', 'o'),
 							Arrays.asList('o', 'k', 'o'),
@@ -315,7 +341,8 @@ public class JaroInfoTest {
 													new Tuple2<>(3, 2)
 													)
 										)
-								)
+								),
+							0
 					},
 					new Object[]{
 							Arrays.asList('n', 'e', 'n', 'í'),
@@ -346,7 +373,8 @@ public class JaroInfoTest {
 													new Tuple2<>(3, 5)
 													)
 										)
-								)
+								),
+							0
 					},
 					new Object[]{
 							Arrays.asList('h', 'o', 'u', 's', 'k', 'a'),
@@ -379,7 +407,8 @@ public class JaroInfoTest {
 													new Tuple2<>(5, 5)
 													)
 										)
-								)
+								),
+							0
 					},
 					new Object[]{
 							Arrays.asList('k', 'o', 'o', 'l', 'i', 'p', 'a', 'n'),
@@ -417,7 +446,8 @@ public class JaroInfoTest {
 													new Tuple2<>(7, 7)
 													)
 										)
-								)
+								),
+							0
 					},
 					new Object[]{
 							Arrays.asList('k', 'o', 'p', 'l', 'i', 'n', 'n'),
@@ -452,7 +482,8 @@ public class JaroInfoTest {
 													new Tuple2<>(6, 6)
 													)
 										)
-								)
+								),
+							0
 					},
 					new Object[]{
 							Arrays.asList('w', 'o', 'r', 'd'),
@@ -483,7 +514,8 @@ public class JaroInfoTest {
 													new Tuple2<>(3, 3)
 													)
 										)
-								)
+								),
+							0
 					},
 					new Object[]{
 							Arrays.asList('a', 'b', 'b', 'c', 'b'),
@@ -513,7 +545,8 @@ public class JaroInfoTest {
 													new Tuple2<>(4, 4)
 													)
 										)
-								)
+								),
+							0
 					},
 					new Object[]{
 							Arrays.asList('a', 'a', 'h', 'o', 'j'),
@@ -544,7 +577,8 @@ public class JaroInfoTest {
 													new Tuple2<>(4, 5)
 													)
 										)
-								)
+								),
+							0
 					},
 					new Object[]{
 							Arrays.asList('n', 'e', 'j', 'n', 'e', 'z', 'p', 'r', 'a', 'v', 'd',
@@ -557,7 +591,7 @@ public class JaroInfoTest {
 									Arrays.asList('n', 'e', 'j', 'n', 'e', ' ', 'z', 'p', 'r', 'a', 'v', 'd', ' ', 'ì', ' ', 'p', 'o', 'd', 'o', 'b', ' ', 'ò', 'o', 'v', ' ', 'á', 'v', ' ', 'a', 't', 'e', 'l', 'n', 'ì', 'j', 'š', 'í', 'h', 'o'),
 									Arrays.asList('n', 'e', ' ', 'n', 'e', 's', ' ', 'p', 'r', 'a', 'v', 'd', 'j', ' ', 'e', 'p', 'o', 'd', 'o', 'b', 'n', ' ', 'o', 'v', 'a', ' ', 'v', 'á', ' ', 't', 'e', 'l', 'n', 'ì', 'j', 'š', 'í', 'h', 'o'),
 									"Jaro distance",
-									"EEDEEIDEEEEEIIDEEEEEIDEEIDEIDEEEEEEEEEE",
+								     "EEDEEIDEEEEEIDIEEEEEIDEEIDEIDEEEEEEEEEE",                             
 									0.8787878787878787,
 									new MatrixResultSet<>(
 											new Matrix<>(new JaroValues[][]{
@@ -603,29 +637,29 @@ public class JaroInfoTest {
 													new Tuple2<>(2, 1),
 													new Tuple2<>(3, 2),
 													new Tuple2<>(4, 3),
-													new Tuple2<>(5, 3),
+													new Tuple2<>(4, 4),
 													new Tuple2<>(5, 4),
 													new Tuple2<>(6, 5),
 													new Tuple2<>(7, 6),
 													new Tuple2<>(8, 7),
 													new Tuple2<>(9, 8),
 													new Tuple2<>(10, 9),
-													new Tuple2<>(11, 9),
+													new Tuple2<>(10, 10),
 													new Tuple2<>(11, 10),
 													new Tuple2<>(11, 11),
 													new Tuple2<>(12, 12),
 													new Tuple2<>(13, 13),
 													new Tuple2<>(14, 14),
 													new Tuple2<>(15, 15),
-													new Tuple2<>(16, 16),
-													new Tuple2<>(17, 16),
+													new Tuple2<>(16, 16),								
+													new Tuple2<>(16, 17),
 													new Tuple2<>(17, 17),
 													new Tuple2<>(18, 18),
 													new Tuple2<>(19, 19),
-													new Tuple2<>(20, 19),
+													new Tuple2<>(19, 20),													
 													new Tuple2<>(20, 20),
 													new Tuple2<>(21, 21),
-													new Tuple2<>(22, 21),
+													new Tuple2<>(21, 22),
 													new Tuple2<>(22, 22),
 													new Tuple2<>(23, 23),
 													new Tuple2<>(24, 24),
@@ -639,7 +673,8 @@ public class JaroInfoTest {
 													new Tuple2<>(32, 32)
 												)
 										)
-								)
+								),
+							0
 					}				
 				);
 	}

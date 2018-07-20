@@ -11,6 +11,8 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
+import exception.InvalidOpeationCostException;
+import exception.SequencesMustHaveSameLengthException;
 import structures.ResultSet;
 
 @RunWith(Parameterized.class)
@@ -18,13 +20,35 @@ public class HammingInfoTest {
 
 	private ResultSet<Character, String> expected;
 	private ResultSet<Character, String> actual;
+	private int weightDistance;
+	private List<Character> from, to;
 	
-	public HammingInfoTest(List<Character> from, List<Character> to, ResultSet<Character, String> result) {
+	public HammingInfoTest(List<Character> from, List<Character> to, ResultSet<Character, String> result,
+			int weightDistance) {
 		this.expected = result;
 		this.actual = new HammingInfo<Character>().calculate(from, to);
+		this.weightDistance = weightDistance;
+		this.from = from;
+		this.to = to;
 	}
-	//TODO exceptions test
+
+	@Test(expected=InvalidOpeationCostException.class)
+	public void testConstructorThrowWhenCostIsNotPositive(){
+		new HammingInfo<Character>(0);
+	}
 	
+	@Test(expected=SequencesMustHaveSameLengthException.class)
+	public void testCalculateThrowsWhenInvalidInput(){
+		HammingInfo<Character> h = new HammingInfo<Character>();
+		h.calculate(Arrays.asList('a', 'b'), Arrays.asList('a'));
+	}
+	
+	@Test
+	public void testWeightDistance(){
+		ResultSet<Character, String> res = 
+				new HammingInfo<Character>(2).calculate(from, to);
+		assertEquals(weightDistance, res.getDistance());
+	}	
 
 	@Test
 	public void testCalculateFinalSequence() {
@@ -63,7 +87,9 @@ public class HammingInfoTest {
 									Arrays.asList('s', 't', 'r', 'i', 'n', 'g'),
 									Arrays.asList('s', 't', 'r', 'i', 'n', 'g'),
 									"EEEEEE",
-									0)
+									0
+								),
+							0
 					},
 					new Object[]{
 							Arrays.asList('h', 'o', 'u', 's', 'k', 'a'),
@@ -73,7 +99,8 @@ public class HammingInfoTest {
 									Arrays.asList('h', 'o', 'u', 's', 'l', 'e'),
 									"EEEESS",
 									2
-								)
+								),
+							4
 					},
 					new Object[]{
 							Arrays.asList('k', 'o', 'o', 'l', 'i', 'p', 'a', 'n'),
@@ -83,7 +110,8 @@ public class HammingInfoTest {
 									Arrays.asList('k', 'o', 'p', 'l', 'l', 'i', 's', 'a'),
 									"EESESSSS",
 									5
-								)
+								),
+							10
 					},
 					new Object[]{
 							Arrays.asList('k', 'o', 'p', 'l', 'i', 'n', 'n'),
@@ -93,7 +121,8 @@ public class HammingInfoTest {
 									Arrays.asList('k', 'p', 'o', 'l', 'l', 'i', 'm'),
 									"ESSESSS",
 									5
-								)
+								),
+							10
 					},
 					new Object[]{
 							Arrays.asList('w', 'o', 'r', 'd'),
@@ -103,7 +132,8 @@ public class HammingInfoTest {
 									Arrays.asList('7', ';', '$', 'Ð'),
 									"SSSS",
 									4
-								)
+								),
+							8
 					},
 					new Object[]{
 							Arrays.asList('a', 'b', 'b', 'c', 'b'),
@@ -113,7 +143,8 @@ public class HammingInfoTest {
 									Arrays.asList('a', 'b', 'c', 'a', 'b'),
 									"EESSE",
 									2
-								)
+								),
+							4
 					},
 					new Object[]{
 							Arrays.asList('n', 'e', 'j', 'n', 'e', 'z', 'p', 'r', 'a', 'v', 'd',
@@ -131,7 +162,8 @@ public class HammingInfoTest {
 											  'á', 't', 'e', 'l', 'n', 'ì', 'j', 'š', 'í', 'h', 'o'),
 									"EESSSSSSSSSSEEEEESEESESEEEEEEEEEE",
 									13
-								)
+								),
+							26
 					}				
 				);
 	}

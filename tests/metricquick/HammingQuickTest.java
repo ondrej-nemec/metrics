@@ -11,6 +11,8 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
+import exception.SequencesMustHaveSameLengthException;
+
 @RunWith(Parameterized.class)
 public class HammingQuickTest {
 
@@ -24,54 +26,11 @@ public class HammingQuickTest {
 		this.distance = distance;
 	}
 	
-	//TODO exceptions test
-	/*
-					new Object[]{
-							Arrays.asList('s', 'l', 'o', 'v', 'o'),
-							new LinkedList<>(),
-							0.0
-					},
-					new Object[]{
-							new LinkedList<>(),
-							Arrays.asList('s', 'l', 'o', 'v', 'o'),
-							0.0
-					},
-					new Object[]{
-							Arrays.asList('s', 'l', 'o', 'v', 'o'),
-							Arrays.asList('l'),
-							0.7333333333333333
-					},
-					new Object[]{
-							Arrays.asList('s', 'l', 'o', 'v', 'o'),
-							Arrays.asList('s', 'l'),
-							0.8
-					},
-					new Object[]{
-							Arrays.asList('s', 'l', 'o', 'v', 'a'),
-							Arrays.asList('a'),
-							0.0
-					},
-					new Object[]{
-							Arrays.asList('o', 'k', 'n', 'o'),
-							Arrays.asList('w', 'i', 'n', 'd', 'o', 'w'),
-							0.6111111111111112
-					},
-					new Object[]{
-							Arrays.asList('k', 'o', 'l', 'o'),
-							Arrays.asList('o', 'k', 'o'),
-							0.8055555555555555
-					},
-					new Object[]{
-							Arrays.asList('n', 'e', 'n', 'í'),
-							Arrays.asList('n', 'i', 'e', ' ', 'j', 'e'),
-							0.6111111111111112
-					},
-					new Object[]{
-							Arrays.asList('a', 'a', 'h', 'o', 'j'),
-							Arrays.asList('a', 'h', 'o', 'j', 'k', 'y'),
-							0.8222222222222222
-					},
-	*/
+	@Test(expected=SequencesMustHaveSameLengthException.class)
+	public void testCalculateThrowsWhenInvalidInput(){
+		HammingQuick<Character> h = new HammingQuick<Character>();
+		h.calculate(Arrays.asList('a', 'b'), Arrays.asList('a'));
+	}
 	
 	@Test
 	public void testCalculateWork() {

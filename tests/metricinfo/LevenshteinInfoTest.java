@@ -12,6 +12,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
+import exception.InvalidOpeationCostException;
 import structures.MatrixResultSet;
 import structures.ResultSet;
 import support.Matrix;
@@ -34,12 +35,10 @@ public class LevenshteinInfoTest {
 		this.from = from;
 		this.to = to;
 	}
-	
-	
-	//TODO exceptions test
-	@Test
-	public void testCalculateThrowsWhenInvalidInput(){
-		fail();
+
+	@Test(expected=InvalidOpeationCostException.class)
+	public void testConstructorThrowWhenCostIsNotPositive(){
+		new LevenshteinInfo<>(' ', 0, -1, 0);
 	}
 	
 	@Test
@@ -149,7 +148,7 @@ public class LevenshteinInfoTest {
 												)
 										)
 								),
-							0
+							10
 					},
 					new Object[]{
 							new LinkedList<>(),
@@ -176,7 +175,7 @@ public class LevenshteinInfoTest {
 												)
 										)
 								),
-							0
+							10
 					},
 					new Object[]{
 							Arrays.asList('s', 'l', 'o', 'v', 'o'),
@@ -208,7 +207,7 @@ public class LevenshteinInfoTest {
 												)
 										)
 								),
-							0
+							8
 					},
 					new Object[]{
 							Arrays.asList('s', 'l', 'o', 'v', 'o'),
@@ -240,7 +239,7 @@ public class LevenshteinInfoTest {
 												)
 										)
 								),
-							0
+							6
 					},
 					new Object[]{
 							Arrays.asList('s', 'l', 'o', 'v', 'a'),
@@ -272,7 +271,7 @@ public class LevenshteinInfoTest {
 												)
 										)
 								),
-							0
+							8
 					},
 					new Object[]{
 							Arrays.asList('o', 'k', 'n', 'o'),
@@ -304,7 +303,7 @@ public class LevenshteinInfoTest {
 												)
 										)
 								),
-							0
+							8
 					},
 					new Object[]{
 							Arrays.asList('k', 'o', 'l', 'o'),
@@ -334,7 +333,7 @@ public class LevenshteinInfoTest {
 												)
 										)
 								),
-							0
+							4
 					},
 					new Object[]{
 							Arrays.asList('n', 'e', 'n', 'í'),
@@ -366,7 +365,7 @@ public class LevenshteinInfoTest {
 												)
 										)
 								),
-							0
+							8
 					},
 					new Object[]{
 							Arrays.asList('h', 'o', 'u', 's', 'k', 'a'),
@@ -400,7 +399,7 @@ public class LevenshteinInfoTest {
 												)
 										)
 								),
-							0
+							4
 					},
 					new Object[]{
 							Arrays.asList('k', 'o', 'o', 'l', 'i', 'p', 'a', 'n'),
@@ -439,7 +438,7 @@ public class LevenshteinInfoTest {
 												)
 										)
 								),
-							0
+							8
 					},
 					new Object[]{
 							Arrays.asList('k', 'o', 'p', 'l', 'i', 'n', 'n'),
@@ -477,7 +476,7 @@ public class LevenshteinInfoTest {
 												)
 										)
 								),
-							0
+							8 // TODO not responce with distance
 					},
 					new Object[]{
 							Arrays.asList('w', 'o', 'r', 'd'),
@@ -507,7 +506,7 @@ public class LevenshteinInfoTest {
 												)
 										)
 								),
-							0
+							8
 					},
 					new Object[]{
 							Arrays.asList('a', 'b', 'b', 'c', 'b'),
@@ -540,7 +539,7 @@ public class LevenshteinInfoTest {
 												)
 										)
 								),
-							0
+							4
 					},
 					new Object[]{
 							Arrays.asList('a', 'a', 'h', 'o', 'j'),
@@ -574,7 +573,7 @@ public class LevenshteinInfoTest {
 												)
 										)
 								),
-							0
+							6
 					},
 					new Object[]{
 							Arrays.asList('n', 'e', 'j', 'n', 'e', 'z', 'p', 'r', 'a', 'v', 'd',
@@ -667,7 +666,7 @@ public class LevenshteinInfoTest {
 												)
 										)
 								),
-							0
+							14
 					}				
 				);
 	}
