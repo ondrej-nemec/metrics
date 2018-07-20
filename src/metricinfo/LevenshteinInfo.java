@@ -122,9 +122,9 @@ public class LevenshteinInfo<S> implements StructureMatrix<S, Tuple2<Integer, Bo
 	}
 
 	private int look(final int i,final int j, Matrix<Tuple2<Integer, Boolean>> matrix){
-		final int dia = distance(i, j, 2, matrix);
-		final int col = distance(i, j, 1, matrix);
-		final int row = distance(i, j, 0, matrix);
+		final int dia = distanceDia(i, j, matrix); //distance(i, j, 2, matrix);
+		final int col = distanceCol(i, j, matrix); //distance(i, j, 1, matrix);
+		final int row = distanceRow(i, j, matrix); //distance(i, j, 0, matrix);
 		
 		if(col == -1 && row == -1)
 			return -1;
@@ -142,27 +142,37 @@ public class LevenshteinInfo<S> implements StructureMatrix<S, Tuple2<Integer, Bo
 	}
 	
 	//TODO seaching range ??
-		private int distance(final int row, final int col, final int mode, Matrix<Tuple2<Integer, Boolean>> matrix){
-			if(mode == 0) { //row
-				for(int i = col; i < matrix.getColumnSize(); i++) {
-					if(matrix.getCell(row, i).getSecond())
-						return i - col;
-				}
-			}else if(mode == 1) { //column
-				for(int i = row; i < matrix.getRowSize(); i++) {
-					if(matrix.getCell(i, col).getSecond())
-						return  i-row;
-				}
-			}else { //diagonal
-				for(int i = 0; i < matrix.getRowSize(); i++) {
-					if(row + i < matrix.getRowSize() && col + i < matrix.getColumnSize()
-							&& matrix.getCell(row + i, col + i).getSecond())
-						return i;
-				}
-			}
-			return -1;
+	private int distanceRow(final int row, final int col, Matrix<Tuple2<Integer, Boolean>> matrix){
+		for(int i = col; i < getBounds(matrix.getColumnSize()); i++) {
+			if(matrix.getCell(row, i).getSecond())
+				return i - col;
 		}
+		return -1;
+	}
+	
+	private int distanceCol(final int row, final int col, Matrix<Tuple2<Integer, Boolean>> matrix){
+		for(int i = row; i < getBounds(matrix.getRowSize()); i++) {
+			if(matrix.getCell(i, col).getSecond())
+				return  i-row;
+		}
+		return -1;	
+	}
+	
+	private int distanceDia(final int row, final int col, Matrix<Tuple2<Integer, Boolean>> matrix){
+		for(int i = 0; i < getBounds(matrix.getRowSize()); i++) {
+			if(row + i < matrix.getRowSize() && col + i < matrix.getColumnSize()
+					&& matrix.getCell(row + i, col + i).getSecond())
+				return i;
+		}
+		return -1;
+	}
 
+	private double getBounds(int actualBound){
+		if(actualBound > 12) // my heuristic for long sequences
+			return actualBound / 2.0;
+		return actualBound;
+	}
+	
 	private int getDistance(Matrix<Tuple2<Integer, Boolean>> matrix, String operations) {
 		if(deletionCost > 0 && insertionCost > 0 && substitutionCost > 0) {
 			//TODO
@@ -192,21 +202,21 @@ public class LevenshteinInfo<S> implements StructureMatrix<S, Tuple2<Integer, Bo
 					matrix.setCell(row, col, new Tuple2<>(row, false));
 				}else{
 					boolean second = from.get(row-1).equals(to.get(col-1));
+				//	boolean second = matrix.getCell(row-1, col-1).getSecond();
 					matrix.setCell(row, col, 
 							new Tuple2<>(
 									Math.min(
 											Math.min(
 													matrix.getCell(row, col-1).getFirst()+1,
 													matrix.getCell(row-1, col).getFirst()+1),
-											matrix.getCell(row-1, col-1).getFirst() + (second?0:1)
+											matrix.getCell(row-1, col-1).getFirst() + (second ? 0 : 1)
 											),
-									second));
+									second
+									)
+							);
 				}
-					
 			}
 		}
 		return matrix;
 	}	
-
-
 }

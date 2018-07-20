@@ -22,15 +22,32 @@ public class LevenshteinInfoTest {
 
 	private ResultSet<Character, MatrixResultSet<Tuple2<Integer, Boolean>>> expected;
 	private ResultSet<Character, MatrixResultSet<Tuple2<Integer, Boolean>>> actual;
+	private int weightDistance;
+	private List<Character> from, to;
 	
 	public LevenshteinInfoTest(List<Character> from, List<Character> to,
-			ResultSet<Character, MatrixResultSet<Tuple2<Integer, Boolean>>> result) {
+			ResultSet<Character, MatrixResultSet<Tuple2<Integer, Boolean>>> result,
+			int weightDistance) {
 		this.expected = result;
 		this.actual = new LevenshteinInfo<>(' ').calculate(from, to);
+		this.weightDistance = weightDistance;
+		this.from = from;
+		this.to = to;
 	}
 	
 	
 	//TODO exceptions test
+	@Test
+	public void testCalculateThrowsWhenInvalidInput(){
+		fail();
+	}
+	
+	@Test
+	public void testWeightDistance(){
+		ResultSet<Character, MatrixResultSet<Tuple2<Integer, Boolean>>> res = 
+				new LevenshteinInfo<>(' ', 2, 2, 2).calculate(from, to);
+		assertEquals(weightDistance, res.getDistance());
+	}
 	
 	@Test
 	public void testCalculateFinalSequence() {
@@ -87,7 +104,6 @@ public class LevenshteinInfoTest {
 													{t(6, false),t(5, false), t(4, false), t(3, false), t(2, false), t(1, false), t(0, true),},
 												}
 											),
-										//	null,
 											1,
 											null,
 											Arrays.asList(
@@ -100,7 +116,8 @@ public class LevenshteinInfoTest {
 													new Tuple2<Integer, Integer>(6, 6)
 												)
 										)
-								)
+								),
+							0
 					},
 					new Object[]{
 							Arrays.asList('s', 'l', 'o', 'v', 'o'),
@@ -131,7 +148,8 @@ public class LevenshteinInfoTest {
 													new Tuple2<Integer, Integer>(5, 0)
 												)
 										)
-								)
+								),
+							0
 					},
 					new Object[]{
 							new LinkedList<>(),
@@ -157,7 +175,8 @@ public class LevenshteinInfoTest {
 													new Tuple2<Integer, Integer>(0, 5)
 												)
 										)
-								)
+								),
+							0
 					},
 					new Object[]{
 							Arrays.asList('s', 'l', 'o', 'v', 'o'),
@@ -188,7 +207,8 @@ public class LevenshteinInfoTest {
 													new Tuple2<Integer, Integer>(5, 1)
 												)
 										)
-								)
+								),
+							0
 					},
 					new Object[]{
 							Arrays.asList('s', 'l', 'o', 'v', 'o'),
@@ -219,7 +239,8 @@ public class LevenshteinInfoTest {
 													new Tuple2<Integer, Integer>(5, 2)
 												)
 										)
-								)
+								),
+							0
 					},
 					new Object[]{
 							Arrays.asList('s', 'l', 'o', 'v', 'a'),
@@ -250,7 +271,8 @@ public class LevenshteinInfoTest {
 													new Tuple2<Integer, Integer>(5, 1)
 												)
 										)
-								)
+								),
+							0
 					},
 					new Object[]{
 							Arrays.asList('o', 'k', 'n', 'o'),
@@ -281,7 +303,8 @@ public class LevenshteinInfoTest {
 													new Tuple2<Integer, Integer>(4, 6)
 												)
 										)
-								)
+								),
+							0
 					},
 					new Object[]{
 							Arrays.asList('k', 'o', 'l', 'o'),
@@ -310,7 +333,8 @@ public class LevenshteinInfoTest {
 													new Tuple2<Integer, Integer>(4, 3)
 												)
 										)
-								)
+								),
+							0
 					},
 					new Object[]{
 							Arrays.asList('n', 'e', 'n', 'í'),
@@ -341,7 +365,8 @@ public class LevenshteinInfoTest {
 													new Tuple2<Integer, Integer>(4, 6)
 												)
 										)
-								)
+								),
+							0
 					},
 					new Object[]{
 							Arrays.asList('h', 'o', 'u', 's', 'k', 'a'),
@@ -374,7 +399,8 @@ public class LevenshteinInfoTest {
 													new Tuple2<Integer, Integer>(6, 6)
 												)
 										)
-								)
+								),
+							0
 					},
 					new Object[]{
 							Arrays.asList('k', 'o', 'o', 'l', 'i', 'p', 'a', 'n'),
@@ -412,7 +438,8 @@ public class LevenshteinInfoTest {
 													new Tuple2<Integer, Integer>(8, 8)
 												)
 										)
-								)
+								),
+							0
 					},
 					new Object[]{
 							Arrays.asList('k', 'o', 'p', 'l', 'i', 'n', 'n'),
@@ -449,7 +476,8 @@ public class LevenshteinInfoTest {
 													new Tuple2<Integer, Integer>(7, 7)
 												)
 										)
-								)
+								),
+							0
 					},
 					new Object[]{
 							Arrays.asList('w', 'o', 'r', 'd'),
@@ -478,7 +506,8 @@ public class LevenshteinInfoTest {
 													new Tuple2<Integer, Integer>(4, 4)
 												)
 										)
-								)
+								),
+							0
 					},
 					new Object[]{
 							Arrays.asList('a', 'b', 'b', 'c', 'b'),
@@ -510,7 +539,8 @@ public class LevenshteinInfoTest {
 													new Tuple2<Integer, Integer>(5, 5)
 												)
 										)
-								)
+								),
+							0
 					},
 					new Object[]{
 							Arrays.asList('a', 'a', 'h', 'o', 'j'),
@@ -543,7 +573,8 @@ public class LevenshteinInfoTest {
 													new Tuple2<Integer, Integer>(5, 6)
 												)
 										)
-								)
+								),
+							0
 					},
 					new Object[]{
 							Arrays.asList('n', 'e', 'j', 'n', 'e', 'z', 'p', 'r', 'a', 'v', 'd',
@@ -556,7 +587,7 @@ public class LevenshteinInfoTest {
 									Arrays.asList('n', 'e', 'j', 'n', 'e', 'z', 'p', 'r', 'a', 'v', 'd', 'ì', ' ', 'p', 'o', 'd', 'o', 'b', 'ò', 'o', 'v', 'á', 'v', 'a', 't', 'e', 'l', 'n', 'ì', 'j', 'š', 'í', 'h', 'o'),
 									Arrays.asList('n', 'e', ' ', 'n', 'e', 's', 'p', 'r', 'a', 'v', 'd', 'j', 'e', 'p', 'o', 'd', 'o', 'b', 'n', 'o', 'v', 'a', 'v', 'á', 't', 'e', 'l', 'n', 'ì', 'j', 'š', 'í', 'h', 'o'),
 									"Levenshtein distance",
-									"EEDEESEEEEEDIDSSEIDDEISSEEIIEEEEEEEEEE",
+								    "EEDEESEEEEESIEEEEESEESESEEEEEEEEEE", 
 									7,
 									new MatrixResultSet<>(
 											new Matrix<>(new Tuple2[][]{
@@ -610,22 +641,18 @@ public class LevenshteinInfoTest {
 													new Tuple2<>(9, 8),
 													new Tuple2<>(10, 9),
 													new Tuple2<>(11, 10),
-													new Tuple2<>(12, 10),
 													new Tuple2<>(12, 11),
-													new Tuple2<>(13, 11),
-													new Tuple2<>(14, 12),
-													new Tuple2<>(15, 13),
-													new Tuple2<>(16, 14),
-													new Tuple2<>(16, 15),
-													new Tuple2<>(17, 15),
-													new Tuple2<>(18, 15),
-													new Tuple2<>(19, 16),
-													new Tuple2<>(19, 17),
-													new Tuple2<>(20, 18),
-													new Tuple2<>(21, 19),
-													new Tuple2<>(22, 20),
-													new Tuple2<>(23, 21),
-													new Tuple2<>(23, 22),
+													new Tuple2<>(12, 12),
+													new Tuple2<>(13, 13),
+													new Tuple2<>(14, 14),
+													new Tuple2<>(15, 15),
+													new Tuple2<>(16, 16),
+													new Tuple2<>(17, 17),
+													new Tuple2<>(18, 18),
+													new Tuple2<>(19, 19),
+													new Tuple2<>(20, 20),
+													new Tuple2<>(21, 21),
+													new Tuple2<>(22, 22),
 													new Tuple2<>(23, 23),
 													new Tuple2<>(24, 24),
 													new Tuple2<>(25, 25),
@@ -639,12 +666,11 @@ public class LevenshteinInfoTest {
 													new Tuple2<>(33, 33)
 												)
 										)
-								)
+								),
+							0
 					}				
 				);
 	}
-	
-	
 	
 	private static Tuple2<Integer, Boolean> t(int i, boolean b){
 		return new Tuple2<>(i, b);
