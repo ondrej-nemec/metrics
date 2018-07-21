@@ -476,7 +476,7 @@ public class LevenshteinInfoTest {
 												)
 										)
 								),
-							8 // TODO not responce with distance
+							8 // not responce with distance
 					},
 					new Object[]{
 							Arrays.asList('w', 'o', 'r', 'd'),

@@ -3,6 +3,7 @@ package metricinfo;
 import java.util.ArrayList;
 import java.util.List;
 
+import exception.InvalidOpeationCostException;
 import structures.MatrixResultSet;
 import structures.ResultSet;
 import support.JaroValues;
@@ -24,6 +25,14 @@ public class JaroInfo<S> implements StructureMatrix<S, JaroValues>{
 	}
 	
 	public JaroInfo(final S empty, final double w1, final double w2, final double wt) {
+		if(w1 >= 1 || w1 <= 0)
+			throw new InvalidOpeationCostException(w1, "(0, 1)");
+		if(w2 >= 1 || w2 <= 0)
+			throw new InvalidOpeationCostException(w2, "(0, 1)");
+		if(wt >= 1 || wt <= 0)
+			throw new InvalidOpeationCostException(wt, "(0, 1)");
+		if(w1 + w2 + wt != 1)
+			throw new InvalidOpeationCostException(w1 + w2 + wt, "w1 + w2 + wt = 1");
 		this.w1 = w1;
 		this.w2 = w2;
 		this.wt = wt;
@@ -58,7 +67,7 @@ public class JaroInfo<S> implements StructureMatrix<S, JaroValues>{
 		return new ResultSet<>(
 					finalSequenceFrom,
 					finalSequenceTo,
-					"Jaro distance", //TODO dodat vzorec
+					"Jaro distance", //TODO add formula
 					operations,
 					distance,
 					new MatrixResultSet<>(

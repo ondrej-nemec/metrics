@@ -2,6 +2,7 @@ package metricinfo;
 
 import java.util.List;
 
+import exception.InvalidOpeationCostException;
 import structures.MatrixResultSet;
 import structures.ResultSet;
 import support.JaroValues;
@@ -17,6 +18,8 @@ public class JaroWinklerInfo<S> implements StructureMatrix<S, JaroValues>{
 	}
 	
 	public JaroWinklerInfo(final S empty, final double p){
+		if(p <= 0 || p >= 1)
+			throw new InvalidOpeationCostException(p, "(0, 1)");
 		this.p = p;
 		this.empty = empty;
 	}
@@ -33,7 +36,7 @@ public class JaroWinklerInfo<S> implements StructureMatrix<S, JaroValues>{
 		return new ResultSet<>(
 					jaro.getFinalSequenceFrom(),
 					jaro.getFinalSequenceTo(), 
-					"Jaro-Winkler distance", //TODO dodat vzorec
+					"Jaro-Winkler distance", //TODO add formula
 					jaro.getOperations(),
 					distance,
 					jaro.getStructure()

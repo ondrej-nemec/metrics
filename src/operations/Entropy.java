@@ -3,6 +3,7 @@ package operations;
 import java.util.ArrayList;
 import java.util.List;
 
+import exception.SequencesMustHaveSameLengthException;
 import support.Tuple2;
 import support.Tuple3;
 
@@ -17,7 +18,7 @@ public class Entropy<S> {
 	
 	public Entropy(List<List<S>> first, List<List<S>> second) {
 		if(first.size() != second.size())
-			throw new RuntimeException(); //TODO vlastni vyjimka
+			throw new SequencesMustHaveSameLengthException();
 		
 		this.tupleFrom = new ArrayList<>();
 		this.tupleTo = new ArrayList<>();
@@ -89,7 +90,7 @@ public class Entropy<S> {
 	private void createData(List<List<S>> from, List<List<S>> to){
 		for(int i = 0; i < from.size(); i++){
 			if(from.size() != to.size())
-				throw new RuntimeException(); //TODO vlastni vyjimka
+				throw new SequencesMustHaveSameLengthException();
 			for(int j = 0; j < from.get(i).size(); j++){
 				S f = from.get(i).get(j);
 				S t = to.get(i).get(j);

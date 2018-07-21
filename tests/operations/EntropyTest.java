@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import exception.SequencesMustHaveSameLengthException;
 import support.Tuple2;
 import support.Tuple3;
 
@@ -33,6 +34,30 @@ public class EntropyTest {
 				);
 	}
 	
+	@Test(expected=SequencesMustHaveSameLengthException.class)
+	public void testEntropyThrowsWhenSizeOfSequencesOfTwinsIsNotSame(){
+		new Entropy<>(
+				Arrays.asList(
+						Arrays.asList('a', 'h', 'o', 'j'),
+						Arrays.asList('j', 'a', 'k')
+					),
+				Arrays.asList(
+						Arrays.asList('c', 'a', 'u', ' ')
+						)
+			);
+	}
+	
+	@Test(expected=SequencesMustHaveSameLengthException.class)
+	public void testEntropyThrowWhenSizeOfSequencesIsNotSame(){
+		new Entropy<>(
+				Arrays.asList(
+						Arrays.asList('a', 'h', 'o', 'j')
+					),
+				Arrays.asList(
+						Arrays.asList('c', 'a', 'u')
+						)
+			);
+	}
 	
 	@Test
 	public void testGetFonemsFromWorks(){

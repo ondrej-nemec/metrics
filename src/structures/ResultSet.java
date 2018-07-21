@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
+import exception.SequencesMustHaveSameLengthException;
+
 /**
  * Result of MetricInfo calculation
  * Box for data
@@ -16,11 +18,6 @@ public class ResultSet<S, T> implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
-	//TODO upravit getOpDess..... bude asi dostavat translator
-		//mozna by mohl byt schopny final vytvorit na zaklade operations...
-		//funkci pro vyznaceny operaci - dostane funkci a upravy retezce - treti dvojice retezcu, cacheovane
-		//prejmenovat operations, description opeDes...
-		
 	private final List<S> finalSequenceFrom;
 	private final List<S> finalSequenceTo;
 	private final Number distance;
@@ -52,6 +49,19 @@ public class ResultSet<S, T> implements Serializable{
 		return finalSequenceTo;
 	}
 	
+	public String getDescription() {
+		return description;
+	}
+	public String getOperations() {
+		return operations;
+	}
+	public Number getDistance() {
+		return distance;
+	}
+	public T getStructure(){
+		return structure;
+	}
+		
 	public List<S> getFinalSequenceFrom(
 			Function<S, S> equals,
 			Function<S, S> deletion,
@@ -68,20 +78,7 @@ public class ResultSet<S, T> implements Serializable{
 			Function<S, S> transposition) {
 		return showOperations(equals, deletion, insertion, substitution, transposition, false);
 	}
-	
-	public String getDescription() {
-		return description;
-	}
-	public String getOperations() {
-		return operations;
-	}
-	public Number getDistance() {
-		return distance;
-	}
-	public T getStructure(){
-		return structure;
-	}
-	
+
 	
 	@Override
 	public String toString() {
@@ -124,8 +121,8 @@ public class ResultSet<S, T> implements Serializable{
 			){
 		if(finalSequenceFrom.size() != finalSequenceTo.size()
 			&& finalSequenceTo.size() != operations.length())
-			throw new RuntimeException();// TODO vlastni vyjimka
-		List<S> aux = (first)?finalSequenceFrom: finalSequenceTo;
+			throw new SequencesMustHaveSameLengthException();
+		List<S> aux = (first) ? finalSequenceFrom : finalSequenceTo;
 		List<S> result = new ArrayList<>();
 		for(int i = 0; i < aux.size(); i++) {
 			switch(operations.charAt(i)) {
@@ -145,7 +142,6 @@ public class ResultSet<S, T> implements Serializable{
 						);
 				break;
 			case 'T':
-
 				result.add(
 						transposition.apply(aux.get(i))
 						);
@@ -159,7 +155,6 @@ public class ResultSet<S, T> implements Serializable{
 				break;
 			}
 		}
-		
 		return result;
 	}
 	
@@ -219,6 +214,4 @@ public class ResultSet<S, T> implements Serializable{
 		}
 		return result;
 	}
-	
-
 }

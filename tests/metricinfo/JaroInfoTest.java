@@ -39,15 +39,15 @@ public class JaroInfoTest {
 	
 	@Test(expected=InvalidOpeationCostException.class)
 	public void testConstructorThrowWhenCostIsNotPositive(){
-		new JaroInfo<>(' ', 0, -1, 0);
+		new JaroInfo<>(' ', 0, 1, 0);
 	}
 	
 	
 	@Test
 	public void testWeightDistance(){
 		ResultSet<Character, MatrixResultSet<JaroValues>> res = 
-				new JaroInfo<>(' ', 1/5.0, 1/5.0, 1/5.0).calculate(from, to);
-		assertEquals(weightDistance, res.getDistance());
+				new JaroInfo<>(' ', 1/5.0, 2/5.0, 2/5.0).calculate(from, to);
+		assertEquals(weightDistance, res.getDistance().doubleValue(), 0.00001);
 	}
 
 	@Test
@@ -83,25 +83,10 @@ public class JaroInfoTest {
 	
 	@Test
 	public void testCalculateStructureIndexes(){
-	/*
-		assertEquals(
-				expected.getStructure().getIndexes().size(),
-				actual.getStructure().getIndexes().size()
-			);
-		
-		for(int i = 0; i < expected.getStructure().getIndexes().size(); i++){
-			assertEquals(
-				expected.getStructure().getIndexes().get(i),
-				actual.getStructure().getIndexes().get(i)
-			);
-		}
-		/*/
 		assertEquals(
 				expected.getStructure().getIndexes(),
 				actual.getStructure().getIndexes()
-			);
-		//*/
-		
+			);		
 	}
 
 	@Parameters
@@ -137,7 +122,7 @@ public class JaroInfoTest {
 														)
 											)
 								),
-							0
+							1.0
 					},
 					new Object[]{
 							Arrays.asList('s', 'l', 'o', 'v', 'o'),
@@ -221,7 +206,7 @@ public class JaroInfoTest {
 													)
 										)
 								),
-							0
+							0.84
 					},
 					new Object[]{
 							Arrays.asList('s', 'l', 'o', 'v', 'o'),
@@ -251,7 +236,7 @@ public class JaroInfoTest {
 													)
 										)
 								),
-							0
+							0.88
 					},
 					new Object[]{
 							Arrays.asList('s', 'l', 'o', 'v', 'a'),
@@ -314,7 +299,7 @@ public class JaroInfoTest {
 													)
 										)
 								),
-							0
+							0.63333333333
 					},
 					new Object[]{
 							Arrays.asList('k', 'o', 'l', 'o'),
@@ -342,7 +327,7 @@ public class JaroInfoTest {
 													)
 										)
 								),
-							0
+							0.816666666666
 					},
 					new Object[]{
 							Arrays.asList('n', 'e', 'n', 'í'),
@@ -374,7 +359,7 @@ public class JaroInfoTest {
 													)
 										)
 								),
-							0
+							0.633333333333333
 					},
 					new Object[]{
 							Arrays.asList('h', 'o', 'u', 's', 'k', 'a'),
@@ -408,7 +393,7 @@ public class JaroInfoTest {
 													)
 										)
 								),
-							0
+							0.8
 					},
 					new Object[]{
 							Arrays.asList('k', 'o', 'o', 'l', 'i', 'p', 'a', 'n'),
@@ -447,7 +432,7 @@ public class JaroInfoTest {
 													)
 										)
 								),
-							0
+							0.775
 					},
 					new Object[]{
 							Arrays.asList('k', 'o', 'p', 'l', 'i', 'n', 'n'),
@@ -483,7 +468,7 @@ public class JaroInfoTest {
 													)
 										)
 								),
-							0
+							0.748571
 					},
 					new Object[]{
 							Arrays.asList('w', 'o', 'r', 'd'),
@@ -546,7 +531,7 @@ public class JaroInfoTest {
 													)
 										)
 								),
-							0
+							0.88
 					},
 					new Object[]{
 							Arrays.asList('a', 'a', 'h', 'o', 'j'),
@@ -578,7 +563,7 @@ public class JaroInfoTest {
 													)
 										)
 								),
-							0
+							0.826666666666
 					},
 					new Object[]{
 							Arrays.asList('n', 'e', 'j', 'n', 'e', 'z', 'p', 'r', 'a', 'v', 'd',
@@ -674,7 +659,7 @@ public class JaroInfoTest {
 												)
 										)
 								),
-							0
+							0.89090
 					}				
 				);
 	}
