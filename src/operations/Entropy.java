@@ -89,7 +89,7 @@ public class Entropy<S> {
 	
 	private void createData(List<List<S>> from, List<List<S>> to){
 		for(int i = 0; i < from.size(); i++){
-			if(from.size() != to.size())
+			if(from.get(i).size() != to.get(i).size())
 				throw new SequencesMustHaveSameLengthException();
 			for(int j = 0; j < from.get(i).size(); j++){
 				S f = from.get(i).get(j);
