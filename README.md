@@ -10,7 +10,7 @@
 	* [Collections](#collections)
 
 ## Description
-Library for edit distance calculating. Allowed generic sequences. Provide classes for easiest work with big dataset. Supported metrics: Levenshtein distance, Hamming distance, Jaro distance, Jaro-Winkler distance. Each metric could be calculate in 'quick' or 'more-info' mode. As a bonus this library calculate Conditional Entropy
+Library for edit distance calculating. Allowed generic sequences. Provide classes for easiest work with big dataset. Supported metrics: *Levenshtein distance* , *Hamming distance* , *Jaro distance* , *Jaro-Winkler distance* . Each metric could be calculate in 'quick' or 'more-info' mode. As a bonus this library calculate *Conditional Entropy*
 ## How to install
 **Download:**
 <a href="https://ondrej-nemec.github.io/jars/metrics-3.0.jar" target=_blank>Download jar</a>
@@ -26,7 +26,7 @@ Library for edit distance calculating. Allowed generic sequences. Provide classe
 ## Usage
 **Note:** in this text, generic type 'S' is always type of what you compare - if you wont compare Strings (words), you will use List<Character> 
 ### Quick mode
-Each metrics in quick mode has method:
+Each metric in quick mode has method:
 ```java
 Number calculate(List<S> sequenceFrom, List<S> sequenceTo);
 ```
