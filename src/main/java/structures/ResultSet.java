@@ -10,7 +10,7 @@ import exception.SequencesMustHaveSameLengthException;
 /**
  * Result of MetricInfo calculation
  * Box for data
- * @author Ond�ej N�mec
+ * @author Ondrej Nemec
  *
  * @param <S, T>
  */

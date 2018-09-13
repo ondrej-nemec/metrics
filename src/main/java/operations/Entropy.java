@@ -45,7 +45,6 @@ public class Entropy<S> {
 		return entropyTo;
 	}
 
-
 	public List<Tuple2<S, Integer>> getFonemsFromWithCount() {
 		return tupleFrom;
 	}
@@ -138,7 +137,5 @@ public class Entropy<S> {
 				return i;
 		}
 		return -1;
-	}
-
-	
+	}	
 }
