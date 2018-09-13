@@ -8,7 +8,6 @@
 	* [More-info mode](#more-info-mode)
 		* [Result set](#result-set)
 	* [Entropy](#entropy)
-	* [Collections](#collections)
 
 ## Description
 Library for edit distance calculating. Allowed generic sequences. Provide classes for easiest work with big dataset. Supported metrics: *Levenshtein distance*, *Hamming distance*, *Jaro distance*, *Jaro-Winkler distance*. Each metric could be calculate in 'quick' or 'more-info' mode. As a bonus this library calculate *Conditional Entropy*.
@@ -83,4 +82,3 @@ public List<Tuple2<S, Integer>> getFonemsToWithCount();
 public List<Tuple3<S, S, Integer>> getFonemsTwinsWithCounts();
 ```
 
-### Collections
