@@ -12,9 +12,9 @@
 ## Description
 Library for edit distance calculating. Allowed generic sequences. Provide classes for easiest work with big dataset. Supported metrics: *Levenshtein distance*, *Hamming distance*, *Jaro distance*, *Jaro-Winkler distance*. Each metric could be calculate in 'quick' or 'more-info' mode. As a bonus this library calculate *Conditional Entropy*.
 ## How to install
-**Download:**
+### Download:
 <a href="https://ondrej-nemec.github.io/download/metrics-3.0.jar" target=_blank>Download jar</a>
-**Maven:**
+### Maven:
 ```xml
 <dependency>
   <groupId>io.github.ondrej-nemec.metrics</groupId>
