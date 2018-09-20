@@ -9,24 +9,16 @@ import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameters;
 
-@RunWith(Parameterized.class)
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
+
+@RunWith(JUnitParamsRunner.class)
 public class JaroQuickTest {
 
-	private Number distance;
-	private List<Character> from;
-	private List<Character> to;
-	
-	public JaroQuickTest(List<Character> from, List<Character> to, Number distance) {
-		this.from = from;
-		this.to = to;
-		this.distance = distance;
-	}
-
 	@Test
-	public void testCalculateWork() {
+	@Parameters
+	public void testCalculateWorks(List<Character> from, List<Character> to, Number distance) {
 		JaroQuick<Character> dis = new JaroQuick<>();
 		assertEquals(
 				distance,
@@ -34,8 +26,7 @@ public class JaroQuickTest {
 			);
 	}
 
-	@Parameters
-	public static Collection<Object[]> dataProvider() {
+	public Collection<Object[]> parametersForTestCalculateWorks() {
 		return Arrays.asList(
 					new Object[]{
 							Arrays.asList('s', 't', 'r', 'i', 'n', 'g'),

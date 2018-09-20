@@ -4,42 +4,39 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameters;
 
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
 import structures.ResultSet;
 
-@RunWith(Parameterized.class)
+@RunWith(JUnitParamsRunner.class)
 public class ResultSetTest {
 	
-	private ResultSet<Character, String> resultSet;
-	private String operationsDescription;
-	List<Character> showFrom;
-	List<Character> showTo;
-	
-	public ResultSetTest(
+	@Test
+	@Parameters
+	public void testGetOperationsDescriptionWorks(
 			ResultSet<Character, String> resultSet,
 			String operationsDescription,
 			List<Character> showFrom,
 			List<Character> showTo){
-		this.resultSet = resultSet;
-		this.operationsDescription = operationsDescription;
-		this.showFrom = showFrom;
-		this.showTo = showTo;
-	}
-	
-	@Test
-	public void testGetOperationsDescriptionWorks(){
 		assertEquals(operationsDescription, resultSet.getOperationsDescription());
 	}
 	
+	public Object[] parametersForTestGetOperationsDescriptionWorks() {
+		return dataProvider();
+	}
+	
 	@Test
-	public void testShowOperationsWorks() {
+	@Parameters
+	public void testShowOperationsWorks(
+			ResultSet<Character, String> resultSet,
+			String operationsDescription,
+			List<Character> showFrom,
+			List<Character> showTo) {
 		assertEquals(
 				showFrom,
 				resultSet.showOperations(
@@ -64,9 +61,12 @@ public class ResultSetTest {
 				);
 	}
 	
-	@Parameters
-	public static Collection<Object[]> dataProvider() {
-		return Arrays.asList(
+	public Object[] parametersForTestShowOperationsWorks() {
+		return dataProvider();
+	}
+	
+	public Object[] dataProvider() {
+		return new Object[]{
 				new Object[]{
 						getResultSet(
 								new ArrayList<>(),
@@ -156,11 +156,11 @@ public class ResultSetTest {
 						Arrays.asList('s', 'l', 'o', 'v', 'o'),
 						Arrays.asList('s', 'l', '-', 'v', '-'),
 				}
-			);
+		};
 	}
 	
 	
-	private static ResultSet<Character, String> getResultSet(
+	private ResultSet<Character, String> getResultSet(
 			final List<Character> from, final List<Character> to, final String operations){
 		return new ResultSet<>(
 				from,

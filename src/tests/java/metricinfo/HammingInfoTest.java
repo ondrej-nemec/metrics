@@ -3,34 +3,19 @@ package metricinfo;
 import static org.junit.Assert.*;
 
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameters;
 
 import exception.InvalidOpeationCostException;
 import exception.SequencesMustHaveSameLengthException;
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
 import structures.ResultSet;
 
-@RunWith(Parameterized.class)
+@RunWith(JUnitParamsRunner.class)
 public class HammingInfoTest {
-
-	private ResultSet<Character, String> expected;
-	private ResultSet<Character, String> actual;
-	private int weightDistance;
-	private List<Character> from, to;
-	
-	public HammingInfoTest(List<Character> from, List<Character> to, ResultSet<Character, String> result,
-			int weightDistance) {
-		this.expected = result;
-		this.actual = new HammingInfo<Character>().calculate(from, to);
-		this.weightDistance = weightDistance;
-		this.from = from;
-		this.to = to;
-	}
 
 	@Test(expected=InvalidOpeationCostException.class)
 	public void testConstructorThrowWhenCostIsNotPositive(){
@@ -44,42 +29,75 @@ public class HammingInfoTest {
 	}
 	
 	@Test
-	public void testWeightDistance(){
+	@Parameters
+	public void testWeightDistance(
+			List<Character> from, List<Character> to, ResultSet<Character, String> result, int weightDistance){
 		ResultSet<Character, String> res = 
 				new HammingInfo<Character>(2).calculate(from, to);
 		assertEquals(weightDistance, res.getDistance());
-	}	
+	}
+	
+	public Object[] parametersForTestWeightDistance() {
+		return dataProvider();
+	}
 
 	@Test
-	public void testCalculateFinalSequence() {
+	@Parameters
+	public void testCalculateFinalSequence(
+			List<Character> from, List<Character> to, ResultSet<Character, String> result, int weightDistance) {
+		ResultSet<Character, String> metric = new HammingInfo<Character>().calculate(from, to);
 		assertEquals(
-				expected.getFinalSequenceFrom(), 
-				actual.getFinalSequenceFrom()
+				result.getFinalSequenceFrom(), 
+				metric.getFinalSequenceFrom()
 			);		
 		assertEquals(
-				expected.getFinalSequenceTo(),
-				actual.getFinalSequenceTo()
+				result.getFinalSequenceTo(),
+				metric.getFinalSequenceTo()
 			);
 	}
 	
-	@Test
-	public void testCalculateOperations(){
-		assertEquals(expected.getOperations(), actual.getOperations());
+	public Object[] parametersForTestCalculateFinalSequence() {
+		return dataProvider();
 	}
 	
 	@Test
-	public void testCalculateDistance(){
-		assertEquals(expected.getDistance(), actual.getDistance());
+	@Parameters
+	public void testCalculateOperations(
+			List<Character> from, List<Character> to, ResultSet<Character, String> result, int weightDistance){
+		ResultSet<Character, String> metric = new HammingInfo<Character>().calculate(from, to);
+		assertEquals(result.getOperations(), metric.getOperations());
+	}
+	
+	public Object[] parametersForTestCalculateOperations() {
+		return dataProvider();
 	}
 	
 	@Test
-	public void testCalculateStructure(){
-		assertEquals(expected.getStructure(), actual.getStructure());
+	@Parameters
+	public void testCalculateDistance(
+			List<Character> from, List<Character> to, ResultSet<Character, String> result, int weightDistance){
+		ResultSet<Character, String> metric = new HammingInfo<Character>().calculate(from, to);
+		assertEquals(result.getDistance(), metric.getDistance());
+	}
+	
+	public Object[] parametersForTestCalculateDistance() {
+		return dataProvider();
+	}
+	
+	@Test
+	@Parameters
+	public void testCalculateStructure(
+			List<Character> from, List<Character> to, ResultSet<Character, String> result, int weightDistance){
+		ResultSet<Character, String> metric = new HammingInfo<Character>().calculate(from, to);
+		assertEquals(result.getStructure(), metric.getStructure());
+	}
+	
+	public Object[] parametersForTestCalculateStructure() {
+		return dataProvider();
 	}
 
-	@Parameters
-	public static Collection<Object[]> dataProvider() {
-		return Arrays.asList(
+	private Object[] dataProvider() {
+		return new Object[] {
 					new Object[]{
 							Arrays.asList('s', 't', 'r', 'i', 'n', 'g'),
 							Arrays.asList('s', 't', 'r', 'i', 'n', 'g'),
@@ -165,11 +183,11 @@ public class HammingInfoTest {
 								),
 							26
 					}				
-				);
+		};
 	}
 
 
-	private static Object makeResultSet(List<Character> from, List<Character> to, String operations, int distance) {
+	private ResultSet<Character, String> makeResultSet(List<Character> from, List<Character> to, String operations, int distance) {
 		return new ResultSet<>(
 				from, 
 				to,

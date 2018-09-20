@@ -3,38 +3,22 @@ package metricinfo;
 import static org.junit.Assert.*;
 
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameters;
 
 import exception.InvalidOpeationCostException;
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
 import structures.MatrixResultSet;
 import structures.ResultSet;
 import support.Matrix;
 import support.Tuple2;
 
-@RunWith(Parameterized.class)
+@RunWith(JUnitParamsRunner.class)
 public class LevenshteinInfoTest {
-
-	private ResultSet<Character, MatrixResultSet<Tuple2<Integer, Boolean>>> expected;
-	private ResultSet<Character, MatrixResultSet<Tuple2<Integer, Boolean>>> actual;
-	private int weightDistance;
-	private List<Character> from, to;
-	
-	public LevenshteinInfoTest(List<Character> from, List<Character> to,
-			ResultSet<Character, MatrixResultSet<Tuple2<Integer, Boolean>>> result,
-			int weightDistance) {
-		this.expected = result;
-		this.actual = new LevenshteinInfo<>(' ').calculate(from, to);
-		this.weightDistance = weightDistance;
-		this.from = from;
-		this.to = to;
-	}
 
 	@Test(expected=InvalidOpeationCostException.class)
 	public void testConstructorThrowWhenCostIsNotPositive(){
@@ -42,47 +26,105 @@ public class LevenshteinInfoTest {
 	}
 	
 	@Test
-	public void testWeightDistance(){
+	@Parameters
+	public void testWeightDistance(
+			List<Character> from, List<Character> to,
+			ResultSet<Character, MatrixResultSet<Tuple2<Integer, Boolean>>> result,
+			int weightDistance){
 		ResultSet<Character, MatrixResultSet<Tuple2<Integer, Boolean>>> res = 
 				new LevenshteinInfo<>(' ', 2, 2, 2).calculate(from, to);
 		assertEquals(weightDistance, res.getDistance());
 	}
 	
-	@Test
-	public void testCalculateFinalSequence() {
-		assertEquals(expected.getFinalSequenceFrom(), actual.getFinalSequenceFrom());
-		assertEquals(expected.getFinalSequenceTo(), actual.getFinalSequenceTo());
+	public Object[] parametersForTestWeightDistance() {
+		return dataProvider();
 	}
 	
 	@Test
-	public void testCalculateOperations(){
-		assertEquals(expected.getOperations(), actual.getOperations());
+	@Parameters
+	public void testCalculateFinalSequence(
+			List<Character> from, List<Character> to,
+			ResultSet<Character, MatrixResultSet<Tuple2<Integer, Boolean>>> result,
+			int weightDistance) {
+		ResultSet<Character, MatrixResultSet<Tuple2<Integer, Boolean>>> actual =
+				new LevenshteinInfo<>(' ').calculate(from, to);
+		assertEquals(result.getFinalSequenceFrom(), actual.getFinalSequenceFrom());
+		assertEquals(result.getFinalSequenceTo(), actual.getFinalSequenceTo());
+	}
+	
+	public Object[] parametersForTestCalculateFinalSequence() {
+		return dataProvider();
 	}
 	
 	@Test
-	public void testCalculateDistance(){
-		assertEquals(expected.getDistance(), actual.getDistance());
+	@Parameters
+	public void testCalculateOperations(
+			List<Character> from, List<Character> to,
+			ResultSet<Character, MatrixResultSet<Tuple2<Integer, Boolean>>> result,
+			int weightDistance){
+		ResultSet<Character, MatrixResultSet<Tuple2<Integer, Boolean>>> actual =
+			new LevenshteinInfo<>(' ').calculate(from, to);
+		assertEquals(result.getOperations(), actual.getOperations());
+	}
+	
+	public Object[] parametersForTestCalculateOperations() {
+		return dataProvider();
 	}
 	
 	@Test
-	public void testCalculateStructureMatrix(){
+	@Parameters
+	public void testCalculateDistance(
+			List<Character> from, List<Character> to,
+			ResultSet<Character, MatrixResultSet<Tuple2<Integer, Boolean>>> result,
+			int weightDistance){
+		ResultSet<Character, MatrixResultSet<Tuple2<Integer, Boolean>>> actual =
+				new LevenshteinInfo<>(' ').calculate(from, to);
+		assertEquals(result.getDistance(), actual.getDistance());
+	}
+	
+	public Object[] parametersForTestCalculateDistance() {
+		return dataProvider();
+	}
+	
+	@Test
+	@Parameters
+	public void testCalculateStructureMatrix(
+			List<Character> from, List<Character> to,
+			ResultSet<Character, MatrixResultSet<Tuple2<Integer, Boolean>>> result,
+			int weightDistance){
+		ResultSet<Character, MatrixResultSet<Tuple2<Integer, Boolean>>> actual =
+				new LevenshteinInfo<>(' ').calculate(from, to);
 		assertEquals(
-				expected.getStructure().getMatrix(),
+				result.getStructure().getMatrix(),
 				actual.getStructure().getMatrix()
 			);
 	}
 	
+	public Object[] parametersForTestCalculateStructureMatrix() {
+		return dataProvider();
+	}
+	
 	@Test
-	public void testCalculateStructureIndexes(){
+	@Parameters
+	public void testCalculateStructureIndexes(
+			List<Character> from, List<Character> to,
+			ResultSet<Character, MatrixResultSet<Tuple2<Integer, Boolean>>> result,
+			int weightDistance){
+		ResultSet<Character, MatrixResultSet<Tuple2<Integer, Boolean>>> actual =
+				new LevenshteinInfo<>(' ').calculate(from, to);
 		assertEquals(
-				expected.getStructure().getIndexes(),
+				result.getStructure().getIndexes(),
 				actual.getStructure().getIndexes()
 			);
 	}
-
-	@Parameters
-	public static Collection<Object[]> dataProvider() {
-		return Arrays.asList(
+	
+	public Object[] parametersForTestCalculateStructureIndexes() {
+		return dataProvider();
+	}
+	
+	
+	public Object[] dataProvider() {
+		return new Object[]{
 					new Object[]{
 							Arrays.asList('s', 't', 'r', 'i', 'n', 'g'),
 							Arrays.asList('s', 't', 'r', 'i', 'n', 'g'),
@@ -668,10 +710,10 @@ public class LevenshteinInfoTest {
 								),
 							14
 					}				
-				);
+		};
 	}
 	
-	private static Tuple2<Integer, Boolean> t(int i, boolean b){
+	private Tuple2<Integer, Boolean> t(int i, boolean b){
 		return new Tuple2<>(i, b);
 	}
 }

@@ -3,38 +3,22 @@ package metricinfo;
 import static org.junit.Assert.*;
 
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameters;
 
 import exception.InvalidOpeationCostException;
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
 import structures.MatrixResultSet;
 import structures.ResultSet;
 import support.JaroValues;
 
 
-@RunWith(Parameterized.class)
+@RunWith(JUnitParamsRunner.class)
 public class JaroWinklerInfoTest {
-
-	private Double expected;
-	private Double actual;
-	private double weightDistance;
-	private List<Character> from, to;
-	
-	public JaroWinklerInfoTest(
-			List<Character> from, List<Character> to, double distance,
-			double weightDistance) {
-		this.expected = distance;
-		this.actual = new JaroWinklerInfo<>(' ').calculate(from, to).getDistance().doubleValue();
-		this.weightDistance = weightDistance;
-		this.from = from;
-		this.to = to;
-	}
 	
 	@Test(expected=InvalidOpeationCostException.class)
 	public void testConstructorThrowWhenCostIsNotPositive(){
@@ -42,20 +26,34 @@ public class JaroWinklerInfoTest {
 	}
 	
 	@Test
-	public void testWeightDistance(){
+	@Parameters
+	public void testWeightDistance(
+			List<Character> from, List<Character> to, double distance, double weightDistance){
 		ResultSet<Character, MatrixResultSet<JaroValues>> res = 
 				new JaroWinklerInfo<>(' ', 0.2).calculate(from, to);
 		assertEquals(weightDistance, res.getDistance().doubleValue(), 0.00001);
 	}
 	
-	@Test
-	public void testCalculateDistance(){
-		assertEquals(expected, actual);
+	
+	public Object[] parametersForTestWeightDistance() {
+		return dataProvider();
 	}
-		
+	
+	@Test
 	@Parameters
-	public static Collection<Object[]> dataProvider() {
-		return Arrays.asList(
+	public void testCalculateDistance(
+			List<Character> from, List<Character> to, double distance, double weightDistance){
+		ResultSet<Character, MatrixResultSet<JaroValues>> res = 
+				new JaroWinklerInfo<>(' ').calculate(from, to);
+		assertEquals(distance, res.getDistance());
+	}
+	
+	public Object[] parametersForTestCalculateDistance() {
+		return dataProvider();
+	}
+	
+	public Object[] dataProvider() {
+		return new Object[]{
 					new Object[]{
 							Arrays.asList('s', 't', 'r', 'i', 'n', 'g'),
 							Arrays.asList('s', 't', 'r', 'i', 'n', 'g'),
@@ -156,6 +154,6 @@ public class JaroWinklerInfoTest {
 							0.903030303030303,
 							0.927272727
 					}				
-				);
+		};
 	}
 }

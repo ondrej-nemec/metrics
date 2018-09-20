@@ -3,39 +3,23 @@ package metricinfo;
 import static org.junit.Assert.*;
 
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameters;
 
 import exception.InvalidOpeationCostException;
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
 import structures.MatrixResultSet;
 import structures.ResultSet;
 import support.JaroValues;
 import support.Matrix;
 import support.Tuple2;
 
-@RunWith(Parameterized.class)
+@RunWith(JUnitParamsRunner.class)
 public class JaroInfoTest {
-
-	private ResultSet<Character, MatrixResultSet<JaroValues>> expected;
-	private ResultSet<Character, MatrixResultSet<JaroValues>> actual;
-	private double weightDistance;
-	private List<Character> from, to;
-	
-	public JaroInfoTest(
-			List<Character> from, List<Character> to, ResultSet<Character, MatrixResultSet<JaroValues>> result,
-			double weightDistance) {
-		this.expected = result;
-		this.actual = new JaroInfo<>(' ').calculate(from, to);
-		this.weightDistance = weightDistance;
-		this.from = from;
-		this.to = to;
-	}
 	
 	@Test(expected=InvalidOpeationCostException.class)
 	public void testConstructorThrowWhenCostIsNotPositive(){
@@ -44,19 +28,35 @@ public class JaroInfoTest {
 	
 	
 	@Test
-	public void testWeightDistance(){
+	@Parameters
+	public void testWeightDistance(
+			List<Character> from, List<Character> to, ResultSet<Character, MatrixResultSet<JaroValues>> result, double weightDistance){
 		ResultSet<Character, MatrixResultSet<JaroValues>> res = 
 				new JaroInfo<>(' ', 1/5.0, 2/5.0, 2/5.0).calculate(from, to);
 		assertEquals(weightDistance, res.getDistance().doubleValue(), 0.00001);
 	}
+	
+	public Object[] parametersForTestWeightDistance() {
+		return dataProvider();
+	}
 
 	@Test
-	public void testCalculateDistance(){
+	@Parameters
+	public void testCalculateDistance(
+			List<Character> from, List<Character> to, ResultSet<Character, MatrixResultSet<JaroValues>> expected, double weightDistance){
+		ResultSet<Character, MatrixResultSet<JaroValues>> actual = new JaroInfo<>(' ').calculate(from, to);
 		assertEquals(expected.getDistance(), actual.getDistance());
 	}
 	
+	public Object[] parametersForTestCalculateDistance() {
+		return dataProvider();
+	}
+	
 	@Test
-	public void testCalculateFinalSequence() {
+	@Parameters
+	public void testCalculateFinalSequence(
+			List<Character> from, List<Character> to, ResultSet<Character, MatrixResultSet<JaroValues>> expected, double weightDistance) {
+		ResultSet<Character, MatrixResultSet<JaroValues>> actual = new JaroInfo<>(' ').calculate(from, to);
 		assertEquals(
 				expected.getFinalSequenceFrom(), 
 				actual.getFinalSequenceFrom()
@@ -67,31 +67,54 @@ public class JaroInfoTest {
 			);
 	}
 	
+	public Object[] parametersForTestCalculateFinalSequence() {
+		return dataProvider();
+	}
+		
 	@Test
-	public void testCalculateOperations(){
+	@Parameters
+	public void testCalculateOperations(
+			List<Character> from, List<Character> to, ResultSet<Character, MatrixResultSet<JaroValues>> expected, double weightDistance){
+		ResultSet<Character, MatrixResultSet<JaroValues>> actual = new JaroInfo<>(' ').calculate(from, to);
 		assertEquals(expected.getOperations(), actual.getOperations());
 	}
 	
+	public Object[] parametersForTestCalculateOperations() {
+		return dataProvider();
+	}	
 	
 	@Test
-	public void testCalculateStructureMatrix(){
+	@Parameters
+	public void testCalculateStructureMatrix(
+			List<Character> from, List<Character> to, ResultSet<Character, MatrixResultSet<JaroValues>> expected, double weightDistance){
+		ResultSet<Character, MatrixResultSet<JaroValues>> actual = new JaroInfo<>(' ').calculate(from, to);
 		assertEquals(
 				expected.getStructure().getMatrix(),
 				actual.getStructure().getMatrix()
 			);
 	}
 	
+	public Object[] parametersForTestCalculateStructureMatrix() {
+		return dataProvider();
+	}
+	
 	@Test
-	public void testCalculateStructureIndexes(){
+	@Parameters
+	public void testCalculateStructureIndexes(
+			List<Character> from, List<Character> to, ResultSet<Character, MatrixResultSet<JaroValues>> expected, double weightDistance){
+		ResultSet<Character, MatrixResultSet<JaroValues>> actual = new JaroInfo<>(' ').calculate(from, to);
 		assertEquals(
 				expected.getStructure().getIndexes(),
 				actual.getStructure().getIndexes()
 			);		
 	}
-
-	@Parameters
-	public static Collection<Object[]> dataProvider() {
-		return Arrays.asList(
+	
+	public Object[] parametersForTestCalculateStructureIndexes() {
+		return dataProvider();
+	}
+	
+	public Object[] dataProvider() {
+		return new Object[]{
 					new Object[]{
 							Arrays.asList('s', 't', 'r', 'i', 'n', 'g'),
 							Arrays.asList('s', 't', 'r', 'i', 'n', 'g'),
@@ -661,6 +684,6 @@ public class JaroInfoTest {
 								),
 							0.89090
 					}				
-				);
+		};
 	}
 }

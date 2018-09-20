@@ -8,23 +8,13 @@ import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameters;
 
 import exception.SequencesMustHaveSameLengthException;
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
 
-@RunWith(Parameterized.class)
+@RunWith(JUnitParamsRunner.class)
 public class HammingQuickTest {
-
-	private Number distance;
-	private List<Character> from;
-	private List<Character> to;
-	
-	public HammingQuickTest(List<Character> from, List<Character> to, Number distance) {
-		this.from = from;
-		this.to = to;
-		this.distance = distance;
-	}
 	
 	@Test(expected=SequencesMustHaveSameLengthException.class)
 	public void testCalculateThrowsWhenInvalidInput(){
@@ -33,7 +23,8 @@ public class HammingQuickTest {
 	}
 	
 	@Test
-	public void testCalculateWork() {
+	@Parameters
+	public void testCalculateWorks(List<Character> from, List<Character> to, Number distance) {
 		HammingQuick<Character> dis = new HammingQuick<>();
 		assertEquals(
 				distance,
@@ -41,8 +32,7 @@ public class HammingQuickTest {
 			);
 	}
 
-	@Parameters
-	public static Collection<Object[]> dataProvider() {
+	public Collection<Object[]> parametersForTestCalculateWorks() {
 		return Arrays.asList(
 					new Object[]{
 							Arrays.asList('s', 't', 'r', 'i', 'n', 'g'),
