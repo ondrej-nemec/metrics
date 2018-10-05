@@ -1,7 +1,7 @@
 # Metrics
 
 [![](https://jitpack.io/v/ondrej-nemec/metrics.svg)](https://jitpack.io/#ondrej-nemec/metrics)
-[![MIT License](http://img.shields.io/badge/license-MIT-green.svg) ](https://github.com/ondrej-nemec/metrics/LICENSE)
+[![MIT License](http://img.shields.io/badge/license-MIT-green.svg) ](https://github.com/ondrej-nemec/metrics/blob/master/LICENSE)
 
 * [Description](#description)
 * [Get library](#how-to-install)
