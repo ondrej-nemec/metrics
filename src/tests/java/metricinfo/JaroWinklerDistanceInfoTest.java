@@ -18,11 +18,11 @@ import support.JaroValues;
 
 
 @RunWith(JUnitParamsRunner.class)
-public class JaroWinklerInfoTest {
+public class JaroWinklerDistanceInfoTest {
 	
 	@Test(expected=InvalidOpeationCostException.class)
 	public void testConstructorThrowWhenCostIsNotPositive(){
-		new JaroWinklerInfo<>(' ', 1);
+		new JaroWinklerDistanceInfo<>(' ', 1);
 	}
 	
 	@Test
@@ -30,7 +30,7 @@ public class JaroWinklerInfoTest {
 	public void testWeightDistance(
 			List<Character> from, List<Character> to, double distance, double weightDistance){
 		ResultSet<Character, MatrixResultSet<JaroValues>> res = 
-				new JaroWinklerInfo<>(' ', 0.2).calculate(from, to);
+				new JaroWinklerDistanceInfo<>(' ', 0.2).calculate(from, to);
 		assertEquals(weightDistance, res.getDistance().doubleValue(), 0.00001);
 	}
 	
@@ -44,7 +44,7 @@ public class JaroWinklerInfoTest {
 	public void testCalculateDistance(
 			List<Character> from, List<Character> to, double distance, double weightDistance){
 		ResultSet<Character, MatrixResultSet<JaroValues>> res = 
-				new JaroWinklerInfo<>(' ').calculate(from, to);
+				new JaroWinklerDistanceInfo<>(' ').calculate(from, to);
 		assertEquals(distance, res.getDistance());
 	}
 	

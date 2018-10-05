@@ -15,16 +15,16 @@ import junitparams.Parameters;
 import structures.ResultSet;
 
 @RunWith(JUnitParamsRunner.class)
-public class HammingInfoTest {
+public class HammingDistanceInfoTest {
 
 	@Test(expected=InvalidOpeationCostException.class)
 	public void testConstructorThrowWhenCostIsNotPositive(){
-		new HammingInfo<Character>(0);
+		new HammingDistanceInfo<Character>(0);
 	}
 	
 	@Test(expected=SequencesMustHaveSameLengthException.class)
 	public void testCalculateThrowsWhenInvalidInput(){
-		HammingInfo<Character> h = new HammingInfo<Character>();
+		HammingDistanceInfo<Character> h = new HammingDistanceInfo<Character>();
 		h.calculate(Arrays.asList('a', 'b'), Arrays.asList('a'));
 	}
 	
@@ -33,7 +33,7 @@ public class HammingInfoTest {
 	public void testWeightDistance(
 			List<Character> from, List<Character> to, ResultSet<Character, String> result, int weightDistance){
 		ResultSet<Character, String> res = 
-				new HammingInfo<Character>(2).calculate(from, to);
+				new HammingDistanceInfo<Character>(2).calculate(from, to);
 		assertEquals(weightDistance, res.getDistance());
 	}
 	
@@ -45,7 +45,7 @@ public class HammingInfoTest {
 	@Parameters
 	public void testCalculateFinalSequence(
 			List<Character> from, List<Character> to, ResultSet<Character, String> result, int weightDistance) {
-		ResultSet<Character, String> metric = new HammingInfo<Character>().calculate(from, to);
+		ResultSet<Character, String> metric = new HammingDistanceInfo<Character>().calculate(from, to);
 		assertEquals(
 				result.getFinalSequenceFrom(), 
 				metric.getFinalSequenceFrom()
@@ -64,7 +64,7 @@ public class HammingInfoTest {
 	@Parameters
 	public void testCalculateOperations(
 			List<Character> from, List<Character> to, ResultSet<Character, String> result, int weightDistance){
-		ResultSet<Character, String> metric = new HammingInfo<Character>().calculate(from, to);
+		ResultSet<Character, String> metric = new HammingDistanceInfo<Character>().calculate(from, to);
 		assertEquals(result.getOperations(), metric.getOperations());
 	}
 	
@@ -76,7 +76,7 @@ public class HammingInfoTest {
 	@Parameters
 	public void testCalculateDistance(
 			List<Character> from, List<Character> to, ResultSet<Character, String> result, int weightDistance){
-		ResultSet<Character, String> metric = new HammingInfo<Character>().calculate(from, to);
+		ResultSet<Character, String> metric = new HammingDistanceInfo<Character>().calculate(from, to);
 		assertEquals(result.getDistance(), metric.getDistance());
 	}
 	
@@ -88,7 +88,7 @@ public class HammingInfoTest {
 	@Parameters
 	public void testCalculateStructure(
 			List<Character> from, List<Character> to, ResultSet<Character, String> result, int weightDistance){
-		ResultSet<Character, String> metric = new HammingInfo<Character>().calculate(from, to);
+		ResultSet<Character, String> metric = new HammingDistanceInfo<Character>().calculate(from, to);
 		assertEquals(result.getStructure(), metric.getStructure());
 	}
 	

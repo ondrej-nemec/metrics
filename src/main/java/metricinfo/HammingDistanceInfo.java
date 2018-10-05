@@ -6,15 +6,15 @@ import exception.InvalidOpeationCostException;
 import exception.SequencesMustHaveSameLengthException;
 import structures.ResultSet;
 
-public class HammingInfo<S> implements StructureString<S> {
+public class HammingDistanceInfo<S> implements StructureString<S> {
 
 	private final int costOfSubstitution;
 	
-	public HammingInfo() {
+	public HammingDistanceInfo() {
 		costOfSubstitution = 1;
 	}
 	
-	public HammingInfo(final int costOfSubstitution) {
+	public HammingDistanceInfo(final int costOfSubstitution) {
 		if(costOfSubstitution < 1)
 			throw new InvalidOpeationCostException(costOfSubstitution, "positive");
 		this.costOfSubstitution = costOfSubstitution;

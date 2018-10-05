@@ -2,21 +2,21 @@ package metricquick;
 
 import java.util.List;
 
-public class JaroWinklerQuick<S> implements MetricQuick<S> {
+public class JaroWinklerDistanceQuick<S> implements MetricQuick<S> {
 
 	private double p;
 	
-	public JaroWinklerQuick(final double p) {
+	public JaroWinklerDistanceQuick(final double p) {
 		this.p = p;
 	}
 	
-	public JaroWinklerQuick() {
+	public JaroWinklerDistanceQuick() {
 		this.p = 0.1;
 	}
 	
 	@Override
 	public Number calculate(List<S> sequenceFrom, List<S> sequenceTo) {
-		double jaro = new JaroQuick<S>().calculate(sequenceFrom, sequenceTo).doubleValue();
+		double jaro = new JaroDistanceQuick<S>().calculate(sequenceFrom, sequenceTo).doubleValue();
 		return jaro +
 				(getAlfa
 					(sequenceFrom, sequenceTo)

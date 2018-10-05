@@ -7,17 +7,17 @@ import structures.MatrixResultSet;
 import structures.ResultSet;
 import support.JaroValues;
 
-public class JaroWinklerInfo<S> implements StructureMatrix<S, JaroValues>{
+public class JaroWinklerDistanceInfo<S> implements StructureMatrix<S, JaroValues>{
 
 	private double p;
 	private final S empty;
 	
-	public JaroWinklerInfo(final S empty) {
+	public JaroWinklerDistanceInfo(final S empty) {
 		this.p = 0.1;
 		this.empty = empty;
 	}
 	
-	public JaroWinklerInfo(final S empty, final double p){
+	public JaroWinklerDistanceInfo(final S empty, final double p){
 		if(p <= 0 || p >= 1)
 			throw new InvalidOpeationCostException(p, "(0, 1)");
 		this.p = p;
@@ -28,7 +28,7 @@ public class JaroWinklerInfo<S> implements StructureMatrix<S, JaroValues>{
 		
 	@Override
 	public ResultSet<S, MatrixResultSet<JaroValues>> calculate(List<S> sequenceFrom, List<S> sequenceTo) {
-		ResultSet<S, MatrixResultSet<JaroValues>> jaro = new JaroInfo<S>(empty).calculate(sequenceFrom, sequenceTo);
+		ResultSet<S, MatrixResultSet<JaroValues>> jaro = new JaroDistanceInfo<S>(empty).calculate(sequenceFrom, sequenceTo);
 		double distance = jaro.getDistance().doubleValue() +
 				(getAlfa(sequenceFrom, sequenceTo) * p *
 						(1 - jaro.getDistance().doubleValue())

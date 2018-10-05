@@ -4,7 +4,7 @@ import java.util.List;
 
 import exception.SequencesMustHaveSameLengthException;
 
-public class HammingQuick<S> implements MetricQuick<S> {
+public class HammingDistanceQuick<S> implements MetricQuick<S> {
 
 	@Override
 	public Number calculate(List<S> sequenceFrom, List<S> sequenceTo) {

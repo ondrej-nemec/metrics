@@ -14,12 +14,12 @@ import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 
 @RunWith(JUnitParamsRunner.class)
-public class JaroWinklerQuickTest {
+public class JaroWinklerDistanceQuickTest {
 
 	@Test
 	@Parameters
 	public void testCalculateWorks(List<Character> from, List<Character> to, Number distance) {
-		JaroWinklerQuick<Character> dis = new JaroWinklerQuick<>();
+		JaroWinklerDistanceQuick<Character> dis = new JaroWinklerDistanceQuick<>();
 		assertEquals(
 				distance,
 				dis.calculate(from, to)

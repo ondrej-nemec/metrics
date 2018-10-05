@@ -4,17 +4,17 @@ import java.util.List;
 
 import support.Tuple2;
 
-public class JaroQuick<S> implements MetricQuick<S> {
+public class JaroDistanceQuick<S> implements MetricQuick<S> {
 
 	private double w1, w2, wt;
 	
-	public JaroQuick() {
+	public JaroDistanceQuick() {
 		this.w1 = 1.0/3.0;
 		this.w2 = 1.0/3.0;
 		this.wt = 1.0/3.0;
 	}
 	
-	public JaroQuick(double w1, double w2, double  wt) {
+	public JaroDistanceQuick(double w1, double w2, double  wt) {
 		this.w1 = w1;
 		this.w2 = w2;
 		this.wt = wt;

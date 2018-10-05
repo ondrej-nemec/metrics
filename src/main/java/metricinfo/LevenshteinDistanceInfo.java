@@ -9,18 +9,18 @@ import structures.ResultSet;
 import support.Matrix;
 import support.Tuple2;
 
-public class LevenshteinInfo<S> implements StructureMatrix<S, Tuple2<Integer, Boolean>>{
+public class LevenshteinDistanceInfo<S> implements StructureMatrix<S, Tuple2<Integer, Boolean>>{
 
 	private final S empty;
 	private int deletionCost = 0;
 	private int substitutionCost = 0;
 	private int insertionCost = 0;
 	
-	public LevenshteinInfo(final S empty) {
+	public LevenshteinDistanceInfo(final S empty) {
 		this.empty = empty;
 	}
 	
-	public LevenshteinInfo(final S empty, int deletionCost, int insertionCost, int substitutionCost) {
+	public LevenshteinDistanceInfo(final S empty, int deletionCost, int insertionCost, int substitutionCost) {
 		if(deletionCost < 1)
 			throw new InvalidOpeationCostException(deletionCost, "positive");
 		if(insertionCost < 1)

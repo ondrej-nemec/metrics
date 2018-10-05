@@ -18,11 +18,11 @@ import support.Matrix;
 import support.Tuple2;
 
 @RunWith(JUnitParamsRunner.class)
-public class LevenshteinInfoTest {
+public class LevenshteinDistanceInfoTest {
 
 	@Test(expected=InvalidOpeationCostException.class)
 	public void testConstructorThrowWhenCostIsNotPositive(){
-		new LevenshteinInfo<>(' ', 0, -1, 0);
+		new LevenshteinDistanceInfo<>(' ', 0, -1, 0);
 	}
 	
 	@Test
@@ -32,7 +32,7 @@ public class LevenshteinInfoTest {
 			ResultSet<Character, MatrixResultSet<Tuple2<Integer, Boolean>>> result,
 			int weightDistance){
 		ResultSet<Character, MatrixResultSet<Tuple2<Integer, Boolean>>> res = 
-				new LevenshteinInfo<>(' ', 2, 2, 2).calculate(from, to);
+				new LevenshteinDistanceInfo<>(' ', 2, 2, 2).calculate(from, to);
 		assertEquals(weightDistance, res.getDistance());
 	}
 	
@@ -47,7 +47,7 @@ public class LevenshteinInfoTest {
 			ResultSet<Character, MatrixResultSet<Tuple2<Integer, Boolean>>> result,
 			int weightDistance) {
 		ResultSet<Character, MatrixResultSet<Tuple2<Integer, Boolean>>> actual =
-				new LevenshteinInfo<>(' ').calculate(from, to);
+				new LevenshteinDistanceInfo<>(' ').calculate(from, to);
 		assertEquals(result.getFinalSequenceFrom(), actual.getFinalSequenceFrom());
 		assertEquals(result.getFinalSequenceTo(), actual.getFinalSequenceTo());
 	}
@@ -63,7 +63,7 @@ public class LevenshteinInfoTest {
 			ResultSet<Character, MatrixResultSet<Tuple2<Integer, Boolean>>> result,
 			int weightDistance){
 		ResultSet<Character, MatrixResultSet<Tuple2<Integer, Boolean>>> actual =
-			new LevenshteinInfo<>(' ').calculate(from, to);
+			new LevenshteinDistanceInfo<>(' ').calculate(from, to);
 		assertEquals(result.getOperations(), actual.getOperations());
 	}
 	
@@ -78,7 +78,7 @@ public class LevenshteinInfoTest {
 			ResultSet<Character, MatrixResultSet<Tuple2<Integer, Boolean>>> result,
 			int weightDistance){
 		ResultSet<Character, MatrixResultSet<Tuple2<Integer, Boolean>>> actual =
-				new LevenshteinInfo<>(' ').calculate(from, to);
+				new LevenshteinDistanceInfo<>(' ').calculate(from, to);
 		assertEquals(result.getDistance(), actual.getDistance());
 	}
 	
@@ -93,7 +93,7 @@ public class LevenshteinInfoTest {
 			ResultSet<Character, MatrixResultSet<Tuple2<Integer, Boolean>>> result,
 			int weightDistance){
 		ResultSet<Character, MatrixResultSet<Tuple2<Integer, Boolean>>> actual =
-				new LevenshteinInfo<>(' ').calculate(from, to);
+				new LevenshteinDistanceInfo<>(' ').calculate(from, to);
 		assertEquals(
 				result.getStructure().getMatrix(),
 				actual.getStructure().getMatrix()
@@ -111,7 +111,7 @@ public class LevenshteinInfoTest {
 			ResultSet<Character, MatrixResultSet<Tuple2<Integer, Boolean>>> result,
 			int weightDistance){
 		ResultSet<Character, MatrixResultSet<Tuple2<Integer, Boolean>>> actual =
-				new LevenshteinInfo<>(' ').calculate(from, to);
+				new LevenshteinDistanceInfo<>(' ').calculate(from, to);
 		assertEquals(
 				result.getStructure().getIndexes(),
 				actual.getStructure().getIndexes()

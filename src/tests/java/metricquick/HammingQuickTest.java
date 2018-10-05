@@ -18,14 +18,14 @@ public class HammingQuickTest {
 	
 	@Test(expected=SequencesMustHaveSameLengthException.class)
 	public void testCalculateThrowsWhenInvalidInput(){
-		HammingQuick<Character> h = new HammingQuick<Character>();
+		HammingDistanceQuick<Character> h = new HammingDistanceQuick<Character>();
 		h.calculate(Arrays.asList('a', 'b'), Arrays.asList('a'));
 	}
 	
 	@Test
 	@Parameters
 	public void testCalculateWorks(List<Character> from, List<Character> to, Number distance) {
-		HammingQuick<Character> dis = new HammingQuick<>();
+		HammingDistanceQuick<Character> dis = new HammingDistanceQuick<>();
 		assertEquals(
 				distance,
 				dis.calculate(from, to)

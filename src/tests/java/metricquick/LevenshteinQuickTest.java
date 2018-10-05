@@ -20,7 +20,7 @@ public class LevenshteinQuickTest {
 	@Test
 	@Parameters
 	public void testCalculateWorks(List<Character> from, List<Character> to, Number distance) {
-		LevenshteinQuick<Character> dis = new LevenshteinQuick<>();
+		LevenshteinDistanceQuick<Character> dis = new LevenshteinDistanceQuick<>();
 		assertEquals(
 				distance,
 				dis.calculate(from, to)

@@ -10,7 +10,7 @@ import support.JaroValues;
 import support.Matrix;
 import support.Tuple2;
 
-public class JaroInfo<S> implements StructureMatrix<S, JaroValues>{
+public class JaroDistanceInfo<S> implements StructureMatrix<S, JaroValues>{
 
 	private double w1;
 	private double w2;
@@ -19,12 +19,12 @@ public class JaroInfo<S> implements StructureMatrix<S, JaroValues>{
 	
 	private String operations = "";
 	
-	public JaroInfo(final S empty) {
+	public JaroDistanceInfo(final S empty) {
 		this.w1 = this.w2 = this.wt = 1.0/3.0;
 		this.empty = empty;
 	}
 	
-	public JaroInfo(final S empty, final double w1, final double w2, final double wt) {
+	public JaroDistanceInfo(final S empty, final double w1, final double w2, final double wt) {
 		if(w1 >= 1 || w1 <= 0)
 			throw new InvalidOpeationCostException(w1, "(0, 1)");
 		if(w2 >= 1 || w2 <= 0)
