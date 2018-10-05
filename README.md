@@ -16,9 +16,20 @@ Library for edit distance calculating. Allowed generic sequences. Provide classe
 ### Download:
 <a href="https://ondrej-nemec.github.io/download/metrics-3.0.1.jar" target=_blank>Download jar</a>
 ### Maven:
+
+After `build` tag:
+```xml
+<repositories>
+	<repository>
+	    <id>jitpack.io</id>
+	    <url>https://jitpack.io</url>
+	</repository>
+</repositories>
+```
+And to `dependencies`:
 ```xml
 <dependency>
-  <groupId>io.github.ondrej-nemec.metrics</groupId>
+  <groupId>com.github.ondrej-nemec</groupId>
   <artifactId>metrics</artifactId>
   <version>3.0.1</version>
 </dependency>
