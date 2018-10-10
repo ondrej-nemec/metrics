@@ -44,14 +44,10 @@ public class Tuple2<S, T> implements Serializable{
 		if(!(o instanceof Tuple2<?, ?>))
 			return false;
 		@SuppressWarnings("unchecked")
-		Tuple2<S, T> aux = (Tuple2<S, T>)o;
-		//TODO HOTFIX
-		if(toString().equals(aux.toString()))
-			return true;
-		
-		if(!first.equals(aux))
+		Tuple2<S, T> aux = (Tuple2<S, T>)o;	
+		if(!first.equals(aux.first))
 			return false;
-		if(!second.equals(aux))
+		if(!second.equals(aux.second))
 			return false;
 		return true;
 	}

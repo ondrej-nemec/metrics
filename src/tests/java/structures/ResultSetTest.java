@@ -1,10 +1,11 @@
 package structures;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -63,6 +64,127 @@ public class ResultSetTest {
 	
 	public Object[] parametersForTestShowOperationsWorks() {
 		return dataProvider();
+	}
+	
+	@Test
+	@Parameters
+	public void testEqualsWorks(Object comparedObject, boolean expectedResult) {
+		ResultSet<Character, String> actualObject = new ResultSet<Character, String>(
+				Arrays.asList('a', 'b', 'c', 'd', 'e'),
+				Arrays.asList('f', 'g', 'h', 'i', 'j'),
+				"This is description",
+				"ESIDT",
+				987,
+				"structure"
+			);
+		assertSame(expectedResult, actualObject.equals(comparedObject));	
+	}
+	
+	public Object[] parametersForTestEqualsWorks() {
+		return new Object[] {
+				new Object[]{
+					new String("Alrealy not ResultSet"), false	
+				},
+				new Object[]{
+						new ResultSet<Integer, Logger>(
+								Arrays.asList(1, 123, 987),
+								Arrays.asList(654, 456, 0),
+								"Description",
+								"SETID",
+								0,
+								Logger.getAnonymousLogger()
+							),
+						false
+				},
+				new Object[]{
+						new ResultSet<Character, String>(
+								Arrays.asList('a', 'b', 'c', 'd'),
+								Arrays.asList('f', 'g', 'h', 'i', 'j'),
+								"This is description",
+								"ESIDT",
+								987,
+								"structure"
+						),
+						false
+				},
+				new Object[]{
+						new ResultSet<Character, String>(
+								Arrays.asList('a', 'b', 'c', 'd', 'e'),
+								Arrays.asList('f', 'g', 'h', 'i'),
+								"This is description",
+								"ESIDT",
+								987,
+								"structure"
+						),
+						false
+				},				
+				new Object[]{
+						new ResultSet<Character, String>(
+								Arrays.asList('a', 'b', 'c', 'd', 'e'),
+								Arrays.asList('f', 'g', 'h', 'i', 'j'),
+								"Another description",
+								"ESIDT",
+								987,
+								"structure"
+						),
+						false	
+				},
+				new Object[]{
+						new ResultSet<Character, String>(
+								Arrays.asList('a', 'b', 'c', 'd', 'e'),
+								Arrays.asList('f', 'g', 'h', 'i', 'j'),
+								"This is description",
+								"TDISE",
+								987,
+								"structure"
+						),
+						false	
+				},
+				new Object[]{
+						new ResultSet<Character, String>(
+								Arrays.asList('a', 'b', 'c', 'd', 'e'),
+								Arrays.asList('f', 'g', 'h', 'i', 'j'),
+								"This is description",
+								"ESIDT",
+								987.1,
+								"structure"
+						),
+						false	
+				},
+				new Object[]{
+						new ResultSet<Character, String>(
+								Arrays.asList('a', 'b', 'c', 'd', 'e'),
+								Arrays.asList('f', 'g', 'h', 'i', 'j'),
+								"This is description",
+								"ESIDT",
+								987.000001,
+								"structure"
+						),
+						true	
+				},
+				new Object[]{
+						new ResultSet<Character, String>(
+								Arrays.asList('a', 'b', 'c', 'd', 'e'),
+								Arrays.asList('f', 'g', 'h', 'i', 'j'),
+								"This is description",
+								"ESIDT",
+								987,
+								"some string"
+						),
+						false	
+				},
+				new Object[]{
+					new ResultSet<Character, String>(
+							Arrays.asList('a', 'b', 'c', 'd', 'e'),
+							Arrays.asList('f', 'g', 'h', 'i', 'j'),
+							"This is description",
+							"ESIDT",
+							987,
+							"structure"
+					),
+					true
+				}
+		};
 	}
 	
 	public Object[] dataProvider() {
@@ -157,8 +279,7 @@ public class ResultSetTest {
 						Arrays.asList('s', 'l', '-', 'v', '-'),
 				}
 		};
-	}
-	
+	}	
 	
 	private ResultSet<Character, String> getResultSet(
 			final List<Character> from, final List<Character> to, final String operations){

@@ -42,13 +42,11 @@ public class Tuple3<F, S, T> {
 			return false;
 		@SuppressWarnings("unchecked")
 		Tuple3<S, S, T> aux = (Tuple3<S, S, T>)o;
-		//TODO HOTFIX
-		if(toString().equals(aux.toString()))
-			return true;
-		
-		if(!first.equals(aux))
+		if(!first.equals(aux.first))
 			return false;
-		if(!second.equals(aux))
+		if(!second.equals(aux.second))
+			return false;
+		if(!third.equals(aux.third))
 			return false;
 		return true;
 	}
