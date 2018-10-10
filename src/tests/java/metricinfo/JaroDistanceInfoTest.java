@@ -135,7 +135,7 @@ public class JaroDistanceInfoTest extends AbstractMetricInfoTest {
 						Arrays.asList('s', 't', 'r', 'y', ' ', 'n', 'g'),
 						"Jaro distance",
 						"EEEIDEE",
-						0.8888888888888888, 
+						0.88888, 
 						new MatrixResultSet<>(
 							new Matrix<>(
 								new JaroValues[][]{
@@ -171,7 +171,7 @@ public class JaroDistanceInfoTest extends AbstractMetricInfoTest {
 							Arrays.asList('s', 't', 'r', 'i', 'n', 'g', ' '),
 							"Jaro distance",
 							"EEEIEED",
-							0.8888888888888888,
+							0.88888,
 							new MatrixResultSet<>(
 								new Matrix<>(
 									new JaroValues[][]{
@@ -207,7 +207,7 @@ public class JaroDistanceInfoTest extends AbstractMetricInfoTest {
 							Arrays.asList('t', 's', 'r', 'i', 'n', 'g'),
 							"Jaro distance",
 							"TTEEEE",
-							0.9444444444444444,
+							0.94444,
 							new MatrixResultSet<>(
 								new Matrix<>(
 									new JaroValues[][]{
@@ -246,7 +246,7 @@ public class JaroDistanceInfoTest extends AbstractMetricInfoTest {
 								Arrays.asList('n', 'e', ' ', 'n', 'e', 's', ' ', 'p', 'r', 'a', 'v', 'd', 'j', ' ', 'e', 'p', 'o', 'd', 'o', 'b', 'n', ' ', 'o', 'v', 'a', ' ', 'v', 'á', ' ', 't', 'e', 'l', 'n', 'ì', 'j', '', 'í', 'h', 'o'),
 								"Jaro distance",
 							     "EEDEEIDEEEEEIDIEEEEEIDEEIDEIDEEEEEEEEEE",                             
-								0.8787878787878787,
+								0.87878,
 								new MatrixResultSet<>(
 										new Matrix<>(new JaroValues[][]{
 											{JaroValues.TRUE, JaroValues.FALSE, JaroValues.TRUE, JaroValues.FALSE, JaroValues.FALSE, JaroValues.FALSE, JaroValues.FALSE, JaroValues.FALSE, JaroValues.FALSE, JaroValues.FALSE, JaroValues.FALSE, JaroValues.FALSE, JaroValues.FALSE, JaroValues.FALSE, JaroValues.FALSE, JaroValues.FALSE, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, },
@@ -339,7 +339,7 @@ public class JaroDistanceInfoTest extends AbstractMetricInfoTest {
 								Arrays.asList('k', 'p', 'o', 'l', 'l', 'i', 'm', ' ', ' '),
 								"Jaro distance",
 								"ETTEIEIDD",
-								0.7428571428571429,
+								0.74285,
 								new MatrixResultSet<>(
 										new Matrix<>(new JaroValues[][]{
 											{JaroValues.TRUE, JaroValues.FALSE, JaroValues.FALSE, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL},
@@ -473,7 +473,7 @@ public class JaroDistanceInfoTest extends AbstractMetricInfoTest {
 								Arrays.asList('o', 'k', ' ', 'o'),
 								"Jaro distance",
 								"TTDE",
-								0.8055555555555555,
+								0.80555,
 								new MatrixResultSet<>(
 										new Matrix<>(new JaroValues[][]{
 											{JaroValues.FALSE, JaroValues.TRUE, JaroValues.NULL},
@@ -501,7 +501,7 @@ public class JaroDistanceInfoTest extends AbstractMetricInfoTest {
 								Arrays.asList(' ', 'l', ' ', ' ', ' '),
 								"Jaro distance",
 								"DEDDD",
-								0.7333333333333333,
+								0.73333,
 								new MatrixResultSet<>(
 										new Matrix<>(new JaroValues[][]{
 											{JaroValues.FALSE},

@@ -104,7 +104,7 @@ public class ResultSet<S, T> implements Serializable{
 			return false;
 		if(!operations.equals(aux.getOperations()))
 			return false;
-		if(!distance.equals(aux.getDistance()))
+		if(Math.abs(distance.doubleValue() - aux.distance.doubleValue()) > 0.00001)
 			return false;
 		if(!structure.equals(aux.getStructure()))
 			return false;
