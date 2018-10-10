@@ -479,45 +479,44 @@ public class LevenshteinDistanceInfoTest extends AbstractMetricInfoTest {
 								new Tuple2<Integer, Integer>(3, 0),
 								new Tuple2<Integer, Integer>(4, 0),
 								new Tuple2<Integer, Integer>(5, 0)
-								)
 							)
-						),
-						10
-					},
-					
-				
-					new Object[]{
-							Arrays.asList('k', 'o', 'l', 'o'),
-							Arrays.asList('o', 'k', 'o'),
-							new ResultSet<>(
-									Arrays.asList('k', 'o', 'l', 'o'),
-									Arrays.asList(' ', 'o', 'k', 'o'),
-									"Levenshtein distance",
-									"DESE",
-									2,
-									new MatrixResultSet<>(
-											new Matrix<>(new Tuple2[][]{
-													{t(0, false), t(1, false), t(2, false), t(3, false)},
-													{t(1, false), t(1, false), t(1, true), t(2, false)},
-													{t(2, false), t(1, true), t(2, false), t(1, true)},
-													{t(3, false), t(2, false), t(2, false), t(2, false)},
-													{t(4, false), t(3, true), t(3, false), t(2, true)}
-												}),
-											1,
-											null,
-											Arrays.asList(
-													new Tuple2<Integer, Integer>(0, 0),
-													new Tuple2<Integer, Integer>(1, 0),
-													new Tuple2<Integer, Integer>(2, 1),
-													new Tuple2<Integer, Integer>(3, 2),
-													new Tuple2<Integer, Integer>(4, 3)
-												)
-										)
-								),
-							4
-					}
-					
-					
+						)
+					),
+					10
+				},
+				//special case	
+				new Object[]{
+					Arrays.asList('k', 'o', 'l', 'o'),
+					Arrays.asList('o', 'k', 'o'),
+					new ResultSet<>(
+						Arrays.asList('k', 'o', 'l', 'o'),
+						Arrays.asList(' ', 'o', 'k', 'o'),
+						"Levenshtein distance",
+						"DESE",
+						2,
+						new MatrixResultSet<>(
+							new Matrix<>(
+								new Tuple2[][]{
+									{t(0, false), t(1, false), t(2, false), t(3, false)},
+									{t(1, false), t(1, false), t(1, true), t(2, false)},
+									{t(2, false), t(1, true), t(2, false), t(1, true)},
+									{t(3, false), t(2, false), t(2, false), t(2, false)},
+									{t(4, false), t(3, true), t(3, false), t(2, true)}
+								}
+							),
+							1,
+							null,
+							Arrays.asList(
+								new Tuple2<Integer, Integer>(0, 0),
+								new Tuple2<Integer, Integer>(1, 0),
+								new Tuple2<Integer, Integer>(2, 1),
+								new Tuple2<Integer, Integer>(3, 2),
+								new Tuple2<Integer, Integer>(4, 3)
+							)
+						)
+					),
+					4
+				}					
 		);
 	}
 }
