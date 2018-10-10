@@ -4,21 +4,19 @@ import java.util.List;
 
 public abstract class AbstractMetricInfoTest {
 	
-	public Object[] makeParams(Object[] second) {
-		Object[] res = new Object[sequences().size()];
+	public Object[] parameters(int index) {
+		Object[] res = new Object[resultSet().size()];
 		for (int i = 0; i < res.length; i++) {
-			res[i] = new Object[]{
-					sequences().get(i)[0],
-					sequences().get(i)[1],
-					second[i]
+			res[i] = new Object[] {
+					resultSet().get(i)[0],
+					resultSet().get(i)[1],
+					resultSet().get(i)[index]
 			};
-		}		
+		}
+		
 		return res;
 	}
 	
-	public abstract List<Object[]> sequences();
+	public abstract List<Object[]> resultSet();
 	
-	public abstract Object[] weightDistances();
-	
-	public abstract Object[] resultSets();
 }
