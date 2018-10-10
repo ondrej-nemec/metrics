@@ -367,6 +367,46 @@ public class JaroDistanceInfoTest extends AbstractMetricInfoTest {
 						),
 						0.748571
 				},
+				//koolipan vs kopllisa
+				new Object[]{
+						Arrays.asList('k', 'o', 'o', 'l', 'i', 'p', 'a', 'n'),
+						Arrays.asList('k', 'o', 'p', 'l', 'l', 'i', 's', 'a'),
+						new ResultSet<>(
+								Arrays.asList('k', 'o', ' ', 'o', 'l', ' ', 'i', ' ', 'p', 'a', 'n'),
+								Arrays.asList('k', 'o', 'p', ' ', 'l', 'l', 'i', 's', ' ', 'a', ' '),
+								"Jaro distance",
+								"EEIDEIEIDED",
+								0.75,
+								new MatrixResultSet<>(
+										new Matrix<>(new JaroValues[][]{
+											{JaroValues.TRUE, JaroValues.FALSE, JaroValues.FALSE, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL},
+											{JaroValues.FALSE, JaroValues.TRUE, JaroValues.FALSE, JaroValues.FALSE, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL},
+											{JaroValues.FALSE, JaroValues.TRUE, JaroValues.FALSE, JaroValues.FALSE, JaroValues.FALSE, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL},
+											{JaroValues.NULL, JaroValues.FALSE, JaroValues.FALSE, JaroValues.TRUE, JaroValues.TRUE, JaroValues.FALSE, JaroValues.NULL, JaroValues.NULL},
+											{JaroValues.NULL, JaroValues.NULL, JaroValues.FALSE, JaroValues.FALSE, JaroValues.FALSE, JaroValues.TRUE, JaroValues.FALSE, JaroValues.NULL},
+											{JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.FALSE, JaroValues.FALSE, JaroValues.FALSE, JaroValues.FALSE, JaroValues.FALSE},
+											{JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.FALSE, JaroValues.FALSE, JaroValues.FALSE, JaroValues.TRUE},
+											{JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.FALSE, JaroValues.FALSE, JaroValues.FALSE},												
+										}),
+										0,
+										null,
+										Arrays.asList(
+												new Tuple2<>(0, 0),
+												new Tuple2<>(1, 1),
+												new Tuple2<>(1, 2),
+												new Tuple2<>(2, 2),
+												new Tuple2<>(3, 3),
+												new Tuple2<>(3, 4),
+												new Tuple2<>(4, 5),
+												new Tuple2<>(4, 6),
+												new Tuple2<>(5, 6),
+												new Tuple2<>(6, 7),
+												new Tuple2<>(7, 7)
+												)
+									)
+							),
+						0.775
+				},
 				/************/
 				//second empty
 				new Object[]{
