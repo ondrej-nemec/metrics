@@ -14,7 +14,7 @@ import exception.SequencesMustHaveSameLengthException;
  *
  * @param <S, T>
  */
-public class DistanceResultSet<S, T> implements Serializable{
+public class DistanceResult<S, T> implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -25,7 +25,7 @@ public class DistanceResultSet<S, T> implements Serializable{
 	private final String description;
 	private final String operations;
 	
-	public DistanceResultSet(
+	public DistanceResult(
 			final List<S> finalSequenceFrom,
 			final List<S> finalSequenceTo,
 			final String description,
@@ -92,10 +92,10 @@ public class DistanceResultSet<S, T> implements Serializable{
 	
 	@Override
 	public boolean equals(Object o) {
-		if(!(o instanceof DistanceResultSet))
+		if(!(o instanceof DistanceResult))
 			return false;
 		@SuppressWarnings("unchecked")
-		DistanceResultSet<S, T> aux = (DistanceResultSet<S, T>)o;
+		DistanceResult<S, T> aux = (DistanceResult<S, T>)o;
 		if(!finalSequenceFrom.equals(aux.getFinalSequenceFrom()))
 			return false;
 		if(!finalSequenceTo.equals(aux.getFinalSequenceTo()))

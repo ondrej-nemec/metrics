@@ -2,10 +2,10 @@ package distance.info;
 
 import java.util.List;
 
-import structures.DistanceResultSet;
+import structures.DistanceResult;
 
 public interface DistanceInfo<S, T> {
 
-	public DistanceResultSet<S, T> calculate(List<S> sequenceFrom, List<S> sequenceTo);
+	public DistanceResult<S, T> calculate(List<S> sequenceFrom, List<S> sequenceTo);
 	
 }

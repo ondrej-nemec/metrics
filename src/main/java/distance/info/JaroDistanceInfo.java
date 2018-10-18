@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import exception.InvalidOpeationCostException;
-import structures.DistanceMatrixResultSet;
-import structures.DistanceResultSet;
+import structures.DistanceMatrixResult;
+import structures.DistanceResult;
 import support.JaroValues;
 import support.Matrix;
 import support.Tuple2;
 
-public class JaroDistanceInfo<S> implements StructureMatrix<S, JaroValues>{
+public class JaroDistanceInfo<S> implements StructureMatrixDistance<S, JaroValues>{
 
 	private double w1;
 	private double w2;
@@ -42,7 +42,7 @@ public class JaroDistanceInfo<S> implements StructureMatrix<S, JaroValues>{
 
 	
 	@Override
-	public DistanceResultSet<S, DistanceMatrixResultSet<JaroValues>> calculate(List<S> sequenceFrom, List<S> sequenceTo) {
+	public DistanceResult<S, DistanceMatrixResult<JaroValues>> calculate(List<S> sequenceFrom, List<S> sequenceTo) {
 		Matrix<JaroValues> matrix = fillMatrix(sequenceFrom, sequenceTo);
 		List<S> finalSequenceFrom = new ArrayList<>();
 		List<S> finalSequenceTo = new ArrayList<>();
@@ -64,13 +64,13 @@ public class JaroDistanceInfo<S> implements StructureMatrix<S, JaroValues>{
 			distance = (w1 * c / sequenceFrom.size())
 					+ (w2 * c / sequenceTo.size())
 					+ (wt * (c - t) / c);
-		return new DistanceResultSet<>(
+		return new DistanceResult<>(
 					finalSequenceFrom,
 					finalSequenceTo,
 					"Jaro distance", //TODO add formula
 					operations,
 					distance,
-					new DistanceMatrixResultSet<>(
+					new DistanceMatrixResult<>(
 							matrix,
 							0,
 							(JaroValues value)->{

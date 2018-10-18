@@ -13,12 +13,12 @@ import support.Matrix;
 import support.Tuple2;
 
 @RunWith(JUnitParamsRunner.class)
-public class MatrixResultSetTest {
+public class DistanceMatrixResultSetTest {
 	
 	@Test
 	@Parameters
 	public void testEqualsWorks(Object comparedObject, boolean expectedResult) {
-		DistanceMatrixResultSet<Boolean> actualObject = new DistanceMatrixResultSet<>(
+		DistanceMatrixResult<Boolean> actualObject = new DistanceMatrixResult<>(
 				new Matrix<>(
 					new Boolean[][]{
 						{false, true, true}
@@ -40,7 +40,7 @@ public class MatrixResultSetTest {
 					"Absolutly not MatrixResultSet", false
 				},
 				new Object[]{
-					new DistanceMatrixResultSet<Integer>(
+					new DistanceMatrixResult<Integer>(
 							new Matrix<>(new Integer[][]{{1}}), 
 							4,
 							(a)->a.toString(),
@@ -52,7 +52,7 @@ public class MatrixResultSetTest {
 					false
 				},
 				new Object[]{
-						new DistanceMatrixResultSet<>(
+						new DistanceMatrixResult<>(
 								new Matrix<>(
 									new Boolean[][]{
 										{false, true, true, false}
@@ -68,7 +68,7 @@ public class MatrixResultSetTest {
 						false
 				},
 				new Object[]{
-						new DistanceMatrixResultSet<>(
+						new DistanceMatrixResult<>(
 								new Matrix<>(
 									new Boolean[][]{
 										{false, true, true}
@@ -84,7 +84,7 @@ public class MatrixResultSetTest {
 						false	
 				},
 				new Object[]{
-						new DistanceMatrixResultSet<>(
+						new DistanceMatrixResult<>(
 								new Matrix<>(
 									new Boolean[][]{
 										{false, true, true}

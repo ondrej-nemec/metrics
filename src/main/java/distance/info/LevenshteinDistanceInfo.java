@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import exception.InvalidOpeationCostException;
-import structures.DistanceMatrixResultSet;
-import structures.DistanceResultSet;
+import structures.DistanceMatrixResult;
+import structures.DistanceResult;
 import support.Matrix;
 import support.Tuple2;
 
-public class LevenshteinDistanceInfo<S> implements StructureMatrix<S, Tuple2<Integer, Boolean>>{
+public class LevenshteinDistanceInfo<S> implements StructureMatrixDistance<S, Tuple2<Integer, Boolean>>{
 
 	private final S empty;
 	private int deletionCost = 0;
@@ -34,7 +34,7 @@ public class LevenshteinDistanceInfo<S> implements StructureMatrix<S, Tuple2<Int
 	}
 	
 	@Override
-	public DistanceResultSet<S, DistanceMatrixResultSet<Tuple2<Integer, Boolean>>> calculate(List<S> sequenceFrom, List<S> sequenceTo) {
+	public DistanceResult<S, DistanceMatrixResult<Tuple2<Integer, Boolean>>> calculate(List<S> sequenceFrom, List<S> sequenceTo) {
 		
 		Matrix<Tuple2<Integer, Boolean>> matrix = startFill(sequenceFrom, sequenceTo);
 		
@@ -43,13 +43,13 @@ public class LevenshteinDistanceInfo<S> implements StructureMatrix<S, Tuple2<Int
 		List<S> finalTo = new ArrayList<>();
 		String operations = findOperations(matrix, sequenceFrom, sequenceTo, finalFrom, finalTo, indexes);
 		
-		return new DistanceResultSet<S, DistanceMatrixResultSet<Tuple2<Integer,Boolean>>>(
+		return new DistanceResult<S, DistanceMatrixResult<Tuple2<Integer,Boolean>>>(
 				finalFrom,
 				finalTo,
 				"Levenshtein distance",
 				operations,
 				getDistance(matrix, operations),
-				new DistanceMatrixResultSet<>(
+				new DistanceMatrixResult<>(
 						matrix,
 						1,
 						(a)-> a.getFirst() + " (" + (a.getSecond()?1:0) + ")",

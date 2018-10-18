@@ -1,12 +1,15 @@
 package structures;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.function.Function;
 
 import support.Matrix;
 import support.Tuple2;
 
-public class DistanceMatrixResultSet<R>{
+public class DistanceMatrixResult<R> implements Serializable{
+	//TODO maybe test for equals
+	private static final long serialVersionUID = 1L;
 
 	private final  int shift;
 	
@@ -16,7 +19,7 @@ public class DistanceMatrixResultSet<R>{
 	
 	private final Matrix<R> matrix;
 	
-	public DistanceMatrixResultSet(
+	public DistanceMatrixResult(
 			Matrix<R> matrix,
 			int shift,
 			Function<R, String> getValue,
@@ -55,10 +58,10 @@ public class DistanceMatrixResultSet<R>{
 	
 	@Override
 	public boolean equals(Object o) {
-		if(!(o instanceof DistanceMatrixResultSet))
+		if(!(o instanceof DistanceMatrixResult))
 			return false;
 		@SuppressWarnings("unchecked")
-		DistanceMatrixResultSet<R> aux = (DistanceMatrixResultSet<R>)o;
+		DistanceMatrixResult<R> aux = (DistanceMatrixResult<R>)o;
 		if(!matrix.equals(aux.getMatrix()))
 			return false;
 		if(shift != aux.getShift())
@@ -66,6 +69,5 @@ public class DistanceMatrixResultSet<R>{
 		if(!indexes.equals(aux.getIndexes()))
 			return false;
 		return true;
-	}
-	
+	}	
 }

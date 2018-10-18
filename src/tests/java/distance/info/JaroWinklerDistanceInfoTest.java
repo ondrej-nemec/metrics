@@ -13,8 +13,8 @@ import distance.info.JaroWinklerDistanceInfo;
 import exception.InvalidOpeationCostException;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
-import structures.DistanceMatrixResultSet;
-import structures.DistanceResultSet;
+import structures.DistanceMatrixResult;
+import structures.DistanceResult;
 import support.JaroValues;
 import support.AbstractMetricInfoTest;
 
@@ -33,7 +33,7 @@ public class JaroWinklerDistanceInfoTest extends AbstractMetricInfoTest {
 			List<Character> from,
 			List<Character> to,
 			double weightDistance){
-		DistanceResultSet<Character, DistanceMatrixResultSet<JaroValues>> res = 
+		DistanceResult<Character, DistanceMatrixResult<JaroValues>> res = 
 				new JaroWinklerDistanceInfo<>(' ', 0.2).calculate(from, to);
 		assertEquals(weightDistance, res.getDistance().doubleValue(), 0.00001);
 	}
@@ -49,7 +49,7 @@ public class JaroWinklerDistanceInfoTest extends AbstractMetricInfoTest {
 			List<Character> from,
 			List<Character> to,
 			double distance){
-		DistanceResultSet<Character, DistanceMatrixResultSet<JaroValues>> res = 
+		DistanceResult<Character, DistanceMatrixResult<JaroValues>> res = 
 				new JaroWinklerDistanceInfo<>(' ').calculate(from, to);
 		assertEquals(distance, res.getDistance().doubleValue(), 0.00001);
 	}

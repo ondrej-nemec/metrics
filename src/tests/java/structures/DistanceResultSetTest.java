@@ -12,15 +12,15 @@ import org.junit.runner.RunWith;
 
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
-import structures.DistanceResultSet;
+import structures.DistanceResult;
 
 @RunWith(JUnitParamsRunner.class)
-public class ResultSetTest {
+public class DistanceResultSetTest {
 	
 	@Test
 	@Parameters
 	public void testGetOperationsDescriptionWorks(
-			DistanceResultSet<Character, String> resultSet,
+			DistanceResult<Character, String> resultSet,
 			String operationsDescription,
 			List<Character> showFrom,
 			List<Character> showTo){
@@ -34,7 +34,7 @@ public class ResultSetTest {
 	@Test
 	@Parameters
 	public void testShowOperationsWorks(
-			DistanceResultSet<Character, String> resultSet,
+			DistanceResult<Character, String> resultSet,
 			String operationsDescription,
 			List<Character> showFrom,
 			List<Character> showTo) {
@@ -69,7 +69,7 @@ public class ResultSetTest {
 	@Test
 	@Parameters
 	public void testEqualsWorks(Object comparedObject, boolean expectedResult) {
-		DistanceResultSet<Character, String> actualObject = new DistanceResultSet<Character, String>(
+		DistanceResult<Character, String> actualObject = new DistanceResult<Character, String>(
 				Arrays.asList('a', 'b', 'c', 'd', 'e'),
 				Arrays.asList('f', 'g', 'h', 'i', 'j'),
 				"This is description",
@@ -86,7 +86,7 @@ public class ResultSetTest {
 					new String("Alrealy not ResultSet"), false	
 				},
 				new Object[]{
-						new DistanceResultSet<Integer, Logger>(
+						new DistanceResult<Integer, Logger>(
 								Arrays.asList(1, 123, 987),
 								Arrays.asList(654, 456, 0),
 								"Description",
@@ -97,7 +97,7 @@ public class ResultSetTest {
 						false
 				},
 				new Object[]{
-						new DistanceResultSet<Character, String>(
+						new DistanceResult<Character, String>(
 								Arrays.asList('a', 'b', 'c', 'd'),
 								Arrays.asList('f', 'g', 'h', 'i', 'j'),
 								"This is description",
@@ -108,7 +108,7 @@ public class ResultSetTest {
 						false
 				},
 				new Object[]{
-						new DistanceResultSet<Character, String>(
+						new DistanceResult<Character, String>(
 								Arrays.asList('a', 'b', 'c', 'd', 'e'),
 								Arrays.asList('f', 'g', 'h', 'i'),
 								"This is description",
@@ -119,7 +119,7 @@ public class ResultSetTest {
 						false
 				},				
 				new Object[]{
-						new DistanceResultSet<Character, String>(
+						new DistanceResult<Character, String>(
 								Arrays.asList('a', 'b', 'c', 'd', 'e'),
 								Arrays.asList('f', 'g', 'h', 'i', 'j'),
 								"Another description",
@@ -130,7 +130,7 @@ public class ResultSetTest {
 						false	
 				},
 				new Object[]{
-						new DistanceResultSet<Character, String>(
+						new DistanceResult<Character, String>(
 								Arrays.asList('a', 'b', 'c', 'd', 'e'),
 								Arrays.asList('f', 'g', 'h', 'i', 'j'),
 								"This is description",
@@ -141,7 +141,7 @@ public class ResultSetTest {
 						false	
 				},
 				new Object[]{
-						new DistanceResultSet<Character, String>(
+						new DistanceResult<Character, String>(
 								Arrays.asList('a', 'b', 'c', 'd', 'e'),
 								Arrays.asList('f', 'g', 'h', 'i', 'j'),
 								"This is description",
@@ -152,7 +152,7 @@ public class ResultSetTest {
 						false	
 				},
 				new Object[]{
-						new DistanceResultSet<Character, String>(
+						new DistanceResult<Character, String>(
 								Arrays.asList('a', 'b', 'c', 'd', 'e'),
 								Arrays.asList('f', 'g', 'h', 'i', 'j'),
 								"This is description",
@@ -163,7 +163,7 @@ public class ResultSetTest {
 						true	
 				},
 				new Object[]{
-						new DistanceResultSet<Character, String>(
+						new DistanceResult<Character, String>(
 								Arrays.asList('a', 'b', 'c', 'd', 'e'),
 								Arrays.asList('f', 'g', 'h', 'i', 'j'),
 								"This is description",
@@ -174,7 +174,7 @@ public class ResultSetTest {
 						false	
 				},
 				new Object[]{
-					new DistanceResultSet<Character, String>(
+					new DistanceResult<Character, String>(
 							Arrays.asList('a', 'b', 'c', 'd', 'e'),
 							Arrays.asList('f', 'g', 'h', 'i', 'j'),
 							"This is description",
@@ -281,9 +281,9 @@ public class ResultSetTest {
 		};
 	}	
 	
-	private DistanceResultSet<Character, String> getResultSet(
+	private DistanceResult<Character, String> getResultSet(
 			final List<Character> from, final List<Character> to, final String operations){
-		return new DistanceResultSet<>(
+		return new DistanceResult<>(
 				from,
 				to,
 				null,
