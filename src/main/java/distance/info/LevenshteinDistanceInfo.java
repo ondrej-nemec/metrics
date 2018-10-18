@@ -1,11 +1,11 @@
-package metricinfo;
+package distance.info;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import exception.InvalidOpeationCostException;
-import structures.MatrixResultSet;
-import structures.ResultSet;
+import structures.DistanceMatrixResultSet;
+import structures.DistanceResultSet;
 import support.Matrix;
 import support.Tuple2;
 
@@ -34,7 +34,7 @@ public class LevenshteinDistanceInfo<S> implements StructureMatrix<S, Tuple2<Int
 	}
 	
 	@Override
-	public ResultSet<S, MatrixResultSet<Tuple2<Integer, Boolean>>> calculate(List<S> sequenceFrom, List<S> sequenceTo) {
+	public DistanceResultSet<S, DistanceMatrixResultSet<Tuple2<Integer, Boolean>>> calculate(List<S> sequenceFrom, List<S> sequenceTo) {
 		
 		Matrix<Tuple2<Integer, Boolean>> matrix = startFill(sequenceFrom, sequenceTo);
 		
@@ -43,13 +43,13 @@ public class LevenshteinDistanceInfo<S> implements StructureMatrix<S, Tuple2<Int
 		List<S> finalTo = new ArrayList<>();
 		String operations = findOperations(matrix, sequenceFrom, sequenceTo, finalFrom, finalTo, indexes);
 		
-		return new ResultSet<S, MatrixResultSet<Tuple2<Integer,Boolean>>>(
+		return new DistanceResultSet<S, DistanceMatrixResultSet<Tuple2<Integer,Boolean>>>(
 				finalFrom,
 				finalTo,
 				"Levenshtein distance",
 				operations,
 				getDistance(matrix, operations),
-				new MatrixResultSet<>(
+				new DistanceMatrixResultSet<>(
 						matrix,
 						1,
 						(a)-> a.getFirst() + " (" + (a.getSecond()?1:0) + ")",

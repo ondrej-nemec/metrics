@@ -1,10 +1,10 @@
-package metricquick;
+package distance.quick;
 
 import java.util.List;
 
 import support.Tuple2;
 
-public class JaroDistanceQuick<S> implements MetricQuick<S> {
+public class JaroDistanceQuick<S> implements DistanceQuick<S> {
 
 	private double w1, w2, wt;
 	

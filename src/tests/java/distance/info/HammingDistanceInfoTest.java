@@ -1,4 +1,4 @@
-package metricinfo;
+package distance.info;
 
 import static org.junit.Assert.*;
 
@@ -8,11 +8,12 @@ import java.util.List;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import distance.info.HammingDistanceInfo;
 import exception.InvalidOpeationCostException;
 import exception.SequencesMustHaveSameLengthException;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
-import structures.ResultSet;
+import structures.DistanceResultSet;
 import support.AbstractMetricInfoTest;
 
 @RunWith(JUnitParamsRunner.class)
@@ -35,7 +36,7 @@ public class HammingDistanceInfoTest extends AbstractMetricInfoTest {
 			List<Character> from,
 			List<Character> to,
 			int weightDistance){
-		ResultSet<Character, String> res = 
+		DistanceResultSet<Character, String> res = 
 				new HammingDistanceInfo<Character>(2).calculate(from, to);
 		assertEquals(weightDistance, res.getDistance());
 	}
@@ -49,8 +50,8 @@ public class HammingDistanceInfoTest extends AbstractMetricInfoTest {
 	public void testCalculateWorks(
 			List<Character> from,
 			List<Character> to,
-			ResultSet<Character, String> result) {
-		ResultSet<Character, String> metric = new HammingDistanceInfo<Character>().calculate(from, to);
+			DistanceResultSet<Character, String> result) {
+		DistanceResultSet<Character, String> metric = new HammingDistanceInfo<Character>().calculate(from, to);
 		assertEquals(result, metric);
 	}
 	
@@ -60,12 +61,12 @@ public class HammingDistanceInfoTest extends AbstractMetricInfoTest {
 	
 	/********************************/
 	
-	private ResultSet<Character, String> makeResultSet(
+	private DistanceResultSet<Character, String> makeResultSet(
 			List<Character> from,
 			List<Character> to, 
 			String operations,
 			int distance) {
-		return new ResultSet<>(
+		return new DistanceResultSet<>(
 				from, 
 				to,
 				"Hamming distance",

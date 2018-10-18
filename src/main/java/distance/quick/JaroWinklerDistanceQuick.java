@@ -1,8 +1,8 @@
-package metricquick;
+package distance.quick;
 
 import java.util.List;
 
-public class JaroWinklerDistanceQuick<S> implements MetricQuick<S> {
+public class JaroWinklerDistanceQuick<S> implements DistanceQuick<S> {
 
 	private double p;
 	

@@ -1,4 +1,4 @@
-package metricinfo;
+package distance.info;
 
 import static org.junit.Assert.*;
 
@@ -9,11 +9,12 @@ import java.util.List;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import distance.info.JaroDistanceInfo;
 import exception.InvalidOpeationCostException;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
-import structures.MatrixResultSet;
-import structures.ResultSet;
+import structures.DistanceMatrixResultSet;
+import structures.DistanceResultSet;
 import support.JaroValues;
 import support.Matrix;
 import support.AbstractMetricInfoTest;
@@ -33,7 +34,7 @@ public class JaroDistanceInfoTest extends AbstractMetricInfoTest {
 			List<Character> from,
 			List<Character> to,
 			double weightDistance){
-		ResultSet<Character, MatrixResultSet<JaroValues>> res = 
+		DistanceResultSet<Character, DistanceMatrixResultSet<JaroValues>> res = 
 				new JaroDistanceInfo<>(' ', 1/5.0, 2/5.0, 2/5.0).calculate(from, to);
 		assertEquals(weightDistance, res.getDistance().doubleValue(), 0.00001);
 	}
@@ -47,8 +48,8 @@ public class JaroDistanceInfoTest extends AbstractMetricInfoTest {
 	public void testCalculateDistanceWorks(
 			List<Character> from,
 			List<Character> to,
-			ResultSet<Character, MatrixResultSet<JaroValues>> expected){
-		ResultSet<Character, MatrixResultSet<JaroValues>> actual = new JaroDistanceInfo<>(' ').calculate(from, to);
+			DistanceResultSet<Character, DistanceMatrixResultSet<JaroValues>> expected){
+		DistanceResultSet<Character, DistanceMatrixResultSet<JaroValues>> actual = new JaroDistanceInfo<>(' ').calculate(from, to);
 		assertEquals(expected, actual);
 	}
 	
@@ -67,13 +68,13 @@ public class JaroDistanceInfoTest extends AbstractMetricInfoTest {
 				new Object[]{
 					Arrays.asList('s', 't', 'r', 'i', 'n', 'g'),
 					Arrays.asList('s', 't', 'r', 'i', 'n', 'g'),
-					new ResultSet<>(
+					new DistanceResultSet<>(
 						Arrays.asList('s', 't', 'r', 'i', 'n', 'g'),
 						Arrays.asList('s', 't', 'r', 'i', 'n', 'g'),
 						"Jaro distance",
 						"EEEEEE",
 						1.0,
-						new MatrixResultSet<>(
+						new DistanceMatrixResultSet<>(
 									new Matrix<>(new JaroValues[][]{
 										{JaroValues.TRUE, JaroValues.FALSE, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL},
 										{JaroValues.FALSE, JaroValues.TRUE, JaroValues.FALSE, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL},
@@ -100,13 +101,13 @@ public class JaroDistanceInfoTest extends AbstractMetricInfoTest {
 				new Object[]{
 					Arrays.asList('a', 'a', 'a'),
 					Arrays.asList('b', 'b', 'b'),
-					new ResultSet<>(
+					new DistanceResultSet<>(
 							Arrays.asList(' ', 'a', ' ', 'a', ' ', 'a'),
 							Arrays.asList('b', ' ', 'b', ' ', 'b', ' '),
 							"Jaro distance",
 							"IDIDID",
 							0.0,
-							new MatrixResultSet<>(
+							new DistanceMatrixResultSet<>(
 									new Matrix<>(new JaroValues[][]{
 										{JaroValues.FALSE, JaroValues.FALSE, JaroValues.NULL,},
 										{JaroValues.FALSE, JaroValues.FALSE, JaroValues.FALSE},
@@ -130,13 +131,13 @@ public class JaroDistanceInfoTest extends AbstractMetricInfoTest {
 				new Object[]{
 					Arrays.asList('s', 't', 'r', 'i', 'n', 'g'),
 					Arrays.asList('s', 't', 'r', 'y', 'n', 'g'),
-					new ResultSet<>(
+					new DistanceResultSet<>(
 						Arrays.asList('s', 't', 'r', ' ', 'i', 'n', 'g'),
 						Arrays.asList('s', 't', 'r', 'y', ' ', 'n', 'g'),
 						"Jaro distance",
 						"EEEIDEE",
 						0.88888, 
-						new MatrixResultSet<>(
+						new DistanceMatrixResultSet<>(
 							new Matrix<>(
 								new JaroValues[][]{
 									{JaroValues.TRUE, JaroValues.FALSE, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, },
@@ -166,13 +167,13 @@ public class JaroDistanceInfoTest extends AbstractMetricInfoTest {
 				new Object[]{
 						Arrays.asList('s', 't', 'r', 'n', 'g', 'a'),
 						Arrays.asList('s', 't', 'r', 'i', 'n', 'g'),
-						new ResultSet<>(
+						new DistanceResultSet<>(
 							Arrays.asList('s', 't', 'r', ' ', 'n', 'g', 'a'),
 							Arrays.asList('s', 't', 'r', 'i', 'n', 'g', ' '),
 							"Jaro distance",
 							"EEEIEED",
 							0.88888,
-							new MatrixResultSet<>(
+							new DistanceMatrixResultSet<>(
 								new Matrix<>(
 									new JaroValues[][]{
 										{JaroValues.TRUE, JaroValues.FALSE, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL},
@@ -202,13 +203,13 @@ public class JaroDistanceInfoTest extends AbstractMetricInfoTest {
 				new Object[]{
 						Arrays.asList('s', 't', 'r', 'i', 'n', 'g'),
 						Arrays.asList('t', 's', 'r', 'i', 'n', 'g'),
-						new ResultSet<>(
+						new DistanceResultSet<>(
 							Arrays.asList('s', 't', 'r', 'i', 'n', 'g'),
 							Arrays.asList('t', 's', 'r', 'i', 'n', 'g'),
 							"Jaro distance",
 							"TTEEEE",
 							0.94444,
-							new MatrixResultSet<>(
+							new DistanceMatrixResultSet<>(
 								new Matrix<>(
 									new JaroValues[][]{
 										{JaroValues.FALSE, JaroValues.TRUE, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, },
@@ -241,13 +242,13 @@ public class JaroDistanceInfoTest extends AbstractMetricInfoTest {
 						Arrays.asList('n', 'e', 'n', 'e', 's', 'p', 'r', 'a', 'v', 'd', 'j',
 									  'e', 'p', 'o', 'd', 'o', 'b', 'n', 'o', 'v', 'a', 'v',
 									  'á', 't', 'e', 'l', 'n', 'ì', 'j', '', 'í', 'h', 'o'),
-						new ResultSet<>(
+						new DistanceResultSet<>(
 								Arrays.asList('n', 'e', 'j', 'n', 'e', ' ', 'z', 'p', 'r', 'a', 'v', 'd', ' ', 'ì', ' ', 'p', 'o', 'd', 'o', 'b', ' ', 'ò', 'o', 'v', ' ', 'á', 'v', ' ', 'a', 't', 'e', 'l', 'n', 'ì', 'j', '', 'í', 'h', 'o'),
 								Arrays.asList('n', 'e', ' ', 'n', 'e', 's', ' ', 'p', 'r', 'a', 'v', 'd', 'j', ' ', 'e', 'p', 'o', 'd', 'o', 'b', 'n', ' ', 'o', 'v', 'a', ' ', 'v', 'á', ' ', 't', 'e', 'l', 'n', 'ì', 'j', '', 'í', 'h', 'o'),
 								"Jaro distance",
 							     "EEDEEIDEEEEEIDIEEEEEIDEEIDEIDEEEEEEEEEE",                             
 								0.87878,
-								new MatrixResultSet<>(
+								new DistanceMatrixResultSet<>(
 										new Matrix<>(new JaroValues[][]{
 											{JaroValues.TRUE, JaroValues.FALSE, JaroValues.TRUE, JaroValues.FALSE, JaroValues.FALSE, JaroValues.FALSE, JaroValues.FALSE, JaroValues.FALSE, JaroValues.FALSE, JaroValues.FALSE, JaroValues.FALSE, JaroValues.FALSE, JaroValues.FALSE, JaroValues.FALSE, JaroValues.FALSE, JaroValues.FALSE, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, },
 											{JaroValues.FALSE, JaroValues.TRUE, JaroValues.FALSE, JaroValues.TRUE, JaroValues.FALSE, JaroValues.FALSE, JaroValues.FALSE, JaroValues.FALSE, JaroValues.FALSE, JaroValues.FALSE, JaroValues.FALSE, JaroValues.TRUE, JaroValues.FALSE, JaroValues.FALSE, JaroValues.FALSE, JaroValues.FALSE, JaroValues.FALSE, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, },
@@ -334,13 +335,13 @@ public class JaroDistanceInfoTest extends AbstractMetricInfoTest {
 				new Object[]{
 						Arrays.asList('k', 'o', 'p', 'l', 'i', 'n', 'n'),
 						Arrays.asList('k', 'p', 'o', 'l', 'l', 'i', 'm'),
-						new ResultSet<>(
+						new DistanceResultSet<>(
 								Arrays.asList('k', 'o', 'p', 'l', ' ', 'i', ' ', 'n', 'n'),
 								Arrays.asList('k', 'p', 'o', 'l', 'l', 'i', 'm', ' ', ' '),
 								"Jaro distance",
 								"ETTEIEIDD",
 								0.74285,
-								new MatrixResultSet<>(
+								new DistanceMatrixResultSet<>(
 										new Matrix<>(new JaroValues[][]{
 											{JaroValues.TRUE, JaroValues.FALSE, JaroValues.FALSE, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL},
 											{JaroValues.FALSE, JaroValues.FALSE, JaroValues.TRUE, JaroValues.FALSE, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL},
@@ -371,13 +372,13 @@ public class JaroDistanceInfoTest extends AbstractMetricInfoTest {
 				new Object[]{
 						Arrays.asList('k', 'o', 'o', 'l', 'i', 'p', 'a', 'n'),
 						Arrays.asList('k', 'o', 'p', 'l', 'l', 'i', 's', 'a'),
-						new ResultSet<>(
+						new DistanceResultSet<>(
 								Arrays.asList('k', 'o', ' ', 'o', 'l', ' ', 'i', ' ', 'p', 'a', 'n'),
 								Arrays.asList('k', 'o', 'p', ' ', 'l', 'l', 'i', 's', ' ', 'a', ' '),
 								"Jaro distance",
 								"EEIDEIEIDED",
 								0.75,
-								new MatrixResultSet<>(
+								new DistanceMatrixResultSet<>(
 										new Matrix<>(new JaroValues[][]{
 											{JaroValues.TRUE, JaroValues.FALSE, JaroValues.FALSE, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL},
 											{JaroValues.FALSE, JaroValues.TRUE, JaroValues.FALSE, JaroValues.FALSE, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL, JaroValues.NULL},
@@ -412,13 +413,13 @@ public class JaroDistanceInfoTest extends AbstractMetricInfoTest {
 				new Object[]{
 						Arrays.asList('s', 'l', 'o', 'v', 'o'),
 						new LinkedList<>(),
-						new ResultSet<>(
+						new DistanceResultSet<>(
 								Arrays.asList('s', 'l', 'o', 'v', 'o'),
 								Arrays.asList(' ', ' ', ' ', ' ', ' '),
 								"Jaro distance",
 								"DDDDD",
 								0.0,
-								new MatrixResultSet<>(
+								new DistanceMatrixResultSet<>(
 										new Matrix<>(new JaroValues[][]{
 											{},
 											{},
@@ -443,13 +444,13 @@ public class JaroDistanceInfoTest extends AbstractMetricInfoTest {
 				new Object[]{
 						new LinkedList<>(),
 						Arrays.asList('s', 'l', 'o', 'v', 'o'),
-						new ResultSet<>(
+						new DistanceResultSet<>(
 								Arrays.asList(' ', ' ', ' ', ' ', ' '),
 								Arrays.asList('s', 'l', 'o', 'v', 'o'),
 								"Jaro distance",
 								"IIIII",
 								0.0,
-								new MatrixResultSet<>(
+								new DistanceMatrixResultSet<>(
 										new Matrix<>(new JaroValues[][]{}),
 										0,
 										null,
@@ -468,13 +469,13 @@ public class JaroDistanceInfoTest extends AbstractMetricInfoTest {
 				new Object[]{
 						Arrays.asList('k', 'o', 'l', 'o'),
 						Arrays.asList('o', 'k', 'o'),
-						new ResultSet<>(
+						new DistanceResultSet<>(
 								Arrays.asList('k', 'o', 'l', 'o'),
 								Arrays.asList('o', 'k', ' ', 'o'),
 								"Jaro distance",
 								"TTDE",
 								0.80555,
-								new MatrixResultSet<>(
+								new DistanceMatrixResultSet<>(
 										new Matrix<>(new JaroValues[][]{
 											{JaroValues.FALSE, JaroValues.TRUE, JaroValues.NULL},
 											{JaroValues.TRUE, JaroValues.FALSE, JaroValues.TRUE},
@@ -496,13 +497,13 @@ public class JaroDistanceInfoTest extends AbstractMetricInfoTest {
 				new Object[]{
 						Arrays.asList('s', 'l', 'o', 'v', 'o'),
 						Arrays.asList('l'),
-						new ResultSet<>(
+						new DistanceResultSet<>(
 								Arrays.asList('s', 'l', 'o', 'v', 'o'),
 								Arrays.asList(' ', 'l', ' ', ' ', ' '),
 								"Jaro distance",
 								"DEDDD",
 								0.73333,
-								new MatrixResultSet<>(
+								new DistanceMatrixResultSet<>(
 										new Matrix<>(new JaroValues[][]{
 											{JaroValues.FALSE},
 											{JaroValues.TRUE},
@@ -526,13 +527,13 @@ public class JaroDistanceInfoTest extends AbstractMetricInfoTest {
 				new Object[]{
 						Arrays.asList('s', 'l', 'o', 'v', 'o'),
 						Arrays.asList('s', 'l'),
-						new ResultSet<>(
+						new DistanceResultSet<>(
 								Arrays.asList('s', 'l', 'o', 'v', 'o'),
 								Arrays.asList('s', 'l', ' ', ' ', ' '),
 								"Jaro distance",
 								"EEDDD",
 								0.8,
-								new MatrixResultSet<>(
+								new DistanceMatrixResultSet<>(
 										new Matrix<>(new JaroValues[][]{
 											{JaroValues.TRUE, JaroValues.FALSE},
 											{JaroValues.FALSE, JaroValues.TRUE},
@@ -556,13 +557,13 @@ public class JaroDistanceInfoTest extends AbstractMetricInfoTest {
 				new Object[]{
 						Arrays.asList('s', 'l', 'o', 'v', 'a'),
 						Arrays.asList('a'),
-						new ResultSet<>(
+						new DistanceResultSet<>(
 								Arrays.asList(' ', 's', 'l', 'o', 'v', 'a'),
 								Arrays.asList('a', ' ', ' ', ' ', ' ', ' '),
 								"Jaro distance",
 								"IDDDDD",
 								0.0,
-								new MatrixResultSet<>(
+								new DistanceMatrixResultSet<>(
 										new Matrix<>(new JaroValues[][]{
 											{JaroValues.FALSE},
 											{JaroValues.FALSE},

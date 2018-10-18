@@ -1,10 +1,10 @@
-package metricquick;
+package distance.quick;
 
 import java.util.List;
 
 import exception.SequencesMustHaveSameLengthException;
 
-public class HammingDistanceQuick<S> implements MetricQuick<S> {
+public class HammingDistanceQuick<S> implements DistanceQuick<S> {
 
 	@Override
 	public Number calculate(List<S> sequenceFrom, List<S> sequenceTo) {

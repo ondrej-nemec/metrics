@@ -1,4 +1,4 @@
-package metricinfo;
+package distance.info;
 
 import static org.junit.Assert.*;
 
@@ -9,11 +9,12 @@ import java.util.List;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import distance.info.LevenshteinDistanceInfo;
 import exception.InvalidOpeationCostException;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
-import structures.MatrixResultSet;
-import structures.ResultSet;
+import structures.DistanceMatrixResultSet;
+import structures.DistanceResultSet;
 import support.Matrix;
 import support.AbstractMetricInfoTest;
 import support.Tuple2;
@@ -31,7 +32,7 @@ public class LevenshteinDistanceInfoTest extends AbstractMetricInfoTest {
 	public void testWeightDistance(
 			List<Character> from, List<Character> to,
 			int weightDistance){
-		ResultSet<Character, MatrixResultSet<Tuple2<Integer, Boolean>>> res = 
+		DistanceResultSet<Character, DistanceMatrixResultSet<Tuple2<Integer, Boolean>>> res = 
 				new LevenshteinDistanceInfo<>(' ', 2, 2, 2).calculate(from, to);
 		assertEquals(weightDistance, res.getDistance());
 	}
@@ -44,8 +45,8 @@ public class LevenshteinDistanceInfoTest extends AbstractMetricInfoTest {
 	@Parameters
 	public void testCalculateWorks(
 			List<Character> from, List<Character> to,
-			ResultSet<Character, MatrixResultSet<Tuple2<Integer, Boolean>>> result) {
-		ResultSet<Character, MatrixResultSet<Tuple2<Integer, Boolean>>> actual =
+			DistanceResultSet<Character, DistanceMatrixResultSet<Tuple2<Integer, Boolean>>> result) {
+		DistanceResultSet<Character, DistanceMatrixResultSet<Tuple2<Integer, Boolean>>> actual =
 				new LevenshteinDistanceInfo<>(' ').calculate(from, to);
 		assertEquals(result, actual);
 	}
@@ -70,13 +71,13 @@ public class LevenshteinDistanceInfoTest extends AbstractMetricInfoTest {
 				new Object[]{
 					Arrays.asList('s', 't', 'r', 'i', 'n', 'g'),
 					Arrays.asList('s', 't', 'r', 'i', 'n', 'g'),
-					new ResultSet<>(
+					new DistanceResultSet<>(
 						Arrays.asList('s', 't', 'r', 'i', 'n', 'g'),
 						Arrays.asList('s', 't', 'r', 'i', 'n', 'g'),
 						"Levenshtein distance",
 						"EEEEEE",
 						0,
-						new MatrixResultSet<>(
+						new DistanceMatrixResultSet<>(
 							new Matrix<>(
 								new Tuple2[][]{
 									{t(0, false), t(1, false), t(2, false), t(3, false), t(4, false), t(5, false), t(6, false)},
@@ -107,13 +108,13 @@ public class LevenshteinDistanceInfoTest extends AbstractMetricInfoTest {
 				new Object[]{
 					Arrays.asList('a', 'a', 'a'),
 					Arrays.asList('b', 'b', 'b'),
-					new ResultSet<>(
+					new DistanceResultSet<>(
 						Arrays.asList('a', 'a', 'a'),
 						Arrays.asList('b', 'b', 'b'),
 						"Levenshtein distance",
 						"SSS",
 						3,
-						new MatrixResultSet<>(
+						new DistanceMatrixResultSet<>(
 							new Matrix<>(
 								new Tuple2[][]{
 									{t(0, false), t(1, false), t(2, false), t(3, false)},
@@ -138,13 +139,13 @@ public class LevenshteinDistanceInfoTest extends AbstractMetricInfoTest {
 				new Object[]{
 					Arrays.asList('s', 't', 'r', 'i', 'n', 'g'),
 					Arrays.asList('s', 't', 'r', 'y', 'n', 'g'),
-					new ResultSet<>(
+					new DistanceResultSet<>(
 						Arrays.asList('s', 't', 'r', 'i', 'n', 'g'),
 						Arrays.asList('s', 't', 'r', 'y', 'n', 'g'),
 						"Levenshtein distance",
 						"EEESEE",
 						1,
-						new MatrixResultSet<>(
+						new DistanceMatrixResultSet<>(
 							new Matrix<>(
 								new Tuple2[][]{
 									{t(0, false), t(1, false), t(2, false), t(3, false), t(4, false), t(5, false), t(6, false), },
@@ -175,13 +176,13 @@ public class LevenshteinDistanceInfoTest extends AbstractMetricInfoTest {
 				new Object[]{
 						Arrays.asList('s', 't', 'r', 'n', 'g', 'a'),
 						Arrays.asList('s', 't', 'r', 'i', 'n', 'g'),
-						new ResultSet<>(
+						new DistanceResultSet<>(
 							Arrays.asList('s', 't', 'r', ' ', 'n', 'g', 'a'),
 							Arrays.asList('s', 't', 'r', 'i', 'n', 'g', ' '),
 							"Levenshtein distance",
 							"EEEIEED",
 							2,
-							new MatrixResultSet<>(
+							new DistanceMatrixResultSet<>(
 								new Matrix<>(
 									new Tuple2[][]{
 										{t(0, false), t(1, false), t(2, false), t(3, false), t(4, false), t(5, false), t(6, false), },
@@ -213,13 +214,13 @@ public class LevenshteinDistanceInfoTest extends AbstractMetricInfoTest {
 				new Object[]{
 						Arrays.asList('s', 't', 'r', 'i', 'n', 'g'),
 						Arrays.asList('t', 's', 'r', 'i', 'n', 'g'),
-						new ResultSet<>(
+						new DistanceResultSet<>(
 							Arrays.asList('s', 't', ' ', 'r', 'i', 'n', 'g'),
 							Arrays.asList(' ', 't', 's', 'r', 'i', 'n', 'g'),
 							"Levenshtein distance",
 							"DEIEEEE",
 							2,
-							new MatrixResultSet<>(
+							new DistanceMatrixResultSet<>(
 								new Matrix<>(
 									new Tuple2[][]{
 										{t(0, false), t(1, false), t(2, false), t(3, false), t(4, false), t(5, false), t(6, false), },
@@ -255,13 +256,13 @@ public class LevenshteinDistanceInfoTest extends AbstractMetricInfoTest {
 					Arrays.asList('n', 'e', 'n', 'e', 's', 'p', 'r', 'a', 'v', 'd', 'j',
 								  'e', 'p', 'o', 'd', 'o', 'b', 'n', 'o', 'v', 'a', 'v',
 								  'á', 't', 'e', 'l', 'n', 'ì', 'j', '', 'í', 'h', 'o'),
-					new ResultSet<>(
+					new DistanceResultSet<>(
 						Arrays.asList('n', 'e', 'j', 'n', 'e', 'z', 'p', 'r', 'a', 'v', 'd', 'ì', ' ', 'p', 'o', 'd', 'o', 'b', 'ò', 'o', 'v', 'á', 'v', 'a', 't', 'e', 'l', 'n', 'ì', 'j', '', 'í', 'h', 'o'),
 						Arrays.asList('n', 'e', ' ', 'n', 'e', 's', 'p', 'r', 'a', 'v', 'd', 'j', 'e', 'p', 'o', 'd', 'o', 'b', 'n', 'o', 'v', 'a', 'v', 'á', 't', 'e', 'l', 'n', 'ì', 'j', '', 'í', 'h', 'o'),
 						"Levenshtein distance",
 					    "EEDEESEEEEESIEEEEESEESESEEEEEEEEEE", 
 						7,
-						new MatrixResultSet<>(
+						new DistanceMatrixResultSet<>(
 							new Matrix<>(new Tuple2[][]{
 								{t(0, false), t(1, false), t(2, false), t(3, false), t(4, false), t(5, false), t(6, false), t(7, false), t(8, false), t(9, false), t(10, false), t(11, false), t(12, false), t(13, false), t(14, false), t(15, false), t(16, false), t(17, false), t(18, false), t(19, false), t(20, false), t(21, false), t(22, false), t(23, false), t(24, false), t(25, false), t(26, false), t(27, false), t(28, false), t(29, false), t(30, false), t(31, false), t(32, false), t(33, false), },
 								{t(1, false), t(0, true), t(1, false), t(2, true), t(3, false), t(4, false), t(5, false), t(6, false), t(7, false), t(8, false), t(9, false), t(10, false), t(11, false), t(12, false), t(13, false), t(14, false), t(15, false), t(16, false), t(17, true), t(18, false), t(19, false), t(20, false), t(21, false), t(22, false), t(23, false), t(24, false), t(25, false), t(26, true), t(27, false), t(28, false), t(29, false), t(30, false), t(31, false), t(32, false), },
@@ -345,13 +346,13 @@ public class LevenshteinDistanceInfoTest extends AbstractMetricInfoTest {
 				new Object[]{
 					Arrays.asList('k', 'o', 'o', 'l', 'i', 'p', 'a', 'n'),
 					Arrays.asList('k', 'o', 'p', 'l', 'l', 'i', 's', 'a'),
-					new ResultSet<>(
+					new DistanceResultSet<>(
 						Arrays.asList('k', 'o', 'o', 'l', ' ', 'i', 'p', 'a', 'n'),
 						Arrays.asList('k', 'o', 'p', 'l', 'l', 'i', 's', 'a', ' '),
 						"Levenshtein distance",
 						"EESEIESED",
 						4,
-						new MatrixResultSet<>(
+						new DistanceMatrixResultSet<>(
 							new Matrix<>(new Tuple2[][]{
 								{t(0, false), t(1, false), t(2, false), t(3, false), t(4, false), t(5, false), t(6, false), t(7, false), t(8, false)},
 								{t(1, false), t(0, true), t(1, false), t(2, false), t(3, false), t(4, false), t(5, false), t(6, false), t(7, false)},
@@ -385,13 +386,13 @@ public class LevenshteinDistanceInfoTest extends AbstractMetricInfoTest {
 				new Object[]{
 						Arrays.asList('k', 'o', 'p', 'l', 'i', 'n', 'n'),
 						Arrays.asList('k', 'p', 'o', 'l', 'l', 'i', 'm'),
-						new ResultSet<>(
+						new DistanceResultSet<>(
 								Arrays.asList('k', 'o', 'p', ' ', 'l', ' ', 'i', 'n', 'n'),
 								Arrays.asList('k', ' ', 'p', 'o', 'l', 'l', 'i', 'm', ' '),
 								"Levenshtein distance",
 								"EDEIEIESD",
 								4,
-								new MatrixResultSet<>(
+								new DistanceMatrixResultSet<>(
 										new Matrix<>(new Tuple2[][]{
 												{t(0, false), t(1, false), t(2, false), t(3, false), t(4, false), t(5, false), t(6, false), t(7, false)},
 												{t(1, false), t(0, true), t(1, false), t(2, false), t(3, false), t(4, false), t(5, false), t(6, false)},
@@ -425,13 +426,13 @@ public class LevenshteinDistanceInfoTest extends AbstractMetricInfoTest {
 				new Object[]{
 					new LinkedList<>(),
 					Arrays.asList('s', 'l', 'o', 'v', 'o'),
-					new ResultSet<>(
+					new DistanceResultSet<>(
 						Arrays.asList(' ', ' ', ' ', ' ', ' '),
 						Arrays.asList('s', 'l', 'o', 'v', 'o'),
 						"Levenshtein distance",
 						"IIIII",
 						5,
-						new MatrixResultSet<>(
+						new DistanceMatrixResultSet<>(
 							new Matrix<>(
 								new Tuple2[][]{
 									{t(0, false), t(1, false), t(2, false), t(3, false), t(4, false), t(5, false)}
@@ -454,13 +455,13 @@ public class LevenshteinDistanceInfoTest extends AbstractMetricInfoTest {
 				new Object[]{
 					Arrays.asList('s', 'l', 'o', 'v', 'o'),
 					new LinkedList<>(),
-					new ResultSet<>(
+					new DistanceResultSet<>(
 						Arrays.asList('s', 'l', 'o', 'v', 'o'),
 						Arrays.asList(' ', ' ', ' ', ' ', ' '),
 						"Levenshtein distance",
 						"DDDDD",
 						5,
-						new MatrixResultSet<>(
+						new DistanceMatrixResultSet<>(
 							new Matrix<>(
 								new Tuple2[][]{
 									{t(0, false)},
@@ -488,13 +489,13 @@ public class LevenshteinDistanceInfoTest extends AbstractMetricInfoTest {
 				new Object[]{
 					Arrays.asList('k', 'o', 'l', 'o'),
 					Arrays.asList('o', 'k', 'o'),
-					new ResultSet<>(
+					new DistanceResultSet<>(
 						Arrays.asList('k', 'o', 'l', 'o'),
 						Arrays.asList(' ', 'o', 'k', 'o'),
 						"Levenshtein distance",
 						"DESE",
 						2,
-						new MatrixResultSet<>(
+						new DistanceMatrixResultSet<>(
 							new Matrix<>(
 								new Tuple2[][]{
 									{t(0, false), t(1, false), t(2, false), t(3, false)},

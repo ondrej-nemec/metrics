@@ -1,8 +1,8 @@
-package metricquick;
+package distance.quick;
 
 import java.util.List;
 
-public class LevenshteinDistanceQuick<S> implements MetricQuick<S> {
+public class LevenshteinDistanceQuick<S> implements DistanceQuick<S> {
 
 	@Override
 	public Number calculate(List<S> sequenceFrom, List<S> sequenceTo) {

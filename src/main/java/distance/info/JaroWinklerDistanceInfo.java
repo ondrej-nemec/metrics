@@ -1,10 +1,10 @@
-package metricinfo;
+package distance.info;
 
 import java.util.List;
 
 import exception.InvalidOpeationCostException;
-import structures.MatrixResultSet;
-import structures.ResultSet;
+import structures.DistanceMatrixResultSet;
+import structures.DistanceResultSet;
 import support.JaroValues;
 
 public class JaroWinklerDistanceInfo<S> implements StructureMatrix<S, JaroValues>{
@@ -27,13 +27,13 @@ public class JaroWinklerDistanceInfo<S> implements StructureMatrix<S, JaroValues
 
 		
 	@Override
-	public ResultSet<S, MatrixResultSet<JaroValues>> calculate(List<S> sequenceFrom, List<S> sequenceTo) {
-		ResultSet<S, MatrixResultSet<JaroValues>> jaro = new JaroDistanceInfo<S>(empty).calculate(sequenceFrom, sequenceTo);
+	public DistanceResultSet<S, DistanceMatrixResultSet<JaroValues>> calculate(List<S> sequenceFrom, List<S> sequenceTo) {
+		DistanceResultSet<S, DistanceMatrixResultSet<JaroValues>> jaro = new JaroDistanceInfo<S>(empty).calculate(sequenceFrom, sequenceTo);
 		double distance = jaro.getDistance().doubleValue() +
 				(getAlfa(sequenceFrom, sequenceTo) * p *
 						(1 - jaro.getDistance().doubleValue())
 						);
-		return new ResultSet<>(
+		return new DistanceResultSet<>(
 					jaro.getFinalSequenceFrom(),
 					jaro.getFinalSequenceTo(), 
 					"Jaro-Winkler distance", //TODO add formula

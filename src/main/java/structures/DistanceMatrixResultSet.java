@@ -6,7 +6,7 @@ import java.util.function.Function;
 import support.Matrix;
 import support.Tuple2;
 
-public class MatrixResultSet<R>{
+public class DistanceMatrixResultSet<R>{
 
 	private final  int shift;
 	
@@ -16,7 +16,7 @@ public class MatrixResultSet<R>{
 	
 	private final Matrix<R> matrix;
 	
-	public MatrixResultSet(
+	public DistanceMatrixResultSet(
 			Matrix<R> matrix,
 			int shift,
 			Function<R, String> getValue,
@@ -55,10 +55,10 @@ public class MatrixResultSet<R>{
 	
 	@Override
 	public boolean equals(Object o) {
-		if(!(o instanceof MatrixResultSet))
+		if(!(o instanceof DistanceMatrixResultSet))
 			return false;
 		@SuppressWarnings("unchecked")
-		MatrixResultSet<R> aux = (MatrixResultSet<R>)o;
+		DistanceMatrixResultSet<R> aux = (DistanceMatrixResultSet<R>)o;
 		if(!matrix.equals(aux.getMatrix()))
 			return false;
 		if(shift != aux.getShift())

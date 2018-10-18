@@ -1,10 +1,10 @@
-package metricinfo;
+package distance.info;
 
 import java.util.List;
 
 import exception.InvalidOpeationCostException;
 import exception.SequencesMustHaveSameLengthException;
-import structures.ResultSet;
+import structures.DistanceResultSet;
 
 public class HammingDistanceInfo<S> implements StructureString<S> {
 
@@ -22,7 +22,7 @@ public class HammingDistanceInfo<S> implements StructureString<S> {
 	
 	
 	@Override
-	public ResultSet<S, String> calculate(List<S> sequenceFrom, List<S> sequenceTo) {
+	public DistanceResultSet<S, String> calculate(List<S> sequenceFrom, List<S> sequenceTo) {
 		if(sequenceFrom.size() != sequenceTo.size())
 			throw new SequencesMustHaveSameLengthException();
 		String operations = "";
@@ -35,7 +35,7 @@ public class HammingDistanceInfo<S> implements StructureString<S> {
 				distance += costOfSubstitution;
 			}
 		}
-		return new ResultSet<S, String>(
+		return new DistanceResultSet<S, String>(
 					sequenceFrom,
 					sequenceTo,
 					"Hamming distance",

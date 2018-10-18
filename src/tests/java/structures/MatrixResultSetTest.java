@@ -18,7 +18,7 @@ public class MatrixResultSetTest {
 	@Test
 	@Parameters
 	public void testEqualsWorks(Object comparedObject, boolean expectedResult) {
-		MatrixResultSet<Boolean> actualObject = new MatrixResultSet<>(
+		DistanceMatrixResultSet<Boolean> actualObject = new DistanceMatrixResultSet<>(
 				new Matrix<>(
 					new Boolean[][]{
 						{false, true, true}
@@ -40,7 +40,7 @@ public class MatrixResultSetTest {
 					"Absolutly not MatrixResultSet", false
 				},
 				new Object[]{
-					new MatrixResultSet<Integer>(
+					new DistanceMatrixResultSet<Integer>(
 							new Matrix<>(new Integer[][]{{1}}), 
 							4,
 							(a)->a.toString(),
@@ -52,7 +52,7 @@ public class MatrixResultSetTest {
 					false
 				},
 				new Object[]{
-						new MatrixResultSet<>(
+						new DistanceMatrixResultSet<>(
 								new Matrix<>(
 									new Boolean[][]{
 										{false, true, true, false}
@@ -68,7 +68,7 @@ public class MatrixResultSetTest {
 						false
 				},
 				new Object[]{
-						new MatrixResultSet<>(
+						new DistanceMatrixResultSet<>(
 								new Matrix<>(
 									new Boolean[][]{
 										{false, true, true}
@@ -84,7 +84,7 @@ public class MatrixResultSetTest {
 						false	
 				},
 				new Object[]{
-						new MatrixResultSet<>(
+						new DistanceMatrixResultSet<>(
 								new Matrix<>(
 									new Boolean[][]{
 										{false, true, true}
