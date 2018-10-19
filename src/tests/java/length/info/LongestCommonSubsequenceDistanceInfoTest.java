@@ -52,14 +52,14 @@ public class LongestCommonSubsequenceDistanceInfoTest extends AbstractMetricInfo
 									1,
 									null,
 									new Matrix<>(
-										new Integer[][]{
-											{0, 0, 0, 0, 0, 0, 0},
-											{0, 1, 1, 1, 1, 1, 1},
-											{0, 1, 2, 2, 2, 2, 2},
-											{0, 1, 2, 3, 3, 3, 3},
-											{0, 1, 2, 3, 4, 4, 4},
-											{0, 1, 2, 3, 4, 5, 5},
-											{0, 1, 2, 3, 4, 5, 6},		
+										new Tuple2[][]{
+											{t(0, false), t(0, false), t(0, false), t(0, false), t(0, false), t(0, false), t(0, false)},
+											{t(0, false), t(1, true), t(1, false), t(1, false), t(1, false), t(1, false), t(1, false)},
+											{t(0, false), t(1, false), t(2, true), t(2, false), t(2, false), t(2, false), t(2, false)},
+											{t(0, false), t(1, false), t(2, false), t(3, true), t(3, false), t(3, false), t(3, false)},
+											{t(0, false), t(1, false), t(2, false), t(3, false), t(4, true), t(4, false), t(4, false)},
+											{t(0, false), t(1, false), t(2, false), t(3, false), t(4, false), t(5, true), t(5, false)},
+											{t(0, false), t(1, false), t(2, false), t(3, false), t(4, false), t(5, false), t(6, true)},		
 										}
 									)
 								),
@@ -79,11 +79,11 @@ public class LongestCommonSubsequenceDistanceInfoTest extends AbstractMetricInfo
 									1,
 									null,
 									new Matrix<>(
-										new Integer[][]{
-											{0, 0, 0, 0},
-											{0, 0, 0, 0},
-											{0, 0, 0, 0},
-											{0, 0, 0, 0},					
+										new Tuple2[][]{
+											{t(0, false), t(0, false), t(0, false), t(0, false)},
+											{t(0, false), t(0, false), t(0, false), t(0, false)},
+											{t(0, false), t(0, false), t(0, false), t(0, false)},
+											{t(0, false), t(0, false), t(0, false), t(0, false)},					
 										}
 									)
 								),
@@ -101,14 +101,14 @@ public class LongestCommonSubsequenceDistanceInfoTest extends AbstractMetricInfo
 									1,
 									null,
 									new Matrix<>(
-										new Integer[][]{
-											{0, 0, 0, 0, 0, 0, 0},
-											{0, 1, 1, 1, 1, 1, 1},
-											{0, 1, 2, 2, 2, 2, 2},
-											{0, 1, 2, 3, 3, 3, 3},
-											{0, 1, 2, 3, 3, 3, 3},
-											{0, 1, 2, 3, 3, 4, 4},
-											{0, 1, 2, 3, 3, 4, 5},				
+										new Tuple2[][]{
+											{t(0, false), t(0, false), t(0, false), t(0, false), t(0, false), t(0, false), t(0, false)},
+											{t(0, false), t(1, true), t(1, false), t(1, false), t(1, false), t(1, false), t(1, false)},
+											{t(0, false), t(1, false), t(2, true), t(2, false), t(2, false), t(2, false), t(2, false)},
+											{t(0, false), t(1, false), t(2, false), t(3, true), t(3, false), t(3, false), t(3, false)},
+											{t(0, false), t(1, false), t(2, false), t(3, false), t(3, false), t(3, false), t(3, false)},
+											{t(0, false), t(1, false), t(2, false), t(3, false), t(3, false), t(4, true), t(4, false)},
+											{t(0, false), t(1, false), t(2, false), t(3, false), t(3, false), t(4, false), t(5, true)},				
 										}
 									)
 								),
@@ -128,14 +128,14 @@ public class LongestCommonSubsequenceDistanceInfoTest extends AbstractMetricInfo
 										1,
 										null,
 										new Matrix<>(
-											new Integer[][]{
-												{0, 0, 0, 0, 0, 0, 0},
-												{0, 1, 1, 1, 1, 1, 1},
-												{0, 1, 2, 2, 2, 2, 2},
-												{0, 1, 2, 3, 3, 3, 3},
-												{0, 1, 2, 3, 3, 4, 4},
-												{0, 1, 2, 3, 3, 4, 5},
-												{0, 1, 2, 3, 3, 4, 5},						
+											new Tuple2[][]{
+												{t(0, false), t(0, false), t(0, false), t(0, false), t(0, false), t(0, false), t(0, false)},
+												{t(0, false), t(1, true), t(1, false), t(1, false), t(1, false), t(1, false), t(1, false)},
+												{t(0, false), t(1, false), t(2, true), t(2, false), t(2, false), t(2, false), t(2, false)},
+												{t(0, false), t(1, false), t(2, false), t(3, true), t(3, false), t(3, false), t(3, false)},
+												{t(0, false), t(1, false), t(2, false), t(3, false), t(3, false), t(4, true), t(4, false)},
+												{t(0, false), t(1, false), t(2, false), t(3, false), t(3, false), t(4, false), t(5, true)},
+												{t(0, false), t(1, false), t(2, false), t(3, false), t(3, false), t(4, false), t(5, false)},						
 											}
 										)
 									),
@@ -155,14 +155,14 @@ public class LongestCommonSubsequenceDistanceInfoTest extends AbstractMetricInfo
 										1,
 										null,
 										new Matrix<>(
-											new Integer[][]{
-												{0, 0, 0, 0, 0, 0, 0},
-												{0, 0, 1, 1, 1, 1, 1},
-												{0, 1, 1, 1, 1, 1, 1},
-												{0, 1, 1, 2, 2, 2, 2},
-												{0, 1, 1, 2, 3, 3, 3},
-												{0, 1, 1, 2, 3, 4, 4},
-												{0, 1, 1, 2, 3, 4, 5},
+											new Tuple2[][]{
+												{t(0, false), t(0, false), t(0, false), t(0, false), t(0, false), t(0, false), t(0, false)},
+												{t(0, false), t(0, false), t(1, true), t(1, false), t(1, false), t(1, false), t(1, false)},
+												{t(0, false), t(1, true), t(1, false), t(1, false), t(1, false), t(1, false), t(1, false)},
+												{t(0, false), t(1, false), t(1, false), t(2, true), t(2, false), t(2, false), t(2, false)},
+												{t(0, false), t(1, false), t(1, false), t(2, false), t(3, true), t(3, false), t(3, false)},
+												{t(0, false), t(1, false), t(1, false), t(2, false), t(3, false), t(4, true), t(4, false)},
+												{t(0, false), t(1, false), t(1, false), t(2, false), t(3, false), t(4, false), t(5, true)},
 											}
 										)
 									),
@@ -187,8 +187,41 @@ public class LongestCommonSubsequenceDistanceInfoTest extends AbstractMetricInfo
 									1,
 									null,
 									new Matrix<>(
-										new Integer[][]{
-											{},	//TODO
+										new Tuple2[][]{
+											{t(0, false), t(0, false), t(0, false), t(0, false), t(0, false), t(0, false), t(0, false), t(0, false), t(0, false), t(0, false), t(0, false), t(0, false), t(0, false), t(0, false), t(0, false), t(0, false), t(0, false), t(0, false), t(0, false), t(0, false), t(0, false), t(0, false), t(0, false), t(0, false), t(0, false), t(0, false), t(0, false), t(0, false), t(0, false), t(0, false), t(0, false), t(0, false), t(0, false), t(0, false), },
+											{t(0, false), t(1, true), t(1, false), t(1, true), t(1, false), t(1, false), t(1, false), t(1, false), t(1, false), t(1, false), t(1, false), t(1, false), t(1, false), t(1, false), t(1, false), t(1, false), t(1, false), t(1, false), t(1, true), t(1, false), t(1, false), t(1, false), t(1, false), t(1, false), t(1, false), t(1, false), t(1, false), t(1, true), t(1, false), t(1, false), t(1, false), t(1, false), t(1, false), t(1, false), },
+											{t(0, false), t(1, false), t(2, true), t(2, false), t(2, true), t(2, false), t(2, false), t(2, false), t(2, false), t(2, false), t(2, false), t(2, false), t(2, true), t(2, false), t(2, false), t(2, false), t(2, false), t(2, false), t(2, false), t(2, false), t(2, false), t(2, false), t(2, false), t(2, false), t(2, false), t(2, true), t(2, false), t(2, false), t(2, false), t(2, false), t(2, false), t(2, false), t(2, false), t(2, false), },
+											{t(0, false), t(1, false), t(2, false), t(2, false), t(2, false), t(2, false), t(2, false), t(2, false), t(2, false), t(2, false), t(2, false), t(3, true), t(3, false), t(3, false), t(3, false), t(3, false), t(3, false), t(3, false), t(3, false), t(3, false), t(3, false), t(3, false), t(3, false), t(3, false), t(3, false), t(3, false), t(3, false), t(3, false), t(3, false), t(3, true), t(3, false), t(3, false), t(3, false), t(3, false), },
+											{t(0, false), t(1, true), t(2, false), t(3, true), t(3, false), t(3, false), t(3, false), t(3, false), t(3, false), t(3, false), t(3, false), t(3, false), t(3, false), t(3, false), t(3, false), t(3, false), t(3, false), t(3, false), t(4, true), t(4, false), t(4, false), t(4, false), t(4, false), t(4, false), t(4, false), t(4, false), t(4, false), t(4, true), t(4, false), t(4, false), t(4, false), t(4, false), t(4, false), t(4, false), },
+											{t(0, false), t(1, false), t(2, true), t(3, false), t(4, true), t(4, false), t(4, false), t(4, false), t(4, false), t(4, false), t(4, false), t(4, false), t(4, true), t(4, false), t(4, false), t(4, false), t(4, false), t(4, false), t(4, false), t(4, false), t(4, false), t(4, false), t(4, false), t(4, false), t(4, false), t(5, true), t(5, false), t(5, false), t(5, false), t(5, false), t(5, false), t(5, false), t(5, false), t(5, false), },
+											{t(0, false), t(1, false), t(2, false), t(3, false), t(4, false), t(4, false), t(4, false), t(4, false), t(4, false), t(4, false), t(4, false), t(4, false), t(4, false), t(4, false), t(4, false), t(4, false), t(4, false), t(4, false), t(4, false), t(4, false), t(4, false), t(4, false), t(4, false), t(4, false), t(4, false), t(5, false), t(5, false), t(5, false), t(5, false), t(5, false), t(5, false), t(5, false), t(5, false), t(5, false), },
+											{t(0, false), t(1, false), t(2, false), t(3, false), t(4, false), t(4, false), t(5, true), t(5, false), t(5, false), t(5, false), t(5, false), t(5, false), t(5, false), t(5, true), t(5, false), t(5, false), t(5, false), t(5, false), t(5, false), t(5, false), t(5, false), t(5, false), t(5, false), t(5, false), t(5, false), t(5, false), t(5, false), t(5, false), t(5, false), t(5, false), t(5, false), t(5, false), t(5, false), t(5, false), },
+											{t(0, false), t(1, false), t(2, false), t(3, false), t(4, false), t(4, false), t(5, false), t(6, true), t(6, false), t(6, false), t(6, false), t(6, false), t(6, false), t(6, false), t(6, false), t(6, false), t(6, false), t(6, false), t(6, false), t(6, false), t(6, false), t(6, false), t(6, false), t(6, false), t(6, false), t(6, false), t(6, false), t(6, false), t(6, false), t(6, false), t(6, false), t(6, false), t(6, false), t(6, false), },
+											{t(0, false), t(1, false), t(2, false), t(3, false), t(4, false), t(4, false), t(5, false), t(6, false), t(7, true), t(7, false), t(7, false), t(7, false), t(7, false), t(7, false), t(7, false), t(7, false), t(7, false), t(7, false), t(7, false), t(7, false), t(7, false), t(7, true), t(7, false), t(7, false), t(7, false), t(7, false), t(7, false), t(7, false), t(7, false), t(7, false), t(7, false), t(7, false), t(7, false), t(7, false), },
+											{t(0, false), t(1, false), t(2, false), t(3, false), t(4, false), t(4, false), t(5, false), t(6, false), t(7, false), t(8, true), t(8, false), t(8, false), t(8, false), t(8, false), t(8, false), t(8, false), t(8, false), t(8, false), t(8, false), t(8, false), t(8, true), t(8, false), t(8, true), t(8, false), t(8, false), t(8, false), t(8, false), t(8, false), t(8, false), t(8, false), t(8, false), t(8, false), t(8, false), t(8, false), },
+											{t(0, false), t(1, false), t(2, false), t(3, false), t(4, false), t(4, false), t(5, false), t(6, false), t(7, false), t(8, false), t(9, true), t(9, false), t(9, false), t(9, false), t(9, false), t(9, true), t(9, false), t(9, false), t(9, false), t(9, false), t(9, false), t(9, false), t(9, false), t(9, false), t(9, false), t(9, false), t(9, false), t(9, false), t(9, false), t(9, false), t(9, false), t(9, false), t(9, false), t(9, false), },
+											{t(0, false), t(1, false), t(2, false), t(3, false), t(4, false), t(4, false), t(5, false), t(6, false), t(7, false), t(8, false), t(9, false), t(9, false), t(9, false), t(9, false), t(9, false), t(9, false), t(9, false), t(9, false), t(9, false), t(9, false), t(9, false), t(9, false), t(9, false), t(9, false), t(9, false), t(9, false), t(9, false), t(9, false), t(10, true), t(10, false), t(10, false), t(10, false), t(10, false), t(10, false), },
+											{t(0, false), t(1, false), t(2, false), t(3, false), t(4, false), t(4, false), t(5, true), t(6, false), t(7, false), t(8, false), t(9, false), t(9, false), t(9, false), t(10, true), t(10, false), t(10, false), t(10, false), t(10, false), t(10, false), t(10, false), t(10, false), t(10, false), t(10, false), t(10, false), t(10, false), t(10, false), t(10, false), t(10, false), t(10, false), t(10, false), t(10, false), t(10, false), t(10, false), t(10, false), },
+											{t(0, false), t(1, false), t(2, false), t(3, false), t(4, false), t(4, false), t(5, false), t(6, false), t(7, false), t(8, false), t(9, false), t(9, false), t(9, false), t(10, false), t(11, true), t(11, false), t(11, true), t(11, false), t(11, false), t(11, true), t(11, false), t(11, false), t(11, false), t(11, false), t(11, false), t(11, false), t(11, false), t(11, false), t(11, false), t(11, false), t(11, false), t(11, false), t(11, false), t(11, true), },
+											{t(0, false), t(1, false), t(2, false), t(3, false), t(4, false), t(4, false), t(5, false), t(6, false), t(7, false), t(8, false), t(9, true), t(9, false), t(9, false), t(10, false), t(11, false), t(12, true), t(12, false), t(12, false), t(12, false), t(12, false), t(12, false), t(12, false), t(12, false), t(12, false), t(12, false), t(12, false), t(12, false), t(12, false), t(12, false), t(12, false), t(12, false), t(12, false), t(12, false), t(12, false), },
+											{t(0, false), t(1, false), t(2, false), t(3, false), t(4, false), t(4, false), t(5, false), t(6, false), t(7, false), t(8, false), t(9, false), t(9, false), t(9, false), t(10, false), t(11, true), t(12, false), t(13, true), t(13, false), t(13, false), t(13, true), t(13, false), t(13, false), t(13, false), t(13, false), t(13, false), t(13, false), t(13, false), t(13, false), t(13, false), t(13, false), t(13, false), t(13, false), t(13, false), t(13, true), },
+											{t(0, false), t(1, false), t(2, false), t(3, false), t(4, false), t(4, false), t(5, false), t(6, false), t(7, false), t(8, false), t(9, false), t(9, false), t(9, false), t(10, false), t(11, false), t(12, false), t(13, false), t(14, true), t(14, false), t(14, false), t(14, false), t(14, false), t(14, false), t(14, false), t(14, false), t(14, false), t(14, false), t(14, false), t(14, false), t(14, false), t(14, false), t(14, false), t(14, false), t(14, false), },
+											{t(0, false), t(1, false), t(2, false), t(3, false), t(4, false), t(4, false), t(5, false), t(6, false), t(7, false), t(8, false), t(9, false), t(9, false), t(9, false), t(10, false), t(11, false), t(12, false), t(13, false), t(14, false), t(14, false), t(14, false), t(14, false), t(14, false), t(14, false), t(14, false), t(14, false), t(14, false), t(14, false), t(14, false), t(14, false), t(14, false), t(14, false), t(14, false), t(14, false), t(14, false), },
+											{t(0, false), t(1, false), t(2, false), t(3, false), t(4, false), t(4, false), t(5, false), t(6, false), t(7, false), t(8, false), t(9, false), t(9, false), t(9, false), t(10, false), t(11, true), t(12, false), t(13, true), t(14, false), t(14, false), t(15, true), t(15, false), t(15, false), t(15, false), t(15, false), t(15, false), t(15, false), t(15, false), t(15, false), t(15, false), t(15, false), t(15, false), t(15, false), t(15, false), t(15, true), },
+											{t(0, false), t(1, false), t(2, false), t(3, false), t(4, false), t(4, false), t(5, false), t(6, false), t(7, false), t(8, true), t(9, false), t(9, false), t(9, false), t(10, false), t(11, false), t(12, false), t(13, false), t(14, false), t(14, false), t(15, false), t(16, true), t(16, false), t(16, true), t(16, false), t(16, false), t(16, false), t(16, false), t(16, false), t(16, false), t(16, false), t(16, false), t(16, false), t(16, false), t(16, false), },
+											{t(0, false), t(1, false), t(2, false), t(3, false), t(4, false), t(4, false), t(5, false), t(6, false), t(7, false), t(8, false), t(9, false), t(9, false), t(9, false), t(10, false), t(11, false), t(12, false), t(13, false), t(14, false), t(14, false), t(15, false), t(16, false), t(16, false), t(16, false), t(17, true), t(17, false), t(17, false), t(17, false), t(17, false), t(17, false), t(17, false), t(17, false), t(17, false), t(17, false), t(17, false), },
+											{t(0, false), t(1, false), t(2, false), t(3, false), t(4, false), t(4, false), t(5, false), t(6, false), t(7, false), t(8, true), t(9, false), t(9, false), t(9, false), t(10, false), t(11, false), t(12, false), t(13, false), t(14, false), t(14, false), t(15, false), t(16, true), t(16, false), t(17, true), t(17, false), t(17, false), t(17, false), t(17, false), t(17, false), t(17, false), t(17, false), t(17, false), t(17, false), t(17, false), t(17, false), },
+											{t(0, false), t(1, false), t(2, false), t(3, false), t(4, false), t(4, false), t(5, false), t(6, false), t(7, true), t(8, false), t(9, false), t(9, false), t(9, false), t(10, false), t(11, false), t(12, false), t(13, false), t(14, false), t(14, false), t(15, false), t(16, false), t(17, true), t(17, false), t(17, false), t(17, false), t(17, false), t(17, false), t(17, false), t(17, false), t(17, false), t(17, false), t(17, false), t(17, false), t(17, false), },
+											{t(0, false), t(1, false), t(2, false), t(3, false), t(4, false), t(4, false), t(5, false), t(6, false), t(7, false), t(8, false), t(9, false), t(9, false), t(9, false), t(10, false), t(11, false), t(12, false), t(13, false), t(14, false), t(14, false), t(15, false), t(16, false), t(17, false), t(17, false), t(17, false), t(18, true), t(18, false), t(18, false), t(18, false), t(18, false), t(18, false), t(18, false), t(18, false), t(18, false), t(18, false), },
+											{t(0, false), t(1, false), t(2, true), t(3, false), t(4, true), t(4, false), t(5, false), t(6, false), t(7, false), t(8, false), t(9, false), t(9, false), t(10, true), t(10, false), t(11, false), t(12, false), t(13, false), t(14, false), t(14, false), t(15, false), t(16, false), t(17, false), t(17, false), t(17, false), t(18, false), t(19, true), t(19, false), t(19, false), t(19, false), t(19, false), t(19, false), t(19, false), t(19, false), t(19, false), },
+											{t(0, false), t(1, false), t(2, false), t(3, false), t(4, false), t(4, false), t(5, false), t(6, false), t(7, false), t(8, false), t(9, false), t(9, false), t(10, false), t(10, false), t(11, false), t(12, false), t(13, false), t(14, false), t(14, false), t(15, false), t(16, false), t(17, false), t(17, false), t(17, false), t(18, false), t(19, false), t(20, true), t(20, false), t(20, false), t(20, false), t(20, false), t(20, false), t(20, false), t(20, false), },
+											{t(0, false), t(1, true), t(2, false), t(3, true), t(4, false), t(4, false), t(5, false), t(6, false), t(7, false), t(8, false), t(9, false), t(9, false), t(10, false), t(10, false), t(11, false), t(12, false), t(13, false), t(14, false), t(15, true), t(15, false), t(16, false), t(17, false), t(17, false), t(17, false), t(18, false), t(19, false), t(20, false), t(21, true), t(21, false), t(21, false), t(21, false), t(21, false), t(21, false), t(21, false), },
+											{t(0, false), t(1, false), t(2, false), t(3, false), t(4, false), t(4, false), t(5, false), t(6, false), t(7, false), t(8, false), t(9, false), t(9, false), t(10, false), t(10, false), t(11, false), t(12, false), t(13, false), t(14, false), t(15, false), t(15, false), t(16, false), t(17, false), t(17, false), t(17, false), t(18, false), t(19, false), t(20, false), t(21, false), t(22, true), t(22, false), t(22, false), t(22, false), t(22, false), t(22, false), },
+											{t(0, false), t(1, false), t(2, false), t(3, false), t(4, false), t(4, false), t(5, false), t(6, false), t(7, false), t(8, false), t(9, false), t(10, true), t(10, false), t(10, false), t(11, false), t(12, false), t(13, false), t(14, false), t(15, false), t(15, false), t(16, false), t(17, false), t(17, false), t(17, false), t(18, false), t(19, false), t(20, false), t(21, false), t(22, false), t(23, true), t(23, false), t(23, false), t(23, false), t(23, false), },
+											{t(0, false), t(1, false), t(2, false), t(3, false), t(4, false), t(4, false), t(5, false), t(6, false), t(7, false), t(8, false), t(9, false), t(10, false), t(10, false), t(10, false), t(11, false), t(12, false), t(13, false), t(14, false), t(15, false), t(15, false), t(16, false), t(17, false), t(17, false), t(17, false), t(18, false), t(19, false), t(20, false), t(21, false), t(22, false), t(23, false), t(24, true), t(24, false), t(24, false), t(24, false), },
+											{t(0, false), t(1, false), t(2, false), t(3, false), t(4, false), t(4, false), t(5, false), t(6, false), t(7, false), t(8, false), t(9, false), t(10, false), t(10, false), t(10, false), t(11, false), t(12, false), t(13, false), t(14, false), t(15, false), t(15, false), t(16, false), t(17, false), t(17, false), t(17, false), t(18, false), t(19, false), t(20, false), t(21, false), t(22, false), t(23, false), t(24, false), t(25, true), t(25, false), t(25, false), },
+											{t(0, false), t(1, false), t(2, false), t(3, false), t(4, false), t(4, false), t(5, false), t(6, false), t(7, false), t(8, false), t(9, false), t(10, false), t(10, false), t(10, false), t(11, false), t(12, false), t(13, false), t(14, false), t(15, false), t(15, false), t(16, false), t(17, false), t(17, false), t(17, false), t(18, false), t(19, false), t(20, false), t(21, false), t(22, false), t(23, false), t(24, false), t(25, false), t(26, true), t(26, false), },
+											{t(0, false), t(1, false), t(2, false), t(3, false), t(4, false), t(4, false), t(5, false), t(6, false), t(7, false), t(8, false), t(9, false), t(10, false), t(10, false), t(10, false), t(11, true), t(12, false), t(13, true), t(14, false), t(15, false), t(16, true), t(16, false), t(17, false), t(17, false), t(17, false), t(18, false), t(19, false), t(20, false), t(21, false), t(22, false), t(23, false), t(24, false), t(25, false), t(26, false), t(27, true), },
 										}
 									)
 								),
@@ -210,16 +243,16 @@ public class LongestCommonSubsequenceDistanceInfoTest extends AbstractMetricInfo
 									1,
 									null,
 									new Matrix<>(
-										new Integer[][]{
-											{0, 0, 0, 0, 0, 0, 0, 0, 0},
-											{0, 1, 1, 1, 1, 1, 1, 1, 1},
-											{0, 1, 2, 2, 2, 2, 2, 2, 2},
-											{0, 1, 2, 2, 2, 2, 2, 2, 2},
-											{0, 1, 2, 2, 3, 3, 3, 3, 3},
-											{0, 1, 2, 2, 3, 3, 4, 4, 4},
-											{0, 1, 2, 3, 3, 3, 4, 4, 4},
-											{0, 1, 2, 3, 3, 3, 4, 4, 5},
-											{0, 1, 2, 3, 3, 3, 4, 4, 5},
+										new Tuple2[][]{
+											{t(0, false), t(0, false), t(0, false), t(0, false), t(0, false), t(0, false), t(0, false), t(0, false), t(0, false)},
+											{t(0, false), t(1, true), t(1, false), t(1, false), t(1, false), t(1, false), t(1, false), t(1, false), t(1, false)},
+											{t(0, false), t(1, false), t(2, true), t(2, false), t(2, false), t(2, false), t(2, false), t(2, false), t(2, false)},
+											{t(0, false), t(1, false), t(2, true), t(2, false), t(2, false), t(2, false), t(2, false), t(2, false), t(2, false)},
+											{t(0, false), t(1, false), t(2, false), t(2, false), t(3, true), t(3, true), t(3, false), t(3, false), t(3, false)},
+											{t(0, false), t(1, false), t(2, false), t(2, false), t(3, false), t(3, false), t(4, true), t(4, false), t(4, false)},
+											{t(0, false), t(1, false), t(2, false), t(3, true), t(3, false), t(3, false), t(4, false), t(4, false), t(4, false)},
+											{t(0, false), t(1, false), t(2, false), t(3, false), t(3, false), t(3, false), t(4, false), t(4, false), t(5, true)},
+											{t(0, false), t(1, false), t(2, false), t(3, false), t(3, false), t(3, false), t(4, false), t(4, false), t(5, false)},
 										}
 									)
 								),
@@ -239,15 +272,15 @@ public class LongestCommonSubsequenceDistanceInfoTest extends AbstractMetricInfo
 										1,
 										null,
 										new Matrix<>(
-											new Integer[][]{
-												{0, 0, 0, 0, 0, 0, 0, 0},
-												{0, 1, 1, 1, 1, 1, 1, 1},	
-												{0, 1, 1, 2, 2, 2, 2, 2},	
-												{0, 1, 2, 2, 2, 2, 2, 2},	
-												{0, 1, 2, 2, 3, 3, 3, 3},	
-												{0, 1, 2, 2, 3, 3, 4, 4},	
-												{0, 1, 2, 2, 3, 3, 4, 4},	
-												{0, 1, 2, 2, 3, 3, 4, 4},
+											new Tuple2[][]{
+												{t(0, false), t(0, false), t(0, false), t(0, false), t(0, false), t(0, false), t(0, false), t(0, false)},
+												{t(0, false), t(1, true), t(1, false), t(1, false), t(1, false), t(1, false), t(1, false), t(1, false)},	
+												{t(0, false), t(1, false), t(1, false), t(2, true), t(2, false), t(2, false), t(2, false), t(2, false)},	
+												{t(0, false), t(1, false), t(2, true), t(2, false), t(2, false), t(2, false), t(2, false), t(2, false)},	
+												{t(0, false), t(1, false), t(2, false), t(2, false), t(3, true), t(3, true), t(3, false), t(3, false)},	
+												{t(0, false), t(1, false), t(2, false), t(2, false), t(3, false), t(3, false), t(4, true), t(4, false)},	
+												{t(0, false), t(1, false), t(2, false), t(2, false), t(3, false), t(3, false), t(4, false), t(4, false)},	
+												{t(0, false), t(1, false), t(2, false), t(2, false), t(3, false), t(3, false), t(4, false), t(4, false)},
 											}
 										)
 									),
@@ -269,8 +302,8 @@ public class LongestCommonSubsequenceDistanceInfoTest extends AbstractMetricInfo
 									1,
 									null,
 									new Matrix<>(
-										new Integer[][]{
-											{0, 0, 0, 0, 0, 0},
+										new Tuple2[][]{
+											{t(0, false), t(0, false), t(0, false), t(0, false), t(0, false), t(0, false)},
 										}
 									)
 								),
@@ -288,13 +321,13 @@ public class LongestCommonSubsequenceDistanceInfoTest extends AbstractMetricInfo
 									1,
 									null,
 									new Matrix<>(
-										new Integer[][]{
-											{0},
-											{0},
-											{0},
-											{0},
-											{0},
-											{0},
+										new Tuple2[][]{
+											{t(0, false)},
+											{t(0, false)},
+											{t(0, false)},
+											{t(0, false)},
+											{t(0, false)},
+											{t(0, false)},
 										}
 									)
 								),
