@@ -14,12 +14,11 @@ import junitparams.Parameters;
 import length.info.LongestCommonSubsequenceLengthInfo;
 import structures.LengthMatrixResult;
 import structures.LengthResult;
-import support.AbstractMetricInfoTest;
 import support.Matrix;
 import support.Tuple2;
 
 @RunWith(JUnitParamsRunner.class)
-public class LongestCommonSubsequenceLengthInfoTest extends AbstractMetricInfoTest {
+public class LongestCommonSubsequenceLengthInfoTest {
 	
 	@Test
 	@Parameters
@@ -32,14 +31,7 @@ public class LongestCommonSubsequenceLengthInfoTest extends AbstractMetricInfoTe
 		assertEquals(result, actual);
 	}	
 		
-	public Object[] parametersForTestCalculateWorks() {
-		return parameters(2);
-	}
-	
-	/**********************************/
-	
-	@Override
-	public List<Object[]> resultSet() {
+	public List<Object[]> parametersForTestCalculateWorks() {
 		return Arrays.asList(
 				//equals
 				new Object[]{
