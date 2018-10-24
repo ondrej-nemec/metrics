@@ -10,7 +10,7 @@ import structures.LengthResult;
 import support.Matrix;
 import support.Tuple2;
 
-public class LongestCommonSubsequenceDistanceInfo<S> implements StructureMatrixLength<S, Tuple2<Integer, Boolean>> {
+public class LongestCommonSubsequenceLengthInfo<S> implements StructureMatrixLength<S, Tuple2<Integer, Boolean>> {
 
 	@Override
 	public LengthResult<S, LengthMatrixResult<Tuple2<Integer, Boolean>>> calculate(List<S> sequenceFrom, List<S> sequenceTo) {

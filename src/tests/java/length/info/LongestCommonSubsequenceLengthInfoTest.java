@@ -11,7 +11,7 @@ import org.junit.runner.RunWith;
 
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
-import length.info.LongestCommonSubsequenceDistanceInfo;
+import length.info.LongestCommonSubsequenceLengthInfo;
 import structures.LengthMatrixResult;
 import structures.LengthResult;
 import support.AbstractMetricInfoTest;
@@ -19,7 +19,7 @@ import support.Matrix;
 import support.Tuple2;
 
 @RunWith(JUnitParamsRunner.class)
-public class LongestCommonSubsequenceDistanceInfoTest extends AbstractMetricInfoTest {
+public class LongestCommonSubsequenceLengthInfoTest extends AbstractMetricInfoTest {
 	
 	@Test
 	@Parameters
@@ -28,7 +28,7 @@ public class LongestCommonSubsequenceDistanceInfoTest extends AbstractMetricInfo
 			List<Character> to,
 			LengthResult<Character, LengthMatrixResult<Tuple2<Integer, Boolean>>> result) {
 		LengthResult<Character, LengthMatrixResult<Tuple2<Integer, Boolean>>> actual = 
-				new LongestCommonSubsequenceDistanceInfo<Character>().calculate(from, to);
+				new LongestCommonSubsequenceLengthInfo<Character>().calculate(from, to);
 		assertEquals(result, actual);
 	}	
 		

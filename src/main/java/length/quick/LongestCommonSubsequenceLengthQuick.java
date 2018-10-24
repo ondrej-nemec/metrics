@@ -2,7 +2,7 @@ package length.quick;
 
 import java.util.List;
 
-public class LongestCommonSubsequenceDistanceQuick<S> implements LengthQuick<S> {
+public class LongestCommonSubsequenceLengthQuick<S> implements LengthQuick<S> {
 
 	@Override
 	public Number calculate(List<S> sequenceFrom, List<S> sequenceTo) {

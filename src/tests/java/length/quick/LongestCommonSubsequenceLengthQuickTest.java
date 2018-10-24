@@ -12,15 +12,15 @@ import org.junit.runner.RunWith;
 
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
-import length.quick.LongestCommonSubsequenceDistanceQuick;
+import length.quick.LongestCommonSubsequenceLengthQuick;
 
 @RunWith(JUnitParamsRunner.class)
-public class LongestCommonSubsequenceDistanceQuickTest {
+public class LongestCommonSubsequenceLengthQuickTest {
 
 	@Test
 	@Parameters
 	public void testCalculateWorks(List<Character> from, List<Character> to, Number length) {
-		LongestCommonSubsequenceDistanceQuick<Character> dis = new LongestCommonSubsequenceDistanceQuick<>();
+		LongestCommonSubsequenceLengthQuick<Character> dis = new LongestCommonSubsequenceLengthQuick<>();
 		assertEquals(
 				length,
 				dis.calculate(from, to)

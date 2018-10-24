@@ -387,10 +387,10 @@ public class LevenshteinDistanceInfoTest extends AbstractMetricInfoTest {
 						Arrays.asList('k', 'o', 'p', 'l', 'i', 'n', 'n'),
 						Arrays.asList('k', 'p', 'o', 'l', 'l', 'i', 'm'),
 						new DistanceResult<>(
-								Arrays.asList('k', 'o', 'p', ' ', 'l', ' ', 'i', 'n', 'n'),
-								Arrays.asList('k', ' ', 'p', 'o', 'l', 'l', 'i', 'm', ' '),
+								Arrays.asList('k', ' ', 'o', 'p', 'l', 'i', 'n', 'n'),
+								Arrays.asList('k', 'p', 'o', 'l', 'l', 'i', 'm', ' '),
 								"Levenshtein distance",
-								"EDEIEIESD",
+								"EIESEESD",
 								4,
 								new DistanceMatrixResult<>(
 										new Matrix<>(new Tuple2[][]{
@@ -408,10 +408,9 @@ public class LevenshteinDistanceInfoTest extends AbstractMetricInfoTest {
 										Arrays.asList(
 												new Tuple2<Integer, Integer>(0, 0),
 												new Tuple2<Integer, Integer>(1, 1),
-												new Tuple2<Integer, Integer>(2, 1),
-												new Tuple2<Integer, Integer>(3, 2),
-												new Tuple2<Integer, Integer>(3, 3),
-												new Tuple2<Integer, Integer>(4, 4),
+												new Tuple2<Integer, Integer>(1, 2),
+												new Tuple2<Integer, Integer>(2, 3),
+												new Tuple2<Integer, Integer>(3, 4),
 												new Tuple2<Integer, Integer>(4, 5),
 												new Tuple2<Integer, Integer>(5, 6),
 												new Tuple2<Integer, Integer>(6, 7),
@@ -419,7 +418,7 @@ public class LevenshteinDistanceInfoTest extends AbstractMetricInfoTest {
 										)
 							)
 						),
-						8 //TODO fix: not responce with distance
+						8
 				},
 				/************/
 				//second empty
