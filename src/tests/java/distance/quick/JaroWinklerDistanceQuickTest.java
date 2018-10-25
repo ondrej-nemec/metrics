@@ -60,11 +60,11 @@ public class JaroWinklerDistanceQuickTest {
 				//so long sequence
 				new Object[]{
 						Arrays.asList('n', 'e', 'j', 'n', 'e', 'z', 'p', 'r', 'a', 'v', 'd',
-									  'Ã¬', 'p', 'o', 'd', 'o', 'b', 'Ã²', 'o', 'v', 'Ã¡', 'v',
-									  'a', 't', 'e', 'l', 'n', 'Ã¬', 'j', 'Âš', 'Ã­', 'h', 'o'),
+								  'ì', 'p', 'o', 'd', 'o', 'b', 'ò', 'o', 'v', 'á', 'v',
+								  'a', 't', 'e', 'l', 'n', 'ì', 'j', 'š', 'í', 'h', 'o'),
 						Arrays.asList('n', 'e', 'n', 'e', 's', 'p', 'r', 'a', 'v', 'd', 'j',
-									  'e', 'p', 'o', 'd', 'o', 'b', 'n', 'o', 'v', 'a', 'v',
-									  'Ã¡', 't', 'e', 'l', 'n', 'Ã¬', 'j', 'Âš', 'Ã­', 'h', 'o'),
+								  'e', 'p', 'o', 'd', 'o', 'b', 'n', 'o', 'v', 'a', 'v',
+								  'á', 't', 'e', 'l', 'n', 'ì', 'j', 'š', 'í', 'h', 'o'),
 						0.90303,
 				},		
 				//kolinn vs kpollim

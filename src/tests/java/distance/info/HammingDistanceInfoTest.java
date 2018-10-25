@@ -144,18 +144,18 @@ public class HammingDistanceInfoTest extends AbstractMetricInfoTest {
 				//so long sequence
 				new Object[]{
 					Arrays.asList('n', 'e', 'j', 'n', 'e', 'z', 'p', 'r', 'a', 'v', 'd',
-								  'Ä›', 'p', 'o', 'd', 'o', 'b', 'Åˆ', 'o', 'v', 'Ã¡', 'v',
-								  'a', 't', 'e', 'l', 'n', 'Ä›', 'j', 'Å¡', 'Ã­', 'h', 'o'),
+								  'ì', 'p', 'o', 'd', 'o', 'b', 'ò', 'o', 'v', 'á', 'v',
+								  'a', 't', 'e', 'l', 'n', 'ì', 'j', 'š', 'í', 'h', 'o'),
 					Arrays.asList('n', 'e', 'n', 'e', 's', 'p', 'r', 'a', 'v', 'd', 'j',
 								  'e', 'p', 'o', 'd', 'o', 'b', 'n', 'o', 'v', 'a', 'v',
-								  'Ã¡', 't', 'e', 'l', 'n', 'Ä›', 'j', 'Å¡', 'Ã­', 'h', 'o'),
+								  'á', 't', 'e', 'l', 'n', 'ì', 'j', 'š', 'í', 'h', 'o'),
 					makeResultSet(
 							Arrays.asList('n', 'e', 'j', 'n', 'e', 'z', 'p', 'r', 'a', 'v', 'd',
-										  'Ä›', 'p', 'o', 'd', 'o', 'b', 'Åˆ', 'o', 'v', 'Ã¡', 'v',
-										  'a', 't', 'e', 'l', 'n', 'Ä›', 'j', 'Å¡', 'Ã­', 'h', 'o'),
+										  'ì', 'p', 'o', 'd', 'o', 'b', 'ò', 'o', 'v', 'á', 'v',
+										  'a', 't', 'e', 'l', 'n', 'ì', 'j', 'š', 'í', 'h', 'o'),
 							Arrays.asList('n', 'e', 'n', 'e', 's', 'p', 'r', 'a', 'v', 'd', 'j',
 										  'e', 'p', 'o', 'd', 'o', 'b', 'n', 'o', 'v', 'a', 'v',
-										  'Ã¡', 't', 'e', 'l', 'n', 'Ä›', 'j', 'Å¡', 'Ã­', 'h', 'o'),
+										  'á', 't', 'e', 'l', 'n', 'ì', 'j', 'š', 'í', 'h', 'o'),
 							"EESSSSSSSSSSEEEEESEESESEEEEEEEEEE",
 							13
 					),

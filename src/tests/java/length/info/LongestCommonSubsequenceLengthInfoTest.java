@@ -166,12 +166,12 @@ public class LongestCommonSubsequenceLengthInfoTest {
 					},
 				//so long sequence
 				new Object[]{
-					Arrays.asList('n', 'e', 'j', 'n', 'e', 'z', 'p', 'r', 'a', 'v', 'd',
-								  'Ä›', 'p', 'o', 'd', 'o', 'b', 'Åˆ', 'o', 'v', 'Ã¡', 'v',
-								  'a', 't', 'e', 'l', 'n', 'Ä›', 'j', 'Å¡', 'Ã­', 'h', 'o'),
-					Arrays.asList('n', 'e', 'n', 'e', 's', 'p', 'r', 'a', 'v', 'd', 'j',
+						Arrays.asList('n', 'e', 'j', 'n', 'e', 'z', 'p', 'r', 'a', 'v', 'd',
+								  'ì', 'p', 'o', 'd', 'o', 'b', 'ò', 'o', 'v', 'á', 'v',
+								  'a', 't', 'e', 'l', 'n', 'ì', 'j', 'š', 'í', 'h', 'o'),
+						Arrays.asList('n', 'e', 'n', 'e', 's', 'p', 'r', 'a', 'v', 'd', 'j',
 								  'e', 'p', 'o', 'd', 'o', 'b', 'n', 'o', 'v', 'a', 'v',
-								  'Ã¡', 't', 'e', 'l', 'n', 'Ä›', 'j', 'Å¡', 'Ã­', 'h', 'o'),
+								  'á', 't', 'e', 'l', 'n', 'ì', 'j', 'š', 'í', 'h', 'o'),
 					new LengthResult<>(
 							27,
 							"Longest Common Subsequence length",
@@ -220,7 +220,7 @@ public class LongestCommonSubsequenceLengthInfoTest {
 							Arrays.asList(
 									Arrays.asList('n', 'e', 'n', 'e', 'p', 'r', 'a', 
 											'v', 'd', 'p', 'o', 'd', 'o', 'b', 'o', 'v', 'v',
-											't', 'e', 'l', 'n', 'Ä›', 'j', 'Å¡', 'Ã­', 'h', 'o')
+											't', 'e', 'l', 'n', 'ì', 'j', 'š', 'í', 'h', 'o')
 							)
 					)
 				},
