@@ -35,9 +35,7 @@ public class LevenshteinDistanceInfo<S> implements StructureMatrixDistance<S, Tu
 	
 	@Override
 	public DistanceResult<S, DistanceMatrixResult<Tuple2<Integer, Boolean>>> calculate(List<S> sequenceFrom, List<S> sequenceTo) {
-		
-		Matrix<Tuple2<Integer, Boolean>> matrix = startFill(sequenceFrom, sequenceTo);
-		
+		Matrix<Tuple2<Integer, Boolean>> matrix = startFill(sequenceFrom, sequenceTo);		
 		List<Tuple2<Integer, Integer>> indexes = new ArrayList<>();
 		List<S> finalFrom = new ArrayList<>();
 		List<S> finalTo = new ArrayList<>();
@@ -57,7 +55,7 @@ public class LevenshteinDistanceInfo<S> implements StructureMatrixDistance<S, Tu
 					)
 			);
 	}
-
+	
 	private String findOperations(
 				Matrix<Tuple2<Integer, Boolean>> matrix,
 				List<S> from, List<S> to,
@@ -218,7 +216,6 @@ public class LevenshteinDistanceInfo<S> implements StructureMatrixDistance<S, Tu
 					matrix.setCell(row, col, new Tuple2<>(row, false));
 				}else{
 					boolean second = from.get(row-1).equals(to.get(col-1));
-				//	boolean second = matrix.getCell(row-1, col-1).getSecond();
 					matrix.setCell(row, col, 
 							new Tuple2<>(
 									Math.min(
