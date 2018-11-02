@@ -6,16 +6,18 @@
 * [Description](#description)
 * [Get library](#how-to-install)
 * [Usage](#usage)
-	* [Quick mode](#quick-mode)
-	* [More-info mode](#more-info-mode)
-		* [Result set](#result-set)
+	* [Distance](#distance)
+	* [Length](#length)
 	* [Entropy](#entropy)
 
 ## Description
-Library for edit distance calculating. Allowed generic sequences. Provide classes for easiest work with big dataset. Supported metrics: *Levenshtein distance*, *Hamming distance*, *Jaro distance*, *Jaro-Winkler distance*. Each metric could be calculate in 'quick' or 'more-info' mode. As a bonus this library calculate *Conditional Entropy*.
+Library for edit distance calculating. Allowed generic sequences. Provide classes for easiest work with big dataset.
+Supported edit distances: *Levenshtein distance*, *Hamming distance*, *Jaro distance*, *Jaro-Winkler distance*.
+Supported length: *Longest common substring length*, *Longest common subsequence length*.
+Bonus: *Conditional Entropy*.
 ## How to install
 ### Download:
-<a href="https://ondrej-nemec.github.io/download/metrics-3.0.1.jar" target=_blank>Download jar</a>
+<a href="https://ondrej-nemec.github.io/download/metrics-4.0.jar" target=_blank>Download jar</a>
 ### Maven:
 
 After `build` tag:
@@ -32,25 +34,27 @@ And to `dependencies`:
 <dependency>
   <groupId>com.github.ondrej-nemec</groupId>
   <artifactId>metrics</artifactId>
-  <version>3.0.1</version>
+  <version>4.0</version>
 </dependency>
 ```
 
 ## Usage
-**Note:** in this text, generic type 'S' is always type of what you compare - if you wont compare Strings (words), you will use List<Character> 
-### Quick mode
-Each metric in quick mode has method:
+**Note:** in this text, generic type 'S' is always type of what you compare - if you wont compare Strings (words), you will use List<Character>
+### Distance
+Each distance could be calculated with two ways - quick and info. Quick mode provide only distance, info mode give you more information about calculation.
+#### Distance Quick mode 
+Each distance in quick mode implement `DistanceQuick` interface and has method:
 ```java
 Number calculate(List<S> sequenceFrom, List<S> sequenceTo);
 ```
-### More-info mode
-Provide distance, description and 'final sequences', which are given sequences edited to same length.
+#### Distance More-info mode
+`DistanceInfo` - provide distance, description and 'final sequences', which are given sequences edited to same length.
 In this mode metrics have this method: 
 ```java
-ResultSet<S, T> calculate(List<S> sequenceFrom, List<S> sequenceTo);
+DistanceResult<S, T> calculate(List<S> sequenceFrom, List<S> sequenceTo);
 ```
-'T' is type of structure which you could get from result set. [More about ResultSet](#result-set). This type is defined in each metric, so you must define only 'S'.
-#### Result set
+'T' is type of structure which you could get from result set. [More about DistanceResult](#distance-result). This type is defined in each metric, so you must define only 'S'.
+##### Distance result
 This is data object. From this class you can get informations about previous distance calculation in 'more-info' mode.
 ```java
 //return edited first sequence
@@ -70,6 +74,36 @@ Number getDistance();
 	
 //return used structure
 T getStructure();
+```
+
+### Length
+Each length has two ways - info and quick - too. 
+#### Length Quick mode
+Classes in length package implement `LengthQuick` interface. This interface provide:
+```java
+Number calculate(List<S> sequenceFrom, List<S> sequenceTo);
+```
+#### Length More-info mode
+`LengthInfo` - provide length, description and more informations.
+In this mode metrics have this method: 
+```java
+LengthResult<S, T> calculate(List<S> sequenceFrom, List<S> sequenceTo);
+```
+'T' is type of structure which you could get from result set. [More about LengthResult](#distance-result). This type is defined in each metric, so you must define only 'S'.
+##### Length result
+This is data object. From this class you can get informations about previous distance calculation in 'more-info' mode.
+```java
+//return description of calculation
+String getDescription();
+
+//return calculated length
+Number getLength();
+	
+//return used structure
+T getStructure();
+
+//return all common sub(string/sequence/...) which have calculated length
+public Collection<List<S>> getSubs();
 ```
 
 ### Entropy
