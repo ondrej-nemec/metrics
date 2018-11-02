@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.github.ondrej-nemec</groupId>
   <artifactId>metrics</artifactId>
-  <version>v4.0-alpha</version>
+  <version>v4.0-beta</version>
   <build>
     <testSourceDirectory>src/tests/java</testSourceDirectory>
     <plugins>

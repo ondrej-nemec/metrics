@@ -34,7 +34,7 @@ And to `dependencies`:
 <dependency>
   <groupId>com.github.ondrej-nemec</groupId>
   <artifactId>metrics</artifactId>
-  <version>4.0</version>
+  <version>v4.0-beta</version>
 </dependency>
 ```
 
